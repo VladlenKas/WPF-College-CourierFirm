@@ -9,14 +9,14 @@
         Title="Вход в CourierFirm" 
         Background="#272D38"
         Height="800" Width="1200"   
-        MinHeight="450" MinWidth="800"
+        MinHeight="700" MinWidth="1050"
         WindowStartupLocation="CenterScreen">
 
-    <Grid Margin="50 100">
+    <Grid Margin="50">
         
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="30"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
@@ -25,8 +25,9 @@
                HorizontalAlignment="Center"/>
 
         <DockPanel Grid.Column="2"
-                    Width="440"
-                   LastChildFill="False">
+                   Width="440"
+                   LastChildFill="False"
+                   HorizontalAlignment="Center">
             
             <TextBlock Style="{StaticResource H1}"
                        Text="Вход в аккаунт"
@@ -39,9 +40,9 @@
                 <TextBlock Style="{StaticResource H6}"
                            Text="Нет аккаунта?"
                            Opacity="0.5"
-                            Margin="0 0 5 0"/>
+                           Margin="0 0 5 0"/>
                 
-                <Button Style="{StaticResource Link}"
+                <Button Style="{StaticResource HyperLink}"
                         Content="Зарегистрироваться"/>
                 
             </StackPanel>
@@ -62,13 +63,13 @@
 
             <Button Name="exitBTN"
                     Content="Закрыть приложение"
-                    Style="{StaticResource NotActive}"
+                    Style="{StaticResource Standard}"
                     DockPanel.Dock="Bottom"/>
             
             <Button Name="enterBTN"
                     Content="Войти"
                     Margin="0 0 0 20"
-                    Style="{StaticResource Active}"
+                    Style="{StaticResource Priority}"
                     DockPanel.Dock="Bottom"/>
         </DockPanel>
     </Grid>

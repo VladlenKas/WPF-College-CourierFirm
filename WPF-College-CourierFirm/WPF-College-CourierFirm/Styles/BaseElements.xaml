@@ -35,7 +35,6 @@
     <!--#region TextBox -->
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="#414B5F"/>
-        <Setter Property="BorderBrush" Value="#E1ECFF"/>
         <Setter Property="Foreground" Value="#ffffff"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Width" Value="Auto"/>
@@ -85,11 +84,14 @@
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="textBlock" Property="Foreground" Value="#ffffff"/>
                             <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="#E1ECFF"/>
+                            <Setter Property="Background" Value="#4E5A6F"/>
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="textBlock" Property="Foreground" Value="#ffffff"/>
                             <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="#E1ECFF"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -99,9 +101,8 @@
     <!--#endregion-->
 
     <!--#region Buttons -->
-
     <!--#region Ссылочная кнопка -->
-    <Style TargetType="{x:Type Button}" x:Key="Link">
+    <Style TargetType="{x:Type Button}" x:Key="HyperLink">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -126,12 +127,17 @@
                     </Border>
 
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter Property="Foreground" Value="#6198FF"/>
-                        </Trigger>
-
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="#6198FF"/>
+                            <Setter Property="Foreground" Value="#7A92C2"/>
+                        </Trigger>
+                        
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Foreground" Value="#465A87"/>
+                            <Setter Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="0.5"/>
+                                </Setter.Value>
+                            </Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -140,8 +146,8 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region Обычная -->
-    <Style TargetType="{x:Type Button}" x:Key="Active">
+    <!--#region Приоритетная -->
+    <Style TargetType="{x:Type Button}" x:Key="Priority">
         <Setter Property="Background" Value="#5D77A7"/>
         <Setter Property="Foreground" Value="#ffffff"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -167,8 +173,29 @@
                         </ContentPresenter>
                     </Border>
 
-                    <!--<ControlTemplate.Triggers>
-                    </ControlTemplate.Triggers>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6B85B5"/>
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="12" 
+                                  Opacity="0.3" 
+                                  Color="#5D77A7" 
+                                  ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#405D8F"/>
+                            <Setter TargetName="border" Property="Effect" Value="{x:Null}"/>
+                            <Setter TargetName="border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -176,8 +203,8 @@
     <!--#endregion-->
 
     <!--#region Обычная -->
-    <Style TargetType="{x:Type Button}" x:Key="NotActive">
-        <Setter Property="Background" Value="#5D77A7"/>
+    <Style TargetType="{x:Type Button}" x:Key="Standard">
+        <Setter Property="Background" Value="#374359"/>
         <Setter Property="Foreground" Value="#ffffff"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Width" Value="Auto"/>
@@ -203,14 +230,25 @@
                         </ContentPresenter>
                     </Border>
 
-                    <!--<ControlTemplate.Triggers>
-                    </ControlTemplate.Triggers>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#435977"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5D77A7"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#2A3647"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="#5D77A7"/>
+                            <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                            <Setter Property="Foreground" Value="#E0E4EB"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
     <!--#endregion-->
-
     <!--#endregion-->
 
     <!--#region CheckBox -->
@@ -225,8 +263,8 @@
 
                         <Border x:Name="border"
                                 Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
                                 CornerRadius="5">
                             <Grid>
                                 <Rectangle Margin="10"/>
@@ -255,11 +293,25 @@
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
-                                <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Background" Value="#414B5F"/>
                                 <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
                                 <Setter TargetName="waterMark" Property="Opacity" Value="0.5"/>
                                 <Setter TargetName="content" Property="Opacity" Value="0.5"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Не активна + наведена -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#414B5F"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
+                                <Setter TargetName="content" Property="Opacity" Value="1"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
 
@@ -276,6 +328,11 @@
                                 <Setter Property="Background" Value="#414B5F"/>
                                 <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
                                 <Setter TargetName="content" Property="Opacity" Value="1"/>
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1"/>
+                                    </Setter.Value>
+                                </Setter>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
 
@@ -287,13 +344,27 @@
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
-                                <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="Background" Value="#ffffff"/>
                                 <Setter TargetName="waterMark" Property="Foreground" Value="#414B5F"/> 
                                 <Setter TargetName="content" Property="Opacity" Value="1"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
                         
+                        <!-- Активна + наведена -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter Property="BorderBrush" Value="#414B5F"/>
+                                <Setter TargetName="content" Property="Opacity" Value="0.5"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
                         <!-- Активна + нажата -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -302,17 +373,17 @@
                             </MultiTrigger.Conditions>
 
                             <MultiTrigger.Setters>
-                                <Setter Property="BorderThickness" Value="1"/>
-                                <Setter Property="Background" Value="#ffffff"/>
                                 <Setter Property="BorderBrush" Value="#414B5F"/>
                                 <Setter Property="Opacity" Value="0.5"/>
                                 <Setter TargetName="waterMark" Property="Foreground" Value="#414B5F"/>
-                                <Setter TargetName="waterMark" Property="Opacity" Value="0.5"/>
                                 <Setter TargetName="content" Property="Opacity" Value="0.5"/>
+                                <Setter Property="RenderTransform">
+                                    <Setter.Value>
+                                        <TranslateTransform Y="1"/>
+                                    </Setter.Value>
+                                </Setter>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
-
-
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
