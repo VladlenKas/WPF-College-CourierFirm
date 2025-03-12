@@ -160,6 +160,9 @@ public partial class CourierServiceContext : DbContext
                 .HasColumnName("phone");
             entity.Property(e => e.PositionId).HasColumnName("position_id");
             entity.Property(e => e.TransportId).HasColumnName("transport_id");
+            entity.Property(e => e.IsDeleted)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("is_deleted");
 
             entity.HasOne(d => d.Position).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.PositionId)
@@ -266,6 +269,9 @@ public partial class CourierServiceContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(11)
                 .HasColumnName("phone");
+            entity.Property(e => e.IsDeleted)
+                .HasDefaultValueSql("'0'")
+                .HasColumnName("is_deleted");
         });
 
         modelBuilder.Entity<Position>(entity =>

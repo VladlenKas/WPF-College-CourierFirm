@@ -8,15 +8,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_College_CourierFirm.ViewModels;
 
-namespace WPF_College_CourierFirm
+namespace WPF_College_CourierFirm.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AuthView.xaml
     /// </summary>
-    public partial class AuthorizationWindow : Window
+    public partial class AuthView : Window
     {
-        public AuthorizationWindow()
+        public AuthView()
         {
             InitializeComponent();
         }
