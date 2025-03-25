@@ -1,0 +1,24 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Основные цвета -->
+    <SolidColorBrush x:Key="PrimaryBrush" Color="#5D77A7"/>
+    <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#6B85B5"/>
+    <SolidColorBrush x:Key="PrimaryPressedBrush" Color="#405D8F"/>
+
+    <!-- Фоновые цвета -->
+    <SolidColorBrush x:Key="BackgroundDarkBrush" Color="#414B5F"/>
+    <SolidColorBrush x:Key="BackgroundLightBrush" Color="#4E5A6F"/>
+    <SolidColorBrush x:Key="BackgroundDisabledBrush" Color="#374359"/>
+
+    <!-- Текстовые цвета -->
+    <SolidColorBrush x:Key="TextDisabledBrush" Color="#A0A5AF"/>
+
+    <!-- Акцентные цвета -->
+    <SolidColorBrush x:Key="AccentBrush" Color="#E1ECFF"/>
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="#7A92C2"/>
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="#465A87"/>
+
+    <!-- Тени -->
+    <Color x:Key="ShadowBrush">#5D77A7</Color>
+</ResourceDictionary>
