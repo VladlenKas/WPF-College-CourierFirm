@@ -10,6 +10,7 @@
     <SolidColorBrush x:Key="BackgroundDarkBrush" Color="#414B5F"/>
     <SolidColorBrush x:Key="BackgroundLightBrush" Color="#4E5A6F"/>
     <SolidColorBrush x:Key="BackgroundDisabledBrush" Color="#374359"/>
+    <SolidColorBrush x:Key="BackgroundWindow" Color="#272D38"/>
 
     <!-- Текстовые цвета -->
     <SolidColorBrush x:Key="TextDisabledBrush" Color="#A0A5AF"/>

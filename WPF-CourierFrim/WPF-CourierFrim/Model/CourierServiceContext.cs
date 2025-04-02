@@ -30,7 +30,7 @@ public partial class CourierServiceContext : DbContext
 
     public virtual DbSet<Organisation> Organisations { get; set; }
 
-    public virtual DbSet<Position> Positions { get; set; }
+    public virtual DbSet<Post> Posts { get; set; }
 
     public virtual DbSet<Rate> Rates { get; set; }
 
@@ -121,7 +121,7 @@ public partial class CourierServiceContext : DbContext
 
             entity.ToTable("employee");
 
-            entity.HasIndex(e => e.PositionId, "position_id_idx");
+            entity.HasIndex(e => e.PostId, "post_id_idx");
 
             entity.HasIndex(e => e.TransportId, "transport_id_idx");
 
@@ -149,13 +149,13 @@ public partial class CourierServiceContext : DbContext
             entity.Property(e => e.Phone)
                 .HasMaxLength(11)
                 .HasColumnName("phone");
-            entity.Property(e => e.PositionId).HasColumnName("position_id");
+            entity.Property(e => e.PostId).HasColumnName("post_id");
             entity.Property(e => e.TransportId).HasColumnName("transport_id");
 
-            entity.HasOne(d => d.Position).WithMany(p => p.Employees)
-                .HasForeignKey(d => d.PositionId)
+            entity.HasOne(d => d.Post).WithMany(p => p.Employees)
+                .HasForeignKey(d => d.PostId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("position_id");
+                .HasConstraintName("post_id");
 
             entity.HasOne(d => d.Transport).WithMany(p => p.Employees)
                 .HasForeignKey(d => d.TransportId)
@@ -260,13 +260,13 @@ public partial class CourierServiceContext : DbContext
                 .HasColumnName("phone");
         });
 
-        modelBuilder.Entity<Position>(entity =>
+        modelBuilder.Entity<Post>(entity =>
         {
-            entity.HasKey(e => e.PositionId).HasName("PRIMARY");
+            entity.HasKey(e => e.PostId).HasName("PRIMARY");
 
-            entity.ToTable("position");
+            entity.ToTable("post");
 
-            entity.Property(e => e.PositionId).HasColumnName("position_id");
+            entity.Property(e => e.PostId).HasColumnName("post_id");
             entity.Property(e => e.Name)
                 .HasMaxLength(45)
                 .HasColumnName("name");

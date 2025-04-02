@@ -9,7 +9,7 @@ public partial class Employee
 
     public int? TransportId { get; set; }
 
-    public int PositionId { get; set; }
+    public int PostId { get; set; }
 
     public string Firstname { get; set; } = null!;
 
@@ -33,7 +33,7 @@ public partial class Employee
 
     public virtual ICollection<EmployeeDelivery> EmployeeDeliveries { get; set; } = new List<EmployeeDelivery>();
 
-    public virtual Position Position { get; set; } = null!;
+    public virtual Post Post { get; set; } = null!;
 
     public virtual Transport? Transport { get; set; }
 }

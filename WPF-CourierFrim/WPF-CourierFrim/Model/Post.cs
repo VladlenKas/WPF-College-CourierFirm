@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace WPF_CourierFrim.Model;
 
-public partial class Position
+public partial class Post
 {
-    public int PositionId { get; set; }
+    public int PostId { get; set; }
 
     public string Name { get; set; } = null!;
 

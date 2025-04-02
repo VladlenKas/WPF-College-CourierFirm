@@ -32,7 +32,7 @@
                    LastChildFill="False">
 
             <!-- Заголовок -->
-            <TextBlock Style="{StaticResource H1}"
+            <TextBlock Style="{StaticResource TextH1}"
                        Text="Вход в аккаунт"
                        Padding="0 0 0 28"
                        DockPanel.Dock="Top"/>
@@ -40,7 +40,7 @@
             <TextBlock Margin="0 0 0 40" 
                        DockPanel.Dock="Top"
                        TextWrapping="Wrap"
-                       Style="{StaticResource H6}"
+                       Style="{StaticResource TextH6}"
                        Text="Чтобы стать курьером FastCourier, заполни поля ниже и нажми кнопку ”Зарегистрироваться”"
                        Opacity="0.5"/>
             
@@ -123,13 +123,13 @@
             <!-- Кнопки -->
             <Button Content="Вернуться ко входу"
                     Click="Back_Click"
-                    Style="{StaticResource Standard}"
+                    Style="{StaticResource ButtonStandard}"
                     DockPanel.Dock="Bottom"/>
 
             <Button Content="Зарегистрироваться"
                     Margin="0 0 0 20"
                     Click="Reg_Click"
-                    Style="{StaticResource Priority}"
+                    Style="{StaticResource ButtonPriority}"
                     DockPanel.Dock="Bottom"/>
         </DockPanel>
     </Grid>

@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace WPF_CourierFrim.Classes.DataOperations
 {
-    public static partial class DataValidations
+    public static partial class InputValidator 
     {
         #region Валидация на написание текста
 

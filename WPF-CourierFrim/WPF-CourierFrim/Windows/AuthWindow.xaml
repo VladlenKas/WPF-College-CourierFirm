@@ -9,9 +9,9 @@
         xmlns:components="clr-namespace:WPF_CourierFirm.Components"
         
         Title="Вход в CourierFirm" 
-        Background="#272D38"
         Height="800" Width="1200"   
         MinHeight="700" MinWidth="1050"
+        Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
 
     <Grid Margin="50">
@@ -31,25 +31,18 @@
                    LastChildFill="False"
                    HorizontalAlignment="Center">
 
-            <TextBlock Style="{StaticResource H1}"
+            <TextBlock Style="{StaticResource TextH1}"
                        Text="Вход в аккаунт"
-                       Padding="0 0 0 28"
+                       Padding="0 0 0 18"
                        DockPanel.Dock="Top"/>
 
-            <StackPanel Orientation="Horizontal"
-                        Margin="0 0 0 40" 
-                        DockPanel.Dock="Top">
+            <TextBlock Style="{StaticResource TextH6}"
+                       TextWrapping="Wrap"
+                       Text="Нет аккаунта? Обратитесь для регситрации в администрацию компании"
+                       Opacity="0.5"
+                       Margin="0 0 0 40" 
+                       DockPanel.Dock="Top"/>
 
-                <TextBlock Style="{StaticResource H6}"
-                           Text="Нет аккаунта?"
-                           Opacity="0.5"
-                           Margin="0 0 5 0"/>
-
-                <Button Style="{StaticResource HyperLink}"
-                        Content="Зарегистрироваться"
-                        Click="Reg_Click"/>
-
-            </StackPanel>
 
             <TextBox Margin="0 0 0 20"
                      Tag="Логин"
@@ -60,10 +53,12 @@
                   Margin="0 0 0 20">
 
                 <TextBox Tag="Пароль"
-                         Name="PassTB"/>
+                         Name="PassTB"
+                         Visibility="Hidden"/>
                 
                 <components:BindablePasswordBox Password="{Binding Password}"
-                                                x:Name="PassPB"/>
+                                                x:Name="PassPB"
+                                                Visibility="Visible"/>
             </Grid>
 
             <CheckBox Content="Показать пароль"
@@ -73,13 +68,13 @@
 
             <Button Content="Закрыть приложение"
                     Click="Exit_Click"
-                    Style="{StaticResource Standard}"
+                    Style="{StaticResource ButtonStandard}"
                     DockPanel.Dock="Bottom"/>
     
             <Button Content="Войти"
                     Margin="0 0 0 20"
                     Click="Login_Click"
-                    Style="{StaticResource Priority}"
+                    Style="{StaticResource ButtonPriority}"
                     DockPanel.Dock="Bottom"/>
         </DockPanel>
     </Grid>

@@ -14,6 +14,13 @@
                 <ResourceDictionary Source="Styles/BaseElements.xaml"/>
 
             </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="{x:Type Window}" x:Key="WindowOrdinary">
+                <Setter Property="SnapsToDevicePixels" Value="true"/>
+                <Setter Property="Background" Value="{StaticResource BackgroundWindow}"/>
+                <Setter Property="Icon" Value="/WPF_CourierFirm;component/Images/IconCourierFirm.ico"/>
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

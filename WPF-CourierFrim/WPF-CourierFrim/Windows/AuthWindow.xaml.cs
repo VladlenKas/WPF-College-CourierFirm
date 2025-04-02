@@ -27,8 +27,9 @@ namespace WPF_CourierFrim
         // Поля и свойства
         private CourierServiceContext _dbContext;
         private string Login => loginTB.Text;
-        private string Password => WindowHelper.GetPassword(PassPB, PassTB);
+        private string Password => PasswordHelper.GetPassword(PassPB, PassTB);
 
+        // Конструктор
         public AuthWindow()
         {
             InitializeComponent();
@@ -38,7 +39,7 @@ namespace WPF_CourierFrim
         // Методы
         private Employee? Authenticate(string login, string password)
         {
-            _dbContext.Employees.Include(r => r.Position).Load();
+            _dbContext.Employees.Include(r => r.Post).Load();
 
             return _dbContext.Employees.SingleOrDefault(r =>
             r.Login == login && r.Password == password);
@@ -48,8 +49,7 @@ namespace WPF_CourierFrim
         {
             if (Login == string.Empty || Password == string.Empty)
             {
-                MessageBox.Show($"Заполните все поля.", "Предупреждение.",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageHelper.NullFields();
                 return;
             }
 
@@ -66,14 +66,16 @@ namespace WPF_CourierFrim
             else
             {
                 // Если пользователь найден
-                MessageBox.Show($"Добро пожаловать, {employee.Fullname}!\nВаша должность: {employee.Position.Name}",
+                MessageBox.Show($"Добро пожаловать, {employee.Fullname}!\nВаша должность: {employee.Post.Name}",
                                 "Успешная авторизация",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
 
-                if (employee.PositionId == 1)
+                if (employee.PostId == 1)
                 {
-                    // Вход админа
+                    NavWindowAdmin navWindowAdmin = new(employee);
+                    navWindowAdmin.Show();
+                    Close();
                 }
                 else
                 {
@@ -97,12 +99,12 @@ namespace WPF_CourierFrim
 
         private void Exit_Click(object sender, RoutedEventArgs e) 
         {
-            WindowHelper.WindowClose(this);
+            DialogHelper.ConfirmExit(this);
         }
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)
         {
-            WindowHelper.VisibilityPassword(sender, PassPB, PassTB);
+            PasswordHelper.ToggleVisibility(sender, PassPB, PassTB);
         }
     }
 }

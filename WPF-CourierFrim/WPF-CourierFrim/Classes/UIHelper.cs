@@ -13,7 +13,8 @@ using WPF_CourierFirm.Components;
 
 namespace WPF_CourierFrim.Classes
 {
-    public static class WindowHelper
+    // Класс для работы с паролем
+    public static class PasswordHelper
     {
         /// <summary>
         /// Скрывает пароль
@@ -21,7 +22,7 @@ namespace WPF_CourierFrim.Classes
         /// <param name="sender"></param>
         /// <param name="passHid"></param>
         /// <param name="passVis"></param>
-        public static void VisibilityPassword(object sender, BindablePasswordBox passHid, TextBox passVis)
+        public static void ToggleVisibility(object sender, BindablePasswordBox passHid, TextBox passVis)
         {
             CheckBox checkbox = sender as CheckBox;
             if (checkbox.IsChecked == true)
@@ -51,12 +52,16 @@ namespace WPF_CourierFrim.Classes
             var pass = passVis.Visibility is Visibility.Visible ? passVis.Text : passHid.Password;
             return pass;
         }
+    }
 
+    // Класс для диалоговых окон
+    public static class DialogHelper
+    {
         /// <summary>
         /// Вызывает сообщение с подтверждением о выходе/закрытии окна
         /// </summary>
         /// <returns></returns>
-        public static void WindowClose(Window window)
+        public static void ConfirmExit(Window window)
         {
             var resultChanged = MessageBox.Show("Вы действительно хотите выйти?",
                 "Подтверждение",
@@ -68,6 +73,75 @@ namespace WPF_CourierFrim.Classes
                 window.Close();
             }
         }
+    }
+
+    // Класс для уведомлений
+    public static class MessageHelper
+    {
+        /// <summary>
+        /// Вызывает сообщение с подтверждением о выходе/закрытии окна
+        /// </summary>
+        /// <returns></returns>
+        public static void NullFields()
+        {
+            MessageBox.Show($"Заполните все поля.", "Предупреждение.",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+    }
+
+    // Класс для работы с изображениями
+    public static class ImageHelper
+    {
+
+        public static bool TrySelectImage(out string filePath)
+        {
+            var dialog = new OpenFileDialog();
+            if (dialog.ShowDialog() == true)
+            {
+                filePath = dialog.FileName;
+                return true;
+            }
+            filePath = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Открывает файловый менджер для выбора изображений
+        /// </summary>
+        /// <param name="image"></param>
+        public static bool OpenImageDialog(Image image, byte[]? originalImage, bool imageIsEditing)
+        {
+            var selectImage = new OpenFileDialog();
+            selectImage.Filter = "Image files (*.jpg, *.jpeg, *.png *.webp)|*.jpg;*.jpeg;*.png;*.webp;";
+            selectImage.InitialDirectory = @"C:\Users";
+            if (selectImage.ShowDialog() == true)
+            {
+                string selectedFilePath = selectImage.FileName;
+                image.Source = new BitmapImage(new Uri(selectedFilePath));
+                return true; // уведомляем об изменении
+            }
+
+            // Если изображения не было, а потом изменилось
+            if (image.Source != null && originalImage == null && imageIsEditing == false)
+            {
+                return true; // уведомляем об изменении
+            }
+            // Если изображения не было, но менялось, а потом снова удалили
+            else if (image.Source == null && originalImage == null && imageIsEditing == true)
+            {
+                return true; // уведомляем об изменении
+            }
+            // Если изображение изменилось
+            else if (imageIsEditing)
+            {
+                return true; // уведомляем об изменении
+            }
+            return false; // изменений нет
+        }
+    }
+
+    public static class UIHelper
+    {
 
         /// <summary>
         /// Открывает файловый менджер для выбора изображений
