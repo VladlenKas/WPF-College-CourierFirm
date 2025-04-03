@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="WPF_CourierFrim.UserControls.CardOrderAdmin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CourierFrim.UserControls"
+             mc:Ignorable="d">
+    <Grid>
+        
+        <Border Background="{StaticResource BackgroundDarkBrush}"
+                Padding="24"
+                CornerRadius="10">
+
+            <StackPanel>
+                <!-- Заголовок -->
+                <TextBlock Style="{StaticResource TextH2}"
+                           Text="Заказ №29"
+                           Margin="0 0 0 24"/>
+
+                <!-- Описание -->
+                <TextBlock Margin="0 0 0 10">
+                    <Run Text="Тариф:"
+                         Style="{StaticResource TextCardTitle}"></Run>
+                    <Run Text="Оч быстрая"
+                         Style="{StaticResource TextCardInfo}"></Run>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10">
+                    <Run Text="Организация:"
+                         Style="{StaticResource TextCardTitle}"></Run>
+                    <Run Text="Оч быстрая"
+                         Style="{StaticResource TextCardInfo}"></Run>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10">
+                    <Run Text="ФИО клиента:"
+                         Style="{StaticResource TextCardTitle}"></Run>
+                    <Run Text="Касимов Владлен Ильшатович"
+                         Style="{StaticResource TextCardInfo}"></Run>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10">
+                    <Run Text="Телефон клиента:"
+                         Style="{StaticResource TextCardTitle}"></Run>
+                    <Run Text="89991110210"
+                         Style="{StaticResource TextCardInfo}"></Run>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10">
+                    <Run Text="Тип заказа:"
+                         Style="{StaticResource TextCardTitle}"></Run>
+                    <Run Text="Хрупкий"
+                         Style="{StaticResource TextCardInfo}"></Run>
+                </TextBlock>
+                
+                <!-- Кнопки -->
+                
+                
+            </StackPanel>
+
+        </Border>
+        
+    </Grid>
+    
+</UserControl>

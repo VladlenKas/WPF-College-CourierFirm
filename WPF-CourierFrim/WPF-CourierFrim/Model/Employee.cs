@@ -19,6 +19,8 @@ public partial class Employee
 
     public string Fullname => $"{Lastname} {Firstname} {Patronymic}"; 
 
+    public string FIname => $"{Lastname} {Firstname}"; 
+
     public DateOnly Birthday { get; set; }
 
     public string Passport { get; set; } = null!;

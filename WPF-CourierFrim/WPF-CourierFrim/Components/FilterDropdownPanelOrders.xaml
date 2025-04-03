@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="WPF_CourierFirm.Components.FilterDropdownPanelOrders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CourierFirm.Components"
+             mc:Ignorable="d">
+
+    <Grid>
+        <!-- Кнопка фильтра -->
+        <Button x:Name="FilterButton"
+                Content="Фильтр"
+                Tag="FilterOutline"
+                Click="FilterButton_Click"
+                Style="{StaticResource ButtonParameter}">
+        </Button>
+
+        
+        <!-- Popup с фильтрами -->
+        <Popup x:Name="FilterPopup"
+               PlacementTarget="{Binding ElementName=FilterButton}"
+               Placement="Bottom"
+               StaysOpen="False"
+               AllowsTransparency="True">
+
+            <Border Background="{StaticResource BackgroundDisabledBrush}"
+                    BorderThickness="1"
+                    CornerRadius="10">
+
+                <StackPanel Margin="20">
+                    
+                    <!-- Секция готовности -->
+                    <TextBlock Text="Заказы:"
+                               Style="{StaticResource TextNormal}"
+                               Margin="0 0 0 15"/>
+
+                    <StackPanel>
+
+                        <RadioButton Content="Все"
+                                     Margin="0 0 0 5"
+                                     Name="allOrderParameterRB"
+                                     GroupName="Readiness"/>
+
+                        <RadioButton Content="Активные"
+                                     Margin="0 0 0 5"
+                                     GroupName="Readiness"/>
+
+                        <RadioButton Content="Завершенные"
+                                     Margin="0 0 0 15"
+                                     GroupName="Readiness"/>
+
+                        <Button Style="{StaticResource ButtonInParameterPriority}"
+                                Content="Сбросить"
+                                Tag="Loop"
+                                Click="Return_Click"/>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="12" 
+                                      ShadowDepth="4" 
+                                      Opacity="0.3"
+                                      Color="{StaticResource ShadowBrush}"/>
+                </Border.Effect>
+                
+            </Border>
+        </Popup>
+    </Grid>
+</UserControl>

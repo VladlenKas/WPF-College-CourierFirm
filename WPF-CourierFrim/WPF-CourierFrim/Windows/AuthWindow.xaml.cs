@@ -1,5 +1,4 @@
-﻿using ControlzEx.Standard;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore; // Работа с БД
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,98 +12,88 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Windows;
+using WPF_CourierFrim.Classes; // Вспомогательные классы
+using WPF_CourierFrim.Model; // Модели данных
+using WPF_CourierFrim.Windows; // Окна приложения
 
 namespace WPF_CourierFrim
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthWindow.xaml
-    /// </summary>
-    public partial class AuthWindow : Window
+    public partial class AuthWindow : Window // Окно авторизации
     {
         // Поля и свойства
-        private CourierServiceContext _dbContext;
-        private string Login => loginTB.Text;
-        private string Password => PasswordHelper.GetPassword(PassPB, PassTB);
+        private CourierServiceContext _dbContext; // Контекст БД
+        private string Login => loginTB.Text; // Логин из поля ввода
+        private string Password => PasswordHelper.GetPassword(PassPB, PassTB); // Пароль из поля
 
         // Конструктор
-        public AuthWindow()
+        public AuthWindow()  // Инициализация окна
         {
             InitializeComponent();
-            _dbContext = new();
+            _dbContext = new();  // Создание контекста БД
         }
 
-        // Методы
-        private Employee? Authenticate(string login, string password)
+        private Employee? Authenticate(string login, string password)  // Аутентификация
         {
-            _dbContext.Employees.Include(r => r.Post).Load();
+            _dbContext.Employees.Include(r => r.Post).Load();  // Загрузка данных о должностях
 
-            return _dbContext.Employees.SingleOrDefault(r =>
+            return _dbContext.Employees.SingleOrDefault(r =>  // Поиск сотрудника
             r.Login == login && r.Password == password);
         }
 
-        private void Auth()
+        private void Auth()  // Процесс авторизации
         {
-            if (Login == string.Empty || Password == string.Empty)
+            if (Login == string.Empty || Password == string.Empty)  // Проверка пустых полей
             {
-                MessageHelper.NullFields();
+                MessageHelper.NullFields();  // Показать предупреждение
                 return;
             }
 
-            var employee = Authenticate(Login, Password);
+            var employee = Authenticate(Login, Password);  // Поиск сотрудника
 
-            if (employee == null)
+            if (employee == null)  // Если не найден
             {
-                // Если пользователь не найден
-                MessageBox.Show("Пользователь с указанными данными не найден. Проверьте логин и пароль.",
-                                "Ошибка авторизации",
+                MessageBox.Show("Пользователь не найден",  // Сообщение об ошибке
+                                "Ошибка",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
             }
-            else
+            else  // Если найден
             {
-                // Если пользователь найден
-                MessageBox.Show($"Добро пожаловать, {employee.Fullname}!\nВаша должность: {employee.Post.Name}",
-                                "Успешная авторизация",
+                MessageBox.Show($"Добро пожаловать, {employee.Fullname}!\n" +
+                                $"Ваша должность: {employee.Post.Name}",  // Приветствие
+                                "Успех",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Information);
 
-                if (employee.PostId == 1)
+                if (employee.PostId == 1)  // Если админ
                 {
-                    NavWindowAdmin navWindowAdmin = new(employee);
-                    navWindowAdmin.Show();
-                    Close();
+                    NavWindowAdmin window = new(employee);  // Создать экземпляр класса окна
+                    window.Show(); // Открыть окно админа
+                    Close();  // Закрыть текущее окно
                 }
-                else
+                else  // Если курьер
                 {
-                    // Вход курьера
+                    NavWindowCourier window = new(employee);  // Создать экземпляр класса окна
+                    window.Show(); // Открыть окно курьера
+                    Close(); // Закрыть текущее окно
                 }
             }
         }
 
-        // Тригеры
-        private void Reg_Click(object sender, RoutedEventArgs e)
+        // Обработчики событий
+        private void Login_Click(object sender, RoutedEventArgs e)  // Кнопка "Войти"
         {
-            RegWindow regWindow = new();
-            regWindow.Show();
-            this.Close();
+            Auth();  // Запустить логику авторизации
         }
 
-        private void Login_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)  // Кнопка "Выход"
         {
-            Auth();
+            DialogHelper.ConfirmExit(this);  // Подтверждение выхода
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e) 
+        private void VisibilityPassword_Click(object sender, RoutedEventArgs e)  // Иконка глаза
         {
-            DialogHelper.ConfirmExit(this);
-        }
-
-        private void VisibilityPassword_Click(object sender, RoutedEventArgs e)
-        {
-            PasswordHelper.ToggleVisibility(sender, PassPB, PassTB);
+            PasswordHelper.ToggleVisibility(sender, PassPB, PassTB);  // Переключить видимость пароля
         }
     }
 }

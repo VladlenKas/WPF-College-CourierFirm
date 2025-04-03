@@ -1,0 +1,125 @@
+﻿<Window x:Class="WPF_CourierFrim.Windows.NavWindowCourier"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_CourierFrim.Windows"
+        mc:Ignorable="d"
+        
+        xmlns:icons="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Height="900" Width="1450"   
+        MinHeight="700" MinWidth="1200"
+        Style="{StaticResource WindowOrdinary}"
+        Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen">
+
+    <DockPanel>
+
+        <!-- Навигационная панель -->
+        <Grid Background="{StaticResource BackgroundDarkBrush}">
+
+            <StackPanel Margin="16 10">
+
+                <StackPanel Margin="0 28"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+
+                    <Image Source="/Images/LogoCourierFirm.png"
+                           Width="48"
+                           Margin="0 0 5 0"/>
+
+                    <TextBlock Style="{StaticResource TextH6}"
+                               Text="Fast Courier"/>
+                </StackPanel>
+
+                <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Name="OrderRButton"
+                             Content="Заказы"
+                             Tag="listBoxOutline"
+                             GroupName="navItems"
+                             Margin="0 0 0 10"
+                             Checked="OrderRButton_Checked"/>
+
+                <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Content="Доставки"
+                             Tag="truckDeliveryOutline"
+                             GroupName="navItems"
+                             Margin="0 0 0 10"
+                             Checked="DeliveryRButton_Checked"/>
+
+                <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Content="Тарифы"
+                             Tag="speedometer"
+                             GroupName="navItems"
+                             Margin="0 0 0 10"
+                             Checked="RateRButton_Checked"/>
+                
+                <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Content="Статистика"
+                             Tag="chartLine"
+                             GroupName="navItems"
+                             Margin="0 0 0 10"
+                             Checked="StatisticRButton_Checked"/>
+
+                <Separator Background="#ffffff"
+                           Margin="0 0 0 10"/>
+
+                <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Content="Выйти"
+                             Tag="logout"
+                             GroupName="navItems"
+                             Margin="0 0 0 10"
+                             Checked="ExitRButton_Checked"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Меню -->
+        <Grid Margin="35">
+            
+            <DockPanel>
+
+                <DockPanel LastChildFill="False"
+                           DockPanel.Dock="Top">
+
+                    <TextBlock Style="{StaticResource TextH1}"
+                               Name="titlePage"
+                               Text="Заказы"
+                               DockPanel.Dock="Left"/>
+                    
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Right"
+                                Margin="0 0 0 28">
+                        
+                        <icons:PackIcon Style="{StaticResource IconLarge}"
+                                        Kind="user"
+                                        Margin="0 0 10 0"
+                                        Foreground="#ffffff"/>
+
+                        <StackPanel VerticalAlignment="Center">
+
+                            <TextBlock Style="{StaticResource TextNormal}"
+                                       Text="Фамилия Имя курьера"
+                                       Name="FIcourier"/>
+
+                            <TextBlock Style="{StaticResource TextNormal}"
+                                       Text="Курьер"/>
+
+                        </StackPanel>
+                        
+                    </StackPanel>
+                    
+                </DockPanel>
+                
+                <Frame Name="CurrentPage"
+                       NavigationUIVisibility="Hidden"
+                       DockPanel.Dock="Top"/>
+                
+            </DockPanel>
+            
+        </Grid>
+
+    </DockPanel>
+    
+</Window>

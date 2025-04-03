@@ -3,11 +3,13 @@
                     xmlns:icons="http://materialdesigninxaml.net/winfx/xaml/themes">
 
     <!--#region Icons -->
-    <Style TargetType="icons:PackIcon">
+    <Style TargetType="icons:PackIcon" x:Key="IconMini">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="12"/>
+        <Setter Property="Width" Value="12"/>
     </Style>
-
+    
     <Style TargetType="icons:PackIcon" x:Key="IconSmall">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -21,19 +23,33 @@
         <Setter Property="Height" Value="24"/>
         <Setter Property="Width" Value="24"/>
     </Style>
+
+    <Style TargetType="icons:PackIcon" x:Key="IconLarge">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="36"/>
+        <Setter Property="Width" Value="36"/>
+    </Style>
     <!--#endregion-->
 
     <!--#region TextBlocks -->
     <Style TargetType="{x:Type TextBlock}" x:Key="TextH1">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
-        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextH2">
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="24"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="#ffffff"/>
     </Style>
 
     <Style TargetType="{x:Type TextBlock}" x:Key="TextH6">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
-        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="FontSize" Value="18"/>
         <Setter Property="FontWeight" Value="Medium"/>
         <Setter Property="Foreground" Value="#ffffff"/>
     </Style>
@@ -44,9 +60,37 @@
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Foreground" Value="#ffffff"/>
     </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextSmall">
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="TextSmallSemiBold">
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+    </Style>
+
+    <Style TargetType="{x:Type Run}" x:Key="TextCardTitle">
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+    </Style>
+    
+    <Style TargetType="{x:Type Run}" x:Key="TextCardInfo">
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+    </Style>
     <!--#endregion-->
 
-    <!--#region TextBox -->
+    <!--#region Текстовые поля -->
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="Foreground" Value="#ffffff"/>
@@ -162,7 +206,7 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region Buttons -->
+    <!--#region Кнопки -->
     <!--#region Ссылочная кнопка -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonHyperLink">
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -286,7 +330,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border"
-                            Opacity="0.3"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -300,13 +343,13 @@
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#435977"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledHowerBrush}"/>
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="1"/>
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#2A3647"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledPressedBrush}"/>
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="1"/>
                             <Setter Property="Foreground" Value="#E0E4EB"/>
@@ -318,6 +361,269 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region Приоритетная c иконкой -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonIconPriority">
+        <Setter Property="Background" Value="{StaticResource PrimaryBrush}"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <StackPanel Orientation="Horizontal" 
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center">
+
+                            <icons:PackIcon Name="icon"
+                                            Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Width="24"
+                                            Height="24"
+                                            Margin="0 0 5 0"
+                                            Foreground="#ffffff"/>
+
+                            <TextBlock Name="content"
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="Center"
+                                       Foreground="#ffffff"/>
+
+                        </StackPanel>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryHoverBrush}"/>
+                            <Setter TargetName="border" Property="Effect">
+                                <Setter.Value>
+                                    <DropShadowEffect BlurRadius="12" 
+                                                      Opacity="0.3" 
+                                                      Color="{StaticResource ShadowBrush}" 
+                                                      ShadowDepth="0"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryPressedBrush}"/>
+                            <Setter TargetName="border" Property="Effect" Value="{x:Null}"/>
+                            <Setter TargetName="border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="1"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <!-- Триггер для неактивной кнопки -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Кнопка иконка -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonIcon">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <icons:PackIcon Name="icon"
+                                        Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="16"
+                                        Height="16"
+                                        Margin="20"
+                                        Foreground="#ffffff"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledHowerBrush}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledPressedBrush}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="#E0E4EB"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Кнопка параметра -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonParameter">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="Padding" Value="12 8"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+
+                            <icons:PackIcon Name="icon"
+                                            Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"
+                                            Width="24"
+                                            Height="24"
+                                            Margin="0 0 8 0"
+                                            Foreground="#ffffff"/>
+
+                            <TextBlock Name="content"
+                                       Text="{TemplateBinding Content}"
+                                       VerticalAlignment="Center"
+                                       Foreground="#ffffff"/>
+
+                        </StackPanel>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledHowerBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledPressedBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Кнопка внутри параметра приоритетная -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonInParameterPriority">
+        <Setter Property="Background" Value="#5D77A7"/>
+        <Setter Property="Padding" Value="8 6"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
+
+                        <TextBlock Name="content"
+                                   Style="{StaticResource TextSmallSemiBold}"
+                                   Text="{TemplateBinding Content}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#6B85B5"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#405D8F"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Кнопка внутри параметра обычная -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonInParameterStandart">
+        <Setter Property="Background" Value="#435977"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="8 6"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="5">
+
+                        <TextBlock Name="content"
+                                   Style="{StaticResource TextSmallSemiBold}"
+                                   Text="{TemplateBinding Content}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#435977"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#2A3647"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
     <!--#region Навигационная кнопка -->
     <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonNavigation">
         <Setter Property="BorderThickness" Value="1"/>
@@ -413,9 +719,61 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    
+    <!--#region Радио кнопка -->
+    <Style TargetType="{x:Type RadioButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <StackPanel VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                Orientation="Horizontal">
+                        
+                        <Grid Margin="0 0 6 0">
+
+                            <Ellipse Fill="#5D77A7"
+                                     Width="16"
+                                     Height="16"
+                                     SnapsToDevicePixels="True">
+                            </Ellipse>
+
+                            <Ellipse Name="watermark"
+                                     Fill="#ffffff"
+                                     Width="8"
+                                     Height="8"
+                                     SnapsToDevicePixels="True"
+                                     Visibility="Hidden"/>
+                        </Grid>
+
+                        <TextBlock Name="content"
+                                   Style="{StaticResource TextSmall}"
+                                   Text="{TemplateBinding Content}"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"/>
+                    </StackPanel>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="watermark" Property="Visibility" Value="Hidden"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="watermark" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                    
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
     <!--#endregion-->
 
-    <!--#region CheckBox -->
+    <!--#region Чек боксы -->
+    <!--#region Стандартный -->
     <Style TargetType="{x:Type CheckBox}">
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="VerticalAlignment" Value="Top"/>
@@ -435,7 +793,8 @@
 
                                 <icons:PackIcon Name="waterMark"
                                                 Kind="Check"
-                                                Foreground="#ffffff"/>
+                                                Foreground="#ffffff"
+                                                Style="{StaticResource IconSmall}"/>
                             </Grid>
                         </Border>
 
@@ -509,11 +868,11 @@
 
                             <MultiTrigger.Setters>
                                 <Setter Property="Background" Value="#ffffff"/>
-                                <Setter TargetName="waterMark" Property="Foreground" Value="{StaticResource BackgroundDarkBrush}"/> 
+                                <Setter TargetName="waterMark" Property="Foreground" Value="{StaticResource BackgroundDarkBrush}"/>
                                 <Setter TargetName="content" Property="Opacity" Value="1"/>
                             </MultiTrigger.Setters>
                         </MultiTrigger>
-                        
+
                         <!-- Активна + наведена -->
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -553,6 +912,133 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--#endregion-->
+    
+    <!--#region Для выбора параметров-->
+    <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxSmall">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <StackPanel Orientation="Horizontal">
+
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="Transparent"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Height="16"
+                                Width="16">
+                            
+                            <Grid>
+                                <Rectangle/>
+
+                                <icons:PackIcon Name="waterMark"
+                                                Kind="Check"
+                                                Foreground="#ffffff"
+                                                Style="{StaticResource IconMini}"/>
+                            </Grid>
+                        </Border>
+
+                        <TextBlock Name="content" 
+                                   Margin="6 0 0 0"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Style="{StaticResource TextSmall}"
+                                   Text="{TemplateBinding Content}"/>
+                    </StackPanel>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- Не активна + не нажата -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#5D77A7"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Не активна + наведена -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#5D77A7"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Не активна + нажата -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="False"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderThickness" Value="1"/>
+                                <Setter Property="BorderBrush" Value="#ffffff"/>
+                                <Setter Property="Background" Value="#5D77A7"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#ffffff"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Активна + не нажата -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#5D77A7"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Активна + наведена -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsPressed" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="Background" Value="#ffffff"/>
+                                <Setter Property="BorderBrush" Value="#5D77A7"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+
+                        <!-- Активна + нажата -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsChecked" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+
+                            <MultiTrigger.Setters>
+                                <Setter Property="BorderBrush" Value="#5D77A7"/>
+                                <Setter TargetName="waterMark" Property="Foreground" Value="#5D77A7"/>
+                            </MultiTrigger.Setters>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
     <!--#endregion-->
 
 </ResourceDictionary>
