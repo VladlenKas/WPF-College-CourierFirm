@@ -23,7 +23,7 @@ namespace WPF_CourierFrim
         // Поля и свойства
         private CourierServiceContext _dbContext; // Контекст БД
         private string Login => loginTB.Text; // Логин из поля ввода
-        private string Password => PasswordHelper.GetPassword(PassPB, PassTB); // Пароль из поля
+        private string Password => ComponentsHelper.GetPassword(PassPB, PassTB); // Пароль из поля
 
         // Конструктор
         public AuthWindow()  // Инициализация окна
@@ -88,12 +88,12 @@ namespace WPF_CourierFrim
 
         private void Exit_Click(object sender, RoutedEventArgs e)  // Кнопка "Выход"
         {
-            DialogHelper.ConfirmExit(this);  // Подтверждение выхода
+            MessageHelper.ConfirmExit(this);  // Подтверждение выхода
         }
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)  // Иконка глаза
         {
-            PasswordHelper.ToggleVisibility(sender, PassPB, PassTB);  // Переключить видимость пароля
+            ComponentsHelper.ToggleVisibility(sender, PassPB, PassTB);  // Переключить видимость пароля
         }
     }
 }

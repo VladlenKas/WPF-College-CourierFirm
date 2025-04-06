@@ -28,6 +28,7 @@ namespace WPF_CourierFrim.Windows
         public NavWindowAdmin(Employee employee)
         {
             InitializeComponent();
+            App.MenuWindow = this;
 
             _dbContext = new();
             Title = $"Меню Администратора. Сотрудник: {employee.Fullname}";

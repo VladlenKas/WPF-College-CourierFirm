@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_CourierFrim.Windows"
         mc:Ignorable="d"
         
-        Height="800" Width="1200"   
+        Height="800" Width="1250"   
         MinHeight="700" MinWidth="1050"
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">

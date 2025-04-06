@@ -14,7 +14,7 @@ using WPF_CourierFirm.Components;
 namespace WPF_CourierFrim.Classes
 {
     // Класс для работы с паролем
-    public static class PasswordHelper
+    public static class ComponentsHelper
     {
         /// <summary>
         /// Скрывает пароль
@@ -52,11 +52,35 @@ namespace WPF_CourierFrim.Classes
             var pass = passVis.Visibility is Visibility.Visible ? passVis.Text : passHid.Password;
             return pass;
         }
+
+        /// <summary>
+        /// Затемняет область экрана при открытии информации
+        /// </summary>
+        /// <param name="infoWindow"></param>
+        /// <param name="page"></param>
+        public static void DarkenWindow(Window infoWindow)
+        {
+            App.MenuWindow.Opacity = 0.5;
+
+            infoWindow.ShowDialog();
+
+            App.MenuWindow.Opacity = 1;
+        }
     }
 
-    // Класс для диалоговых окон
-    public static class DialogHelper
+    // Класс для уведомлений
+    public static class MessageHelper
     {
+        /// <summary>
+        /// Вызывает сообщение с подтверждением о выходе/закрытии окна
+        /// </summary>
+        /// <returns></returns>
+        public static void NullFields()
+        {
+            MessageBox.Show($"Заполните все поля.", "Предупреждение.",
+                    MessageBoxButton.OK, MessageBoxImage.Warning);
+        }
+
         /// <summary>
         /// Вызывает сообщение с подтверждением о выходе/закрытии окна
         /// </summary>
@@ -73,23 +97,31 @@ namespace WPF_CourierFrim.Classes
                 window.Close();
             }
         }
-    }
 
-    // Класс для уведомлений
-    public static class MessageHelper
-    {
-        /// <summary>
-        /// Вызывает сообщение с подтверждением о выходе/закрытии окна
-        /// </summary>
-        /// <returns></returns>
-        public static void NullFields()
+        public static bool ConfirmDelete()
         {
-            MessageBox.Show($"Заполните все поля.", "Предупреждение.",
-                    MessageBoxButton.OK, MessageBoxImage.Warning);
+            var resultChanged = MessageBox.Show("Вы подтверждаете удаление?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (resultChanged == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Удаление прошло успешно",
+                    "Успех",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return true; // удаляем
+            }
+            else
+            {
+                return false; // не удаляем
+            }
         }
     }
 
-    // Класс для работы с изображениями
+    // Классы для работы с изображениями
     public static class ImageHelper
     {
 

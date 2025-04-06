@@ -35,10 +35,9 @@ namespace WPF_CourierFrim.Windows
             Title = $"Меню Курьера. Сотрудник: {employee.Fullname}";
             FIcourier.Text = employee.FIname;
 
-            OrderRButton.IsChecked = true;
+            OrderRB.IsChecked = true;
+            App.MenuWindow = this;
         }
-
-        // Методы
 
         // Обработчики событий
         private void OrderRButton_Checked(object sender, RoutedEventArgs e)
@@ -70,11 +69,6 @@ namespace WPF_CourierFrim.Windows
             AuthWindow window = new();
             window.Show();
             Close();
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

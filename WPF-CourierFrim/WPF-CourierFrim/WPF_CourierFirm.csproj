@@ -12,6 +12,7 @@
   <ItemGroup>
     <None Remove="Images\AuthImage.png" />
     <None Remove="Images\IconCourierFirm.ico" />
+    <None Remove="Images\LoadingGif.gif" />
     <None Remove="Images\LogoCourierFirm.png" />
     <None Remove="Images\RegImage.png" />
   </ItemGroup>
@@ -24,13 +25,21 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.3" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Images\AuthImage.png" />
     <Resource Include="Images\IconCourierFirm.ico" />
+    <Resource Include="Images\LoadingGif.gif" />
     <Resource Include="Images\LogoCourierFirm.png" />
     <Resource Include="Images\RegImage.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Classes\Converters\" />
+    <Folder Include="Pages\PagesAdmin\" />
+    <Folder Include="UserControls\CardsCourier\" />
   </ItemGroup>
 
 </Project>

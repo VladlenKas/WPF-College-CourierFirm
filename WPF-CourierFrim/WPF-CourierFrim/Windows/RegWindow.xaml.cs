@@ -25,7 +25,7 @@ namespace WPF_CourierFrim.Windows
         // Поля и свойства
         private CourierServiceContext _dbContext;
         private string Login => loginTB.Text;
-        private string Password => PasswordHelper.GetPassword(PassPB, PassTB);
+        private string Password => ComponentsHelper.GetPassword(PassPB, PassTB);
 
         public RegWindow()
         {
@@ -55,7 +55,7 @@ namespace WPF_CourierFrim.Windows
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)
         {
-            PasswordHelper.ToggleVisibility(sender, PassPB, PassTB);
+            ComponentsHelper.ToggleVisibility(sender, PassPB, PassTB);
         }
     }
 }

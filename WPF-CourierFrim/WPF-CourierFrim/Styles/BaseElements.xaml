@@ -317,8 +317,9 @@
     <!--#region Обычная -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonStandard">
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="Foreground" Value="#ffffff"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="Height" Value="48"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -461,9 +462,9 @@
                                         Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
-                                        Width="16"
-                                        Height="16"
-                                        Margin="20"
+                                        Width="24"
+                                        Height="24"
+                                        Margin="12"
                                         Foreground="#ffffff"/>
                     </Border>
 

@@ -8,10 +8,9 @@
         
         xmlns:icons="http://materialdesigninxaml.net/winfx/xaml/themes"
         
-        Height="900" Width="1450"   
+        Height="900" Width="1500"   
         MinHeight="700" MinWidth="1200"
         Style="{StaticResource WindowOrdinary}"
-        Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen">
 
     <DockPanel>
@@ -35,7 +34,7 @@
                 </StackPanel>
 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="OrderRButton"
+                             Name="OrderRB"
                              Content="Заказы"
                              Tag="listBoxOutline"
                              GroupName="navItems"

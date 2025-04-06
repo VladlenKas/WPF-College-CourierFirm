@@ -6,12 +6,14 @@
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesCourier"
       mc:Ignorable="d" 
       
-      xmlns:components="clr-namespace:WPF_CourierFirm.Components">
+      xmlns:components="clr-namespace:WPF_CourierFirm.Components"
+      xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
     <DockPanel>
 
         <!-- Область параметров -->
         <DockPanel DockPanel.Dock="Top"
+                   Margin="0 0 0 35"
                    LastChildFill="False">
 
             <TextBox Width="360"
@@ -35,7 +37,45 @@
         </DockPanel>
 
         <!-- Область вывода информации -->
-        <ItemsControl/>
+        <Grid>
+
+            <!-- Индикатор загрузки 
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed"
+                        Name="loadingIndicator">
+
+                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
+                       Width="200" Height="200"
+                       Margin="0 0 0 10"/>
+                
+                <TextBlock Text="Загрузка"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TextH6}"/>
+
+            </StackPanel> -->
+
+            <!-- Контент -->
+            <ScrollViewer Name="contentScroll">
+
+                <ItemsControl Name="cardsIC">
+
+                    <ItemsControl.ItemsPanel>
+
+                        <ItemsPanelTemplate>
+
+                            <WrapPanel Orientation="Horizontal"
+                                       HorizontalAlignment="Left"/>
+
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
+
+            </ScrollViewer>
+            
+        </Grid>
 
     </DockPanel>
     

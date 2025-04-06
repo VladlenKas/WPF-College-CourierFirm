@@ -19,7 +19,7 @@ public partial class Order
 
     public DateTime DatetimeCreation { get; set; }
 
-    public DateTime DatetimeCompletion { get; set; }
+    public DateTime? DatetimeCompletion { get; set; }
 
     public string FullnameClient { get; set; } = null!;
 
@@ -32,4 +32,5 @@ public partial class Order
     public virtual Organisation Organisation { get; set; } = null!;
 
     public virtual Rate Rate { get; set; } = null!;
+
 }
