@@ -14,22 +14,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Model;
 
-namespace WPF_CourierFrim.UserControls.CardsInfo
+namespace WPF_CourierFrim.Windows.WindowsInfo
 {
     /// <summary>
     /// Логика взаимодействия для CardOrderInfo.xaml
     /// </summary>
-    public partial class CardOrderInfo : Window
+    public partial class InfoWindowOrder : Window
     {
         // Поля и свойства
         public CourierServiceContext _dbContext;
         public Order _order;
 
         // Конструктор
-        public CardOrderInfo(Order order)
+        public InfoWindowOrder(Order order)
         {
             InitializeComponent();
-            _dbContext = new();
+
             _order = order;
             LoadInfo();
         }
@@ -38,15 +38,7 @@ namespace WPF_CourierFrim.UserControls.CardsInfo
         private void LoadInfo()
         {
             _dbContext = new();
-
-            var order = _dbContext.Orders
-                        .Include(r => r.Rate)
-                        .Include(r => r.Organisation)
-                        .Include(r => r.Content)
-                        .ThenInclude(r => r.ContentType)
-                        .Single(r => r.OrderId == _order.OrderId);
-
-            _order = order;
+            _dbContext.Attach(_order);
             DataContext = _order;
         }
 

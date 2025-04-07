@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Pages.PagesAdmin;
 
 namespace WPF_CourierFrim.Windows
 {
@@ -27,13 +28,71 @@ namespace WPF_CourierFrim.Windows
         // Конструктор
         public NavWindowAdmin(Employee employee)
         {
-            InitializeComponent();
-            App.MenuWindow = this;
-
             _dbContext = new();
-            Title = $"Меню Администратора. Сотрудник: {employee.Fullname}";
-
             _thisEmpoyee = employee;
+
+            InitializeComponent();
+            Title = $"Меню Администратора. Сотрудник: {employee.Fullname}";
+            FIcourier.Text = employee.FIname;
+
+            orderRB.IsChecked = true;
+            App.MenuWindow = this;
+        }
+
+        // Обработчики событий
+        private void DeliveryRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new DeliveryPageAdmin());
+            titlePage.Text = "Доставки";
+        }
+
+        private void OrderRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new OrderPageAdmin());
+            titlePage.Text = "Заказы";
+        }
+
+        private void RateRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new RatePageAdmin());
+            titlePage.Text = "Тарифы";
+        }
+
+        private void EmployeeRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new EmployeePageAdmin());
+            titlePage.Text = "Сотрудники";
+        }
+
+        private void VehicleRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new TransportPageAdmin());
+            titlePage.Text = "Автомобили";
+        }
+
+        private void OrganisationRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new OrganisationPageAdmin());
+            titlePage.Text = "Организации";
+        }
+
+        private void StatisticRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentPage.Navigate(new StatisticPageAdmin());
+            titlePage.Text = "Статистика";
+        }
+
+        private void ExitRButton_Checked(object sender, RoutedEventArgs e)
+        {
+            AuthWindow window = new();
+            window.Show();
+            Close();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AuthWindow window = new();
+            window.Show();
         }
     }
 }

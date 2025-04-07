@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,26 +14,25 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls;
-using WPF_CourierFrim.UserControls.CardsCourier;
-using static WPF_CourierFrim.UserControls.CardsCourier.CardOrderCourier;
+using Microsoft.EntityFrameworkCore;
+using WPF_CourierFrim.UserControls.CardsAdmin;
+using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin;
 
-namespace WPF_CourierFrim.Pages.PagesCourier
+namespace WPF_CourierFrim.Pages.PagesAdmin
 {
     /// <summary>
-    /// Логика взаимодействия для OrderPageCourier.xaml
+    /// Логика взаимодействия для OrderPageAdmin.xaml
     /// </summary>
-    public partial class OrderPageCourier : Page
+    public partial class OrderPageAdmin : Page
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _thisEmpoyee;
 
         // Конструктор
-        public OrderPageCourier(Employee employee)
+        public OrderPageAdmin()
         {
             InitializeComponent();
             _dbContext = new();
-            _thisEmpoyee = employee;
 
             // Загрузка комбобоксов и тд
 
@@ -47,19 +45,19 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             _dbContext = new();
             var orders = _dbContext.Orders.ToList();
 
-            // Фильтрация и сортировка
+            // Фильтрация и сортировка 
 
             cardsIC.Items.Clear();
             foreach (var order in orders)
             {
-                var card = new CardOrderCourier(order, _thisEmpoyee);
-                card.AcceptOrderRequested += AcceptOrderRequested;
+                var card = new CardOrderAdmin(order);
+                card.DeleteOrderRequested += DeleteOrderRequested;
                 cardsIC.Items.Add(card);
             }
         }
 
         // Обработчики событий
-        private void AcceptOrderRequested(object sender, OrderEventArgs e) => UpdateIC();
+        private void DeleteOrderRequested(object sender, OrderEventArgs e) => UpdateIC();
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

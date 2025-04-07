@@ -6,10 +6,13 @@
         xmlns:local="clr-namespace:WPF_CourierFrim.Windows"
         mc:Ignorable="d"
         
-        Height="800" Width="1250"   
-        MinHeight="700" MinWidth="1050"
+        xmlns:icons="http://materialdesigninxaml.net/winfx/xaml/themes"
+        
+        Height="900" Width="1500"   
+        MinHeight="700" MinWidth="1200"
         Style="{StaticResource WindowOrdinary}"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
     
     <DockPanel>
         
@@ -28,68 +31,69 @@
                            Margin="0 0 5 0"/>
 
                     <TextBlock Style="{StaticResource TextH6}"
+                               VerticalAlignment="Center"
                                Text="Fast Courier"/>
                 </StackPanel>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="orderRButton"
+                             Name="orderRB"
                              Content="Заказы"
                              Tag="listBoxOutline"
                              GroupName="navItems"
                              Margin="0 0 0 10"
-                             IsChecked="True"/>
+                             Checked="OrderRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="deliveryRButton"
                              Content="Доставки"
                              Tag="truckDeliveryOutline"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="DeliveryRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="rateRButton"
                              Content="Тарифы"
                              Tag="speedometer"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="RateRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="employeeRButton"
                              Content="Сотрудники"
                              Tag="userOutline"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="EmployeeRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="vehicleRButton"
                              Content="Автомобили"
                              Tag="carOutline"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="VehicleRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="organisationRButton"
                              Content="Организации"
                              Tag="homeSiloOutline"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="OrganisationRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="statisticRButton"
                              Content="Статистика"
                              Tag="chartLine"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="StatisticRButton_Checked"/>
 
                 <Separator Background="#ffffff"
                            Margin="0 0 0 10"/>
 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="ExitRButton"
                              Content="Выйти"
                              Tag="logout"
                              GroupName="navItems"
-                             Margin="0 0 0 10"/>
+                             Margin="0 0 0 10"
+                             Checked="ExitRButton_Checked"/>
                 
                 
             </StackPanel>
@@ -97,7 +101,49 @@
         </Grid>
 
         <!-- Меню -->
-        <Grid/>
-        
+        <Grid Margin="35">
+
+            <DockPanel>
+
+                <DockPanel LastChildFill="False"
+                           DockPanel.Dock="Top">
+
+                    <TextBlock Style="{StaticResource TextH1}"
+                               Name="titlePage"
+                               Text="Заказы"
+                               DockPanel.Dock="Left"/>
+
+                    <StackPanel Orientation="Horizontal"
+                                DockPanel.Dock="Right"
+                                Margin="0 0 0 28">
+
+                        <icons:PackIcon Style="{StaticResource IconLarge}"
+                                        Kind="shieldAccountOutline"
+                                        Margin="0 0 10 0"
+                                        Foreground="#ffffff"/>
+
+                        <StackPanel VerticalAlignment="Center">
+
+                            <TextBlock Style="{StaticResource TextNormal}"
+                                       Text="Фамилия Имя Админа"
+                                       Name="FIcourier"/>
+
+                            <TextBlock Style="{StaticResource TextNormal}"
+                                       Text="Администратор"/>
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+                </DockPanel>
+
+                <Frame Name="CurrentPage"
+                       NavigationUIVisibility="Hidden"
+                       DockPanel.Dock="Top"/>
+
+            </DockPanel>
+
+        </Grid>
+
     </DockPanel>
 </Window>

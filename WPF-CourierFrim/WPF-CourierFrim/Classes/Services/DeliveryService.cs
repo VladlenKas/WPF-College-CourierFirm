@@ -9,18 +9,47 @@ namespace WPF_CourierFrim.Classes.Services
 {
     public static class DeliveryService
     {
-        // Удаление заказа
-        public static void DeleteDeliveryWithoutEmp(Order order)
+        // Отмена доставки
+        public static void CancellationDelivery(Delivery delivery)
         {
             using (var dbContext = new CourierServiceContext())
             {
-                Delivery delivery = new()
-                {
-                    Order = order,
-                    StatusDeliveryId = 1 // отмена заказа
-                };
+                dbContext.Attach(delivery);
 
-                dbContext.Add(delivery);
+                delivery.StatusDeliveryId = 2; // отмена доставки
+                delivery.DatetimePresentation = DateTime.Now;
+
+                dbContext.Update(delivery);
+                dbContext.SaveChanges();
+            }
+        }
+
+        // Получение заказа
+        public static void GetOrder(Delivery delivery)
+        {
+            using (var dbContext = new CourierServiceContext())
+            {
+                dbContext.Attach(delivery);
+
+                delivery.StatusDeliveryId = 4; // заказ получен
+                delivery.DatetimeReceiving = DateTime.Now;
+
+                dbContext.Update(delivery);
+                dbContext.SaveChanges();
+            }
+        }
+
+        // Вручение заказа
+        public static void HandingOrder(Delivery delivery)
+        {
+            using (var dbContext = new CourierServiceContext())
+            {
+                dbContext.Attach(delivery);
+
+                delivery.StatusDeliveryId = 5; // заказ вручен
+                delivery.DatetimePresentation = DateTime.Now;
+
+                dbContext.Update(delivery);
                 dbContext.SaveChanges();
             }
         }
@@ -28,5 +57,7 @@ namespace WPF_CourierFrim.Classes.Services
         // Добавление
 
         // Редактирование
+
+        // Принятие курьером
     }
 }

@@ -11,11 +11,11 @@ public partial class Delivery
 
     public int StatusDeliveryId { get; set; }
 
-    public sbyte PaymentMethod { get; set; }
+    public sbyte? PaymentMethod { get; set; }
 
-    public DateTime DatetimeReceiving { get; set; }
+    public DateTime? DatetimeReceiving { get; set; }
 
-    public DateTime DatetimePresentation { get; set; }
+    public DateTime? DatetimePresentation { get; set; }
 
     public virtual ICollection<EmployeeDelivery> EmployeeDeliveries { get; set; } = new List<EmployeeDelivery>();
 

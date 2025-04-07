@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin"
+﻿<UserControl x:Class="WPF_CourierFrim.UserControls.CardsCourier.CardOrderCourier"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CourierFrim.UserControls.CardsCourier"
              mc:Ignorable="d">
 
     <Grid Margin="0 0 20 20">
@@ -66,29 +67,24 @@
                     <Run Text="{Binding Content.ContentType.Name}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
-                
+
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
                             Name="ButtonsSP">
 
                     <Button Style="{StaticResource ButtonIconPriority}"
-                            Content="Редактировать"
-                            Tag="EditOutline"
+                            Content="Принять"
+                            Tag="check"
+                            Width="260"
                             Margin="0 0 10 0"
-                            Click="Edit_Click"/>
+                            Click="Accept_Click"/>
 
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="InfoOutline"
-                            Margin="0 0 10 0"
                             Click="Info_Click"/>
-                    
-                    <Button Style="{StaticResource ButtonIcon}"
-                            Tag="CloseCircleOutline"
-                            Click="Delete_Click"/>
-
                 </StackPanel>
-                
+
             </DockPanel>
 
             <Border.Effect>
@@ -97,9 +93,9 @@
                                   Opacity="0.3"
                                   Color="{StaticResource ShadowBrush}"/>
             </Border.Effect>
-            
+
         </Border>
-        
+
     </Grid>
-    
+
 </UserControl>

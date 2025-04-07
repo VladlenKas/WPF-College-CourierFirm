@@ -1,24 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using WPF_CourierFrim.Classes;
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
-using WPF_CourierFrim.UserControls.CardsInfo;
+using WPF_CourierFrim.Windows.WindowsInfo;
 
-namespace WPF_CourierFrim.UserControls
+namespace WPF_CourierFrim.UserControls.CardsAdmin
 {
     /// <summary>
     /// Логика взаимодействия для CardOrderAdmin.xaml
@@ -34,7 +23,7 @@ namespace WPF_CourierFrim.UserControls
         public CardOrderAdmin(Order order)
         {
             InitializeComponent();
-            _dbContext = new();
+
             _order = order;
             LoadInfo();
         }
@@ -43,15 +32,7 @@ namespace WPF_CourierFrim.UserControls
         private void LoadInfo()
         {
             _dbContext = new();
-
-            var order = _dbContext.Orders
-                        .Include(r => r.Rate)
-                        .Include(r => r.Organisation)
-                        .Include(r => r.Content)
-                        .ThenInclude(r => r.ContentType)
-                        .Single(r => r.OrderId == _order.OrderId);
-
-            _order = order;
+            _dbContext.Attach(_order);
             DataContext = _order;
         }
 
@@ -63,13 +44,13 @@ namespace WPF_CourierFrim.UserControls
 
         private void Info_Click(object sender, RoutedEventArgs e)
         {
-            CardOrderInfo cardOrderInfo = new(_order);
+            InfoWindowOrder cardOrderInfo = new(_order);
             ComponentsHelper.DarkenWindow(cardOrderInfo);
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            bool delete = MessageHelper.ConfirmDelete();
+            bool delete = MessageHelper.ConfirmCancellationOrder();
             if (!delete) return;
 
             _dbContext = new();

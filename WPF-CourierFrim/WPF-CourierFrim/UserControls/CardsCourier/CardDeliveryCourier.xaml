@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin"
+﻿<UserControl x:Class="WPF_CourierFrim.UserControls.CardsCourier.CardDeliveryCourier"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPF_CourierFrim.UserControls.CardsCourier"
              mc:Ignorable="d">
 
     <Grid Margin="0 0 20 20">
@@ -17,26 +18,17 @@
                 <TextBlock Style="{StaticResource TextH2}"
                            DockPanel.Dock="Top"
                            Margin="0 0 0 24">
-                    <Run Text="Заказ"/>
-                    <Run Text="{Binding OrderId, StringFormat={}№{0}}"/>
+                    <Run Text="Доставка"/>
+                    <Run Text="{Binding DeliveryId, StringFormat={}№{0}}"/>
                 </TextBlock>
 
                 <!-- Описание -->
                 <TextBlock Margin="0 0 0 10"
                            DockPanel.Dock="Top"
                            TextWrapping="Wrap">
-                    <Run Text="Тариф:"
+                    <Run Text="Статус:"
                          Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding Rate.Name}"
-                         Style="{StaticResource TextCardInfo}"/>
-                </TextBlock>
-
-                <TextBlock Margin="0 0 0 10"
-                           DockPanel.Dock="Top"
-                           TextWrapping="Wrap">
-                    <Run Text="Организация:"
-                         Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding Organisation.Name}"
+                    <Run Text="{Binding StatusDelivery.Name}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 
@@ -45,7 +37,7 @@
                            TextWrapping="Wrap">
                     <Run Text="ФИО клиента:"
                          Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding FullnameClient}"
+                    <Run Text="{Binding Order.FullnameClient}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 
@@ -54,7 +46,25 @@
                            TextWrapping="Wrap">
                     <Run Text="Телефон клиента:"
                          Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding PhoneClient, StringFormat={}+{0}}"
+                    <Run Text="{Binding Order.PhoneClient, StringFormat={}+{0}}"
+                         Style="{StaticResource TextCardInfo}"/>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10"
+                           DockPanel.Dock="Top"
+                           TextWrapping="Wrap">
+                    <Run Text="Адрес получения:"
+                         Style="{StaticResource TextCardTitle}"/>
+                    <Run Text="{Binding Order.ReceivingAddress}"
+                         Style="{StaticResource TextCardInfo}"/>
+                </TextBlock>
+
+                <TextBlock Margin="0 0 0 10"
+                           DockPanel.Dock="Top"
+                           TextWrapping="Wrap">
+                    <Run Text="Адрес доставки:"
+                         Style="{StaticResource TextCardTitle}"/>
+                    <Run Text="{Binding Order.DeliveryAddress}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 
@@ -63,32 +73,52 @@
                            TextWrapping="Wrap">
                     <Run Text="Тип:"
                          Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding Content.ContentType.Name}"
+                    <Run Text="{Binding Order.Content.ContentType.Name}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
-                
+
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
                             Name="ButtonsSP">
+                    
+                    <!-- Смена статуса --> 
+                    <Grid Margin="0 0 10 0">
+                        
+                        <Button Style="{StaticResource ButtonIconPriority}"
+                                Content="Заказ получен"
+                                Tag="PackageVariantClosed"
+                                Name="getOrderBTN"
+                                Click="GetOrder_Click"
+                                Visibility="Visible"/>
 
-                    <Button Style="{StaticResource ButtonIconPriority}"
-                            Content="Редактировать"
-                            Tag="EditOutline"
-                            Margin="0 0 10 0"
-                            Click="Edit_Click"/>
+                        <Button Style="{StaticResource ButtonIconPriority}"
+                                Content="Заказ вручен"
+                                Tag="PackageVariantClosedCheck"
+                                Name="handingOrderBTN"
+                                Click="HandingOrder_Click"
+                                Visibility="Collapsed"/>
+
+                        <Button Style="{StaticResource ButtonIconPriority}"
+                                Content="Заказ выполнен"
+                                Tag="check"
+                                Name="completeDeliveryBTN"
+                                Visibility="Collapsed"
+                                IsEnabled="False"/>
+
+                    </Grid>
 
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="InfoOutline"
                             Margin="0 0 10 0"
                             Click="Info_Click"/>
-                    
+
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="CloseCircleOutline"
-                            Click="Delete_Click"/>
-
+                            Name="cancellationDeliveryBTN"
+                            Click="CancellationDelivery_Click"/>
                 </StackPanel>
-                
+
             </DockPanel>
 
             <Border.Effect>
@@ -97,9 +127,9 @@
                                   Opacity="0.3"
                                   Color="{StaticResource ShadowBrush}"/>
             </Border.Effect>
-            
+
         </Border>
-        
+
     </Grid>
-    
+
 </UserControl>

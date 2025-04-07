@@ -20,23 +20,46 @@ public partial class CourierServiceContext : DbContext
 
     public virtual DbSet<ContentType> ContentTypes { get; set; }
 
-    public virtual DbSet<Delivery> Deliveries { get; set; }
+    public virtual DbSet<Delivery> AllDeliveries { get; set; }
 
-    public virtual DbSet<Employee> Employees { get; set; }
+    public virtual DbSet<Employee> AllEmployees { get; set; }
 
     public virtual DbSet<EmployeeDelivery> EmployeeDeliveries { get; set; }
 
-    public virtual DbSet<Order> Orders { get; set; }
+    public virtual DbSet<Order> AllOrders { get; set; }
 
-    public virtual DbSet<Organisation> Organisations { get; set; }
+    public virtual DbSet<Organisation> AllOrganisations { get; set; }
 
     public virtual DbSet<Post> Posts { get; set; }
 
-    public virtual DbSet<Rate> Rates { get; set; }
+    public virtual DbSet<Rate> AllRates { get; set; }
 
     public virtual DbSet<StatusDelivery> StatusDeliveries { get; set; }
 
     public virtual DbSet<Transport> Transports { get; set; }
+
+    #region Только существующие записи
+    public IQueryable<Employee> Employees => AllEmployees.Where(r => r.IsDeleted != 1)
+        .Include(r => r.Post)
+        .Include(r => r.Transport);
+    public IQueryable<Organisation> Organisations => AllOrganisations.Where(r => r.IsDeleted != 1);
+    public IQueryable<Rate> Rates => AllRates.Where(r => r.IsDeleted != 1);
+    public IQueryable<Delivery> Deliveries => AllDeliveries.Where(r => r.DatetimePresentation == null)
+        .Include(r => r.StatusDelivery)
+            .Include(r => r.Order)
+                .ThenInclude(r => r.Content)
+                    .ThenInclude(r => r.ContentType)
+            .Include(r => r.Order)
+                .ThenInclude(r => r.Organisation)
+            .Include(r => r.Order)
+                .ThenInclude(r => r.Rate);
+    public IQueryable<Order> Orders => AllOrders.Where(r => r.DatetimeCompletion == null)
+        .Include(r => r.Rate)
+        .Include(r => r.Organisation)
+        .Include(r => r.Content)
+            .ThenInclude(r => r.ContentType);
+
+    #endregion
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.

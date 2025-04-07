@@ -70,5 +70,11 @@ namespace WPF_CourierFrim.Windows
             window.Show();
             Close();
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            AuthWindow window = new();
+            window.Show();
+        }
     }
 }

@@ -12,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes; // Вспомогательные классы
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Model; // Модели данных
 using WPF_CourierFrim.Windows; // Окна приложения
 
@@ -34,8 +34,6 @@ namespace WPF_CourierFrim
 
         private Employee? Authenticate(string login, string password)  // Аутентификация
         {
-            _dbContext.Employees.Include(r => r.Post).Load();  // Загрузка данных о должностях
-
             return _dbContext.Employees.SingleOrDefault(r =>  // Поиск сотрудника
             r.Login == login && r.Password == password);
         }
@@ -44,7 +42,7 @@ namespace WPF_CourierFrim
         {
             if (Login == string.Empty || Password == string.Empty)  // Проверка пустых полей
             {
-                MessageHelper.NullFields();  // Показать предупреждение
+                MessageHelper.MessageNullFields();  // Показать предупреждение
                 return;
             }
 
@@ -69,14 +67,14 @@ namespace WPF_CourierFrim
                 {
                     NavWindowAdmin window = new(employee);  // Создать экземпляр класса окна
                     window.Show(); // Открыть окно админа
-                    Close();  // Закрыть текущее окно
                 }
                 else  // Если курьер
                 {
                     NavWindowCourier window = new(employee);  // Создать экземпляр класса окна
                     window.Show(); // Открыть окно курьера
-                    Close(); // Закрыть текущее окно
                 }
+
+                Close(); // Закрыть текущее окно
             }
         }
 
@@ -93,7 +91,7 @@ namespace WPF_CourierFrim
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)  // Иконка глаза
         {
-            ComponentsHelper.ToggleVisibility(sender, PassPB, PassTB);  // Переключить видимость пароля
+            ComponentsHelper.ToggleVisibilityPassword(sender, PassPB, PassTB);  // Переключить видимость пароля
         }
     }
 }

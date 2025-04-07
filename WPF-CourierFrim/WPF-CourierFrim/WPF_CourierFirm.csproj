@@ -36,10 +36,4 @@
     <Resource Include="Images\RegImage.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Classes\Converters\" />
-    <Folder Include="Pages\PagesAdmin\" />
-    <Folder Include="UserControls\CardsCourier\" />
-  </ItemGroup>
-
 </Project>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes;
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Windows
@@ -55,7 +56,7 @@ namespace WPF_CourierFrim.Windows
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)
         {
-            ComponentsHelper.ToggleVisibility(sender, PassPB, PassTB);
+            ComponentsHelper.ToggleVisibilityPassword(sender, PassPB, PassTB);
         }
     }
 }
