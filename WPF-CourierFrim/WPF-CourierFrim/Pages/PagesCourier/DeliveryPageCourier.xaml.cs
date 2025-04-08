@@ -54,7 +54,7 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             cardsIC.Items.Clear();
             foreach (var delivery in deliveries)
             {
-                var card = new CardDeliveryCourier(delivery, _thisEmpoyee);
+                var card = new CardDeliveryCourier(delivery);
                 card.ChangeStatusRequested += ChangeStatusRequested;
                 cardsIC.Items.Add(card);
             }

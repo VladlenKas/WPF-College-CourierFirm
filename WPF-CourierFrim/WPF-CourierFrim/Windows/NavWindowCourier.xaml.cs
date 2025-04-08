@@ -66,8 +66,6 @@ namespace WPF_CourierFrim.Windows
 
         private void ExitRButton_Checked(object sender, RoutedEventArgs e)
         {
-            AuthWindow window = new();
-            window.Show();
             Close();
         }
 

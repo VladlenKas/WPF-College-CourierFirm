@@ -147,7 +147,6 @@
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="textBlock" Property="Foreground" Value="#ffffff"/>
                             <Setter Property="BorderThickness" Value="1"/>
                             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
                         </Trigger>
@@ -1047,5 +1046,143 @@
     </Style>
     <!--#endregion-->
     <!--#endregion-->
+
+    <!--#region Комбобоксы -->
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="18 0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+
+                            <Grid>
+                                <ContentPresenter x:Name="ContentSite"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Center"
+                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  ContentStringFormat="{TemplateBinding SelectedValue}"/>
+                                
+                                <TextBlock x:Name="placeholderText"
+                                           Padding="20 0"
+                                           IsHitTestVisible="False"
+                                           Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                           FontFamily="SF Pro Text"
+                                           Visibility="Collapsed"
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextDisabledBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
+
+                                <icons:PackIcon x:Name="arrowIcon"
+                                                Kind="ChevronDown"
+                                                Width="24"
+                                                Height="24"
+                                                Foreground="#FFFFFF"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Margin="0 0 12 0"/>
+                                
+                                <ToggleButton x:Name="toggleButton"
+                                              Opacity="0"
+                                              Background="Transparent"
+                                              BorderBrush="Transparent"
+                                              Focusable="False"
+                                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ClickMode="Press"/>
+                            </Grid>
+                        </Border>
+                        
+                        <Popup Name="Popup"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               Focusable="False"
+                               PopupAnimation="Slide"
+                               AllowsTransparency="True"
+                               Placement="Bottom">
+                            <Border x:Name="dropDownBorder"
+                                    Background="{StaticResource BackgroundDarkBrush}"
+                                    CornerRadius="10"
+                                    Margin="0 4 0 0"
+                                    BorderThickness="1"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    BorderBrush="{StaticResource AccentBrush}">
+                                <ScrollViewer>
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Placeholder Text -->
+                        <Trigger Property="SelectedItem" Value="{x:Null}">
+                            <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <!-- Hover State -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="arrowIcon" Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+                        
+                        <!-- Dropdown Opened -->
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+
+                        <Trigger SourceName="toggleButton" Property="IsChecked" Value="True">
+                            <Setter TargetName="arrowIcon" Property="Kind" Value="ChevronUp"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="18 10"
+                            CornerRadius="10">
+                        <ContentPresenter/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsHighlighted" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                            <Setter Property="Foreground" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
 </ResourceDictionary>

@@ -54,7 +54,7 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
         private void Info_Click(object sender, RoutedEventArgs e)
         {
             InfoWindowOrder cardOrderInfo = new(_order);
-            ComponentsHelper.DarkenWindow(cardOrderInfo);
+            ComponentsHelper.ShowDialogWindowDark(cardOrderInfo);
         }
 
         private void Accept_Click(object sender, RoutedEventArgs e)

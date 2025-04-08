@@ -40,6 +40,20 @@ namespace WPF_CourierFrim.Classes.Services
         }
 
         // Вручение заказа
+        public static void PaymentMethodDelivery(Delivery delivery, int paymentMethod)
+        {
+            using (var dbContext = new CourierServiceContext())
+            {
+                dbContext.Attach(delivery);
+
+                delivery.PaymentMethod = (sbyte)paymentMethod;
+
+                dbContext.Update(delivery);
+                dbContext.SaveChanges();
+            }
+        }
+
+        // Добавление способа оплаты
         public static void HandingOrder(Delivery delivery)
         {
             using (var dbContext = new CourierServiceContext())
@@ -53,8 +67,6 @@ namespace WPF_CourierFrim.Classes.Services
                 dbContext.SaveChanges();
             }
         }
-
-        // Добавление
 
         // Редактирование
 

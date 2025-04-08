@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Windows.WindowsDialog;
 using WPF_CourierFrim.Windows.WindowsInfo;
 
 namespace WPF_CourierFrim.UserControls.CardsCourier
@@ -29,15 +30,13 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
         public Delivery Delivery { get; private set; }
         private CourierServiceContext _dbContext;
         private Delivery _delivery;
-        private Employee _employee;
 
         // Конструктор
-        public CardDeliveryCourier(Delivery delivery, Employee employee)
+        public CardDeliveryCourier(Delivery delivery)
         {
             InitializeComponent();
 
             _delivery = delivery;
-            _employee = employee;
             LoadInfo();
         }
 
@@ -57,7 +56,7 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
         private void Info_Click(object sender, RoutedEventArgs e)
         {
             InfoWindowDelivery infoWindowDelivery = new(_delivery);
-            ComponentsHelper.DarkenWindow(infoWindowDelivery);
+            ComponentsHelper.ShowDialogWindowDark(infoWindowDelivery);
         }
 
         private void GetOrder_Click(object sender, RoutedEventArgs e)
@@ -73,8 +72,11 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
 
         private void HandingOrder_Click(object sender, RoutedEventArgs e)
         {
-            bool accept = MessageHelper.ConfirmChangeStatus();
-            if (!accept) return;
+            PaymentWindow paymentWindow = new(_delivery);
+            ComponentsHelper.ShowDialogWindowDark(paymentWindow);
+
+            bool saved = paymentWindow.Saved;
+            if (!saved) return;
 
             _dbContext = new();
             DeliveryService.HandingOrder(_delivery);

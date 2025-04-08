@@ -88,7 +88,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         /// </summary>
         /// <param name="infoWindow"></param>
         /// <param name="page"></param>
-        public static void DarkenWindow(Window infoWindow)
+        public static void ShowDialogWindowDark(Window infoWindow)
         {
             App.MenuWindow.Opacity = 0.5;
 
