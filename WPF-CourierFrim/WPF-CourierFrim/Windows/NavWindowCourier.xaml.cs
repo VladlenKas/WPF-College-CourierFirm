@@ -54,7 +54,7 @@ namespace WPF_CourierFrim.Windows
 
         private void RateRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new RatePageCourier(_thisEmpoyee));
+            CurrentPage.Navigate(new RatePageCourier());
             titlePage.Text = "Тарифы";
         }
 

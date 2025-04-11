@@ -7,13 +7,13 @@
         mc:Ignorable="d"
         
         Title="Информация о заказе" 
-        MinHeight="600" MinWidth="900"
-        Height="600" Width="900"
+        SizeToContent="Height"
+        MinHeight="450"
+        MinWidth="600" Width="900"
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
     
-    <Border Padding="35"
-            Name="border">
+    <Border Padding="35">
 
         <DockPanel LastChildFill="False">
             <!-- Заголовок -->
@@ -96,7 +96,7 @@
                                TextWrapping="Wrap">
                         <Run Text="Время принятия:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding DatetimeCompletion, FallbackValue='-', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                        <Run Text="{Binding DatetimeCompletion, TargetNullValue='Еще не назначен курьер', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                     

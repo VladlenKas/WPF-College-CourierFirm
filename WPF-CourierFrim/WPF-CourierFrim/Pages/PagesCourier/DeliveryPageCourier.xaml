@@ -6,7 +6,6 @@
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesCourier"
       mc:Ignorable="d" 
       
-      xmlns:components="clr-namespace:WPF_CourierFirm.Components"
       xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
     <DockPanel>
@@ -22,11 +21,12 @@
                      DockPanel.Dock="Left"
                      TextChanged="TextBox_TextChanged"/>
 
-            <components:SorterDropdownPanelOrders DockPanel.Dock="Right"/>
+            <ComboBox Style="{StaticResource FilterCB}"
+                      Margin="10 0"
+                      Tag="Фильтр"/>
 
-            <components:FilterDropdownPanelOrders DockPanel.Dock="Right"
-                                                  Margin="0 0 10 0"/>
-
+            <ComboBox Style="{StaticResource SorterCB}"
+                      Tag="Сортировка"/>
 
         </DockPanel>
 
@@ -50,7 +50,8 @@
             </StackPanel> -->
 
             <!-- Контент -->
-            <ScrollViewer Name="contentScroll">
+            <ScrollViewer Name="contentScroll"
+                          Style="{StaticResource ScrollViewerStandart}">
 
                 <ItemsControl Name="cardsIC">
 

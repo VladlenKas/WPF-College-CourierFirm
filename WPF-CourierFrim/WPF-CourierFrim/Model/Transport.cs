@@ -17,5 +17,7 @@ public partial class Transport
 
     public short Year { get; set; }
 
+    public string InfoCar => $"{Brand} {Model}, {LicensePlate}, год: {Year}, цвет: {Color}";
+
     public virtual ICollection<Employee> Employees { get; set; } = new List<Employee>();
 }

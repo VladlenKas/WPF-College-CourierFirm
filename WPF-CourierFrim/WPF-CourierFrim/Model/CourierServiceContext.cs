@@ -46,13 +46,16 @@ public partial class CourierServiceContext : DbContext
     public IQueryable<Rate> Rates => AllRates.Where(r => r.IsDeleted != 1);
     public IQueryable<Delivery> Deliveries => AllDeliveries.Where(r => r.DatetimePresentation == null)
         .Include(r => r.StatusDelivery)
-            .Include(r => r.Order)
-                .ThenInclude(r => r.Content)
-                    .ThenInclude(r => r.ContentType)
-            .Include(r => r.Order)
-                .ThenInclude(r => r.Organisation)
-            .Include(r => r.Order)
-                .ThenInclude(r => r.Rate);
+        .Include(r => r.Order)
+            .ThenInclude(r => r.Content)
+                .ThenInclude(r => r.ContentType)
+        .Include(r => r.Order)
+            .ThenInclude(r => r.Organisation)
+        .Include(r => r.Order)
+            .ThenInclude(r => r.Rate)
+        .Include(r => r.EmployeeDeliveries)
+            .ThenInclude(e => e.Employee)
+                .ThenInclude(t => t.Transport);
     public IQueryable<Order> Orders => AllOrders.Where(r => r.DatetimeCompletion == null)
         .Include(r => r.Rate)
         .Include(r => r.Organisation)

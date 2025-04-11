@@ -9,22 +9,57 @@ namespace WPF_CourierFrim.Classes.Helpers
 {
     public static class MessageHelper
     {
-        /// <summary>
-        /// Вызывает сообщение с подтверждением о выходе/закрытии окна
-        /// </summary>
-        /// <returns></returns>
+        #region Сообщения для уведомления
+
+        // Предупреждение о пустых полях
         public static void MessageNullFields()
         {
-            MessageBox.Show($"Заполните все поля!", 
+            MessageBox.Show($"Заполните все поля!",
                 "Предупреждение",
-                MessageBoxButton.OK, 
+                MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
 
-        /// <summary>
-        /// Вызывает сообщение с подтверждением о выходе/закрытии окна
-        /// </summary>
-        /// <returns></returns>
+        // Предупреждение о пустой или нулевой цене
+        public static void MessageNullCost()
+        {
+            MessageBox.Show($"Цена должна быть больше 0!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о повторяющемся названии
+        public static void MessageDuplicateName()
+        {
+            MessageBox.Show($"Такое название уже существует! Введите другое",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о повторяющемся описании
+        public static void MessageDuplicateDescription()
+        {
+            MessageBox.Show($"Такое описание уже существует! Введите другое",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Сообщение о том, что изменения не были внесены
+        public static void MessageNotChanges()
+        {
+            MessageBox.Show($"Вы не внесли изменений",
+                "Отсутсвие изменений",
+                MessageBoxButton.OK,
+                MessageBoxImage.Question);
+        }
+        #endregion
+
+        #region Сообщения подтверждения
+
+        // Вызывает сообщение с подтверждением о выходе/закрытии окна
         public static void ConfirmExit(Window window)
         {
             var resultChanged = MessageBox.Show("Вы действительно хотите выйти?",
@@ -36,12 +71,9 @@ namespace WPF_CourierFrim.Classes.Helpers
             {
                 window.Close();
             }
-        }
+        } 
 
-        /// <summary>
-        /// Подтверждение отмены заказа
-        /// </summary>
-        /// <returns></returns>
+        // Подтверждение отмены заказа
         public static bool ConfirmChangeStatus()
         {
             var resultChanged = MessageBox.Show("Вы подтверждаете смену статуса?",
@@ -64,10 +96,7 @@ namespace WPF_CourierFrim.Classes.Helpers
             }
         }
 
-        /// <summary>
-        /// Подтверждение принятия заказа
-        /// </summary>
-        /// <returns></returns>
+        // Подтверждение принятия заказа
         public static bool ConfirmAcceptOrder()
         {
             var resultChanged = MessageBox.Show("Вы подтверждаете принятие заказа?",
@@ -90,10 +119,7 @@ namespace WPF_CourierFrim.Classes.Helpers
             }
         }
 
-        /// <summary>
-        /// Подтверждение смены статуса
-        /// </summary>
-        /// <returns></returns>
+        // Подтверждение смены статуса
         public static bool ConfirmCancellationOrder()
         {
             var resultChanged = MessageBox.Show("Вы подтверждаете отмену заказа?",
@@ -115,5 +141,52 @@ namespace WPF_CourierFrim.Classes.Helpers
                 return false; // не удаляем
             }
         }
+
+        // Подтверждение удаления
+        public static bool ConfirmDelete()
+        {
+            var resultChanged = MessageBox.Show("Вы подтверждаете удаление?",
+                "Предупреждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (resultChanged == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Удаление прошло успешно",
+                    "Успех",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return true; // удаляем
+            }
+            else
+            {
+                return false; // не удаляем
+            }
+        }
+
+        // Подтверждение удаления
+        public static bool ConfirmEdit()
+        {
+            var resultChanged = MessageBox.Show("Вы уверены, что заполнили все поля верно?",
+                "Вопрос",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resultChanged == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Изменение прошло успешно",
+                    "Успех",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return true; // удаляем
+            }
+            else
+            {
+                return false; // не удаляем
+            }
+        }
+        #endregion
     }
 }

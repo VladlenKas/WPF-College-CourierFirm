@@ -5,10 +5,80 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="RatePageAdmin">
+      
+      xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+
+        <!-- Область параметров -->
+        <DockPanel DockPanel.Dock="Top"
+                   Margin="0 0 0 35"
+                   LastChildFill="False">
+
+            <TextBox Width="360"
+                     MinWidth="150"
+                     Tag="Поиск"
+                     DockPanel.Dock="Left"
+                     TextChanged="TextBox_TextChanged"/>
+
+            <Button Style="{StaticResource ButtonIconPriority}"
+                    DockPanel.Dock="Right"
+                    Tag="Add"
+                    Content="Создать новый"/>
+
+            <ComboBox Style="{StaticResource FilterCB}"
+                      Margin="10 0"
+                      Tag="Фильтр"/>
+
+            <ComboBox Style="{StaticResource SorterCB}"
+                      Tag="Сортировка"/>
+
+
+        </DockPanel>
+
+        <!-- Область вывода информации -->
+        <Grid>
+
+            <!-- Индикатор загрузки 
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed"
+                        Name="loadingIndicator">
+
+                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
+                       Width="200" Height="200"
+                       Margin="0 0 0 10"/>
+                
+                <TextBlock Text="Загрузка"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TextH6}"/>
+
+            </StackPanel> -->
+
+            <!-- Контент -->
+            <ScrollViewer Name="contentScroll"
+                          Style="{StaticResource ScrollViewerStandart}">
+
+                <ItemsControl Name="cardsIC">
+
+                    <ItemsControl.ItemsPanel>
+
+                        <ItemsPanelTemplate>
+
+                            <WrapPanel Orientation="Horizontal"
+                                       HorizontalAlignment="Left"/>
+
+                        </ItemsPanelTemplate>
+
+                    </ItemsControl.ItemsPanel>
+
+                </ItemsControl>
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </DockPanel>
+
 </Page>
+

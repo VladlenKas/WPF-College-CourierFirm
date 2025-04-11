@@ -33,24 +33,24 @@
 
             <TextBlock Style="{StaticResource TextH1}"
                        Text="Вход в аккаунт"
-                       Padding="0 0 0 18"
+                       Padding="0 0 0 16"
                        DockPanel.Dock="Top"/>
 
             <TextBlock Style="{StaticResource TextH6}"
                        TextWrapping="Wrap"
                        Text="Нет аккаунта? Обратитесь для регситрации в администрацию компании"
                        Opacity="0.5"
-                       Margin="0 0 0 40" 
+                       Margin="0 0 0 24" 
                        DockPanel.Dock="Top"/>
 
 
-            <TextBox Margin="0 0 0 20"
+            <TextBox Margin="0 0 0 12"
                      Tag="Логин"
                      Name="loginTB"
                      DockPanel.Dock="Top"/>
 
             <Grid DockPanel.Dock="Top"
-                  Margin="0 0 0 20">
+                  Margin="0 0 0 24">
 
                 <TextBox Tag="Пароль"
                          Name="PassTB"
@@ -72,7 +72,7 @@
                     DockPanel.Dock="Bottom"/>
     
             <Button Content="Войти"
-                    Margin="0 0 0 20"
+                    Margin="0 0 0 12"
                     Click="Login_Click"
                     Style="{StaticResource ButtonPriority}"
                     DockPanel.Dock="Bottom"/>

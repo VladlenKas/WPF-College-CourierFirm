@@ -9,8 +9,9 @@
         xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters"
         
         Title="Информация о доставке" 
-        MinHeight="600" MinWidth="900"
-        Height="600" Width="900"
+        SizeToContent="Height"
+        MinHeight="610"
+        MinWidth="600" Width="900"
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
 
@@ -18,10 +19,10 @@
         <converters:PaymentMethodConverter x:Key="PaymentMethod"/>
     </Window.Resources>
 
-    <Border Padding="35"
-            Name="border">
+    <Border Padding="35">
 
-        <DockPanel LastChildFill="False">
+        <DockPanel LastChildFill="False"
+                   Name="dockPanel">
             <!-- Заголовок -->
             <TextBlock Style="{StaticResource TextH2}"
                        DockPanel.Dock="Top"
@@ -66,7 +67,7 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
-                    <TextBlock Margin="0 0 0 20"
+                    <TextBlock Margin="0 0 0 24"
                                TextWrapping="Wrap">
                         <Run Text="Телефон клиента:"
                              Style="{StaticResource TextCardTitle}"/>
@@ -82,7 +83,7 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
-                    <TextBlock Margin="0 0 0 20"
+                    <TextBlock Margin="0 0 0 24"
                                TextWrapping="Wrap">
                         <Run Text="Адрес доставки:"
                              Style="{StaticResource TextCardTitle}"/>
@@ -110,7 +111,7 @@
                                TextWrapping="Wrap">
                         <Run Text="Время получения:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding DatetimeReceiving, FallbackValue='-', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                        <Run Text="{Binding DatetimeReceiving, TargetNullValue='Еще не получен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
@@ -118,11 +119,34 @@
                                TextWrapping="Wrap">
                         <Run Text="Время вручения:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding DatetimePresentation, FallbackValue='-', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                        <Run Text="{Binding DatetimePresentation, TargetNullValue='Еще не доставлен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="ФИО курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Fullname, Mode=OneWay}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="Телефон курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Phone, StringFormat={}+{0}, Mode=OneWay}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="Данные об авто:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Transport.InfoCar, Mode=OneWay}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                 </StackPanel>
-
+                
                 <!-- 3 колонка -->
                 <StackPanel Grid.Column="2">
 

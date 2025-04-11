@@ -22,14 +22,14 @@
             <!-- Заголовок -->
             <TextBlock Style="{StaticResource TextH2}"
                        DockPanel.Dock="Top"
-                       Margin="0 0 0 24">
+                       Margin="0 0 0 16">
                 <Run Text="Оплата доставки"/>
                 <Run Text="{Binding DeliveryId, StringFormat={}№{0}}"/>
             </TextBlock>
 
             <!-- Подзаголовок -->
             <TextBlock Style="{StaticResource TextH6}"
-                       Margin="0 0 0 40"
+                       Margin="0 0 0 24"
                        TextWrapping="Wrap"
                        Text="Для завершения доставки выберите способ оплаты ниже"
                        Opacity="0.5"
@@ -48,7 +48,7 @@
             <Button Style="{StaticResource ButtonPriority}"
                     DockPanel.Dock="Bottom"
                     Content="Подтвердить вручение"
-                    Margin="0 0 0 20"
+                    Margin="0 0 0 12"
                     Click="Confirm_Click"/>
 
         </DockPanel>

@@ -26,7 +26,6 @@ namespace WPF_CourierFrim.Windows.WindowsDialog
         public bool Saved { get; private set; }
         public int PaymentMethod => paymentCB.SelectedIndex;
 
-        private CourierServiceContext _dbContext;
         private Delivery _delivery;
 
         // Конструктор

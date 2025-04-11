@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
 
-namespace WPF_CourierFrim.Classes.DataOperations
+namespace WPF_CourierFrim.Classes
 {
-    public static partial class InputValidator 
+    public static partial class Validations 
     {
         #region Валидация на написание текста
 
@@ -76,7 +76,7 @@ namespace WPF_CourierFrim.Classes.DataOperations
         /// <summary>
         /// Проверяет вставляемый текст на соответствие формату описания для адреса.
         /// </summary>
-        public static void ValidatePasteDescriptionForAddress(DataObjectPastingEventArgs e)
+        public static void ValidatePasteDescription(DataObjectPastingEventArgs e)
         {
             ValidatePaste(e, Description());
         }
@@ -144,7 +144,7 @@ namespace WPF_CourierFrim.Classes.DataOperations
         private static partial Regex Numbers();
 
         // Описание
-        [GeneratedRegex(@"[а-яА-Я\d-().,;""':/]")]
+        [GeneratedRegex(@"[а-яА-Я0-9-().,;""':/]")]
         private static partial Regex Description();
 
         // Эл. почта
