@@ -29,10 +29,73 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxImage.Warning);
         }
 
+        // Предупреждение о пустой или нулевой цене
+        public static void MessageIncorrectEmail()
+        {
+            MessageBox.Show($"Электронная почта должна содержать корректный вид",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком номере
+        public static void MessageShortPhone()
+        {
+            MessageBox.Show($"Номер телефона должен содержать 11 цифр!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком названии
+        public static void MessageShortName()
+        {
+            MessageBox.Show($"Название должно содержать минимум 3 символа!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком номере
+        public static void MessageShortAddress()
+        {
+            MessageBox.Show($"Адрес должен содержать минимум 5 символов!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         // Предупреждение о повторяющемся названии
         public static void MessageDuplicateName()
         {
             MessageBox.Show($"Такое название уже существует! Введите другое",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о повторяющемся адресе
+        public static void MessageDuplicateAddress()
+        {
+            MessageBox.Show($"Такой адрес уже существует! Введите другой",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о повторяющемся телефоне
+        public static void MessageDuplicatePhone()
+        {
+            MessageBox.Show($"Такой номер телефона уже существует! Введите другой",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о повторяющемся почте
+        public static void MessageDuplicateEmail()
+        {
+            MessageBox.Show($"Такой адрес электронной почты уже существует! Введите другой",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -51,7 +114,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         public static void MessageNotChanges()
         {
             MessageBox.Show($"Вы не внесли изменений",
-                "Отсутсвие изменений",
+                "Уведомление",
                 MessageBoxButton.OK,
                 MessageBoxImage.Question);
         }
@@ -165,7 +228,7 @@ namespace WPF_CourierFrim.Classes.Helpers
             }
         }
 
-        // Подтверждение удаления
+        // Подтверждение изменения
         public static bool ConfirmEdit()
         {
             var resultChanged = MessageBox.Show("Вы уверены, что заполнили все поля верно?",
@@ -176,6 +239,29 @@ namespace WPF_CourierFrim.Classes.Helpers
             if (resultChanged == MessageBoxResult.Yes)
             {
                 MessageBox.Show("Изменение прошло успешно",
+                    "Успех",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return true; // удаляем
+            }
+            else
+            {
+                return false; // не удаляем
+            }
+        }
+
+        // Подтверждение сохранения
+        public static bool ConfirmSave()
+        {
+            var resultChanged = MessageBox.Show("Вы уверены, что заполнили все поля верно?",
+                "Вопрос",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resultChanged == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Добавление прошло успешно",
                     "Успех",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);

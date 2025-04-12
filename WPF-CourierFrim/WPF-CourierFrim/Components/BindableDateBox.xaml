@@ -11,6 +11,7 @@
              TextChanged="DateBox_TextChanged"
              PreviewKeyDown="DateBox_PreviewKeyDown"
              PreviewTextInput="DateBox_PreviewTextInput"
+             DataObject.Pasting="DateBox_Pasting"
              MaxLength="10"
              Tag="Дата рождения"/>
 

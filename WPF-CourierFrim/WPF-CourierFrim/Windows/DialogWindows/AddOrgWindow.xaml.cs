@@ -11,49 +11,43 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Classes;
 
-namespace WPF_CourierFrim.Windows.WindowsDialog
+namespace WPF_CourierFrim.Windows.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для EditRateWindow.xaml
+    /// Логика взаимодействия для AddOrgWindow.xaml
     /// </summary>
-    public partial class EditRateWindow : Window
+    public partial class AddOrgWindow : Window
     {
         // Поля и свойства
         public bool Saved { get; private set; }
-        private Rate _rate;
 
         // Конструктор
-        public EditRateWindow(Rate rate)
+        public AddOrgWindow()
         {
             InitializeComponent();
-            _rate = rate;
-
-            nameTB.Text = rate.Name;
-            costTB.Text = rate.Cost.ToString();
-            descriptionTB.Text = rate.Description;
         }
 
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             string name = nameTB.Text;
-            int cost = Convert.ToInt32(costTB.Text);
-            string desciption = descriptionTB.Text;
+            string email = emailTB.Text;
+            string phone = phoneTB.PhoneNumber;
+            string address = addressTB.Text;
 
-            bool notError = Limitators.RateLimitator(_rate, name, cost, desciption);
+            bool notError = Limitators.OrgLimitator(null, name, email, phone, address);
             if (!notError) return;
 
             bool accept = MessageHelper.ConfirmEdit();
             if (!accept) return;
 
-            RateService.EditRate(_rate, name, cost, desciption);
+            OrganisationService.AddOgranisation(name, email, phone, address);
             Saved = true;
             Close();
         }

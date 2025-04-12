@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
+using WPF_CourierFrim.Classes.Helpers;
 
 namespace WPF_CourierFrim.Classes
 {
@@ -154,5 +155,28 @@ namespace WPF_CourierFrim.Classes
         // Пароль
         [GeneratedRegex(@"[a-zA-Z!@#$&*0-9]")]
         private static partial Regex Password();
+
+        // Ограничение по возрасту 
+        public static bool ValidateCorrectAge(DateOnly date)
+        {
+            short age = TypeHelper.CalculateAge(date);
+
+            if (age < 18 || age > 80)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        // Ограничение на валидность почты
+        public static bool ValidateCorrectEmail(string email)
+        {
+            var regex = new Regex(@"^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$");
+            if (!regex.IsMatch(email))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

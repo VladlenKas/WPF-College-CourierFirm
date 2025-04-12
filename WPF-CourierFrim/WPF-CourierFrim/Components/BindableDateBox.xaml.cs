@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes;
 
 namespace WPF_CourierFirm .Components
 {
@@ -91,10 +92,12 @@ namespace WPF_CourierFirm .Components
 
         private void DateBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            if (!char.IsDigit(e.Text, 0))
-            {
-                e.Handled = true;
-            }
+            Validations.ValidateInputNumbers(e);
+        }
+
+        private void DateBox_Pasting(object sender, DataObjectPastingEventArgs e)
+        {
+            Validations.ValidatePasteNumbers(e);
         }
     }
 }

@@ -11,49 +11,43 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
+using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
 
-namespace WPF_CourierFrim.Windows.WindowsDialog
+namespace WPF_CourierFrim.Windows.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для EditRateWindow.xaml
+    /// Логика взаимодействия для AddRateWindow.xaml
     /// </summary>
-    public partial class EditRateWindow : Window
+    public partial class AddRateWindow : Window
     {
         // Поля и свойства
         public bool Saved { get; private set; }
-        private Rate _rate;
 
         // Конструктор
-        public EditRateWindow(Rate rate)
+        public AddRateWindow()
         {
             InitializeComponent();
-            _rate = rate;
-
-            nameTB.Text = rate.Name;
-            costTB.Text = rate.Cost.ToString();
-            descriptionTB.Text = rate.Description;
         }
 
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
-        private void Edit_Click(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
             string name = nameTB.Text;
-            int cost = Convert.ToInt32(costTB.Text);
+            int cost = TypeHelper.IntParse(costTB.Text);
             string desciption = descriptionTB.Text;
 
-            bool notError = Limitators.RateLimitator(_rate, name, cost, desciption);
+            bool notError = Limitators.RateLimitator(null, name, cost, desciption);
             if (!notError) return;
 
-            bool accept = MessageHelper.ConfirmEdit();
+            bool accept = MessageHelper.ConfirmSave();
             if (!accept) return;
 
-            RateService.EditRate(_rate, name, cost, desciption);
+            RateService.AddRate(name, cost, desciption);
             Saved = true;
             Close();
         }

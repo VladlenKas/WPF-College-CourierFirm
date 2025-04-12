@@ -12,8 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
+using WPF_CourierFrim.Windows.DialogWindows;
 using static WPF_CourierFrim.UserControls.CardsAdmin.CardRateAdmin;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
@@ -60,6 +62,15 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void AddRate_Click(object sender, RoutedEventArgs e)
+        {
+            AddRateWindow window = new();
+            ComponentsHelper.ShowDialogWindowDark(window);
+
+            bool saved = window.Saved;
+            if (saved) UpdateIC();
         }
     }
 }
