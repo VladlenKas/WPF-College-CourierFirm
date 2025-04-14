@@ -13,6 +13,7 @@
              TextChanged="PhoneBox_TextChanged"
              PreviewTextInput="PhoneBox_PreviewTextInput"
              DataObject.Pasting="PhoneBox_Pasting"
-             Tag="Номер телефона"/>
+             Tag="{Binding Placeholder, 
+                             RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
 
 </UserControl>

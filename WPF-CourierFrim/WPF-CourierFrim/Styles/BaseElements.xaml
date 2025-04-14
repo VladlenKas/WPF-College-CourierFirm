@@ -35,6 +35,8 @@
     <!--#endregion-->
 
     <!--#region TextBlocks -->
+    
+    <!-- TextBlock тексты -->
     <Style TargetType="{x:Type TextBlock}" x:Key="TextH1">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="32"/>
@@ -77,6 +79,7 @@
         <Setter Property="Foreground" Value="#ffffff"/>
     </Style>
 
+    <!-- Run тексты -->
     <Style TargetType="{x:Type Run}" x:Key="TextCardTitle">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="16"/>
@@ -100,7 +103,78 @@
     <!--#endregion-->
 
     <!--#region Текстовые поля -->
+    <!--#region Стандартное текстовое поле  -->
     <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment" Value="Top"/>
+        <Setter Property="TextAlignment" Value="Justify"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="Padding" Value="18 14.5"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <Grid IsHitTestVisible="False"
+                              Cursor="{TemplateBinding Cursor}">
+
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                          Focusable="False"/>
+
+                            <TextBlock x:Name="placeholderText"
+                                       Padding="20 14.5"
+                                       IsHitTestVisible="False"
+                                       Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                       FontFamily="SF Pro Text"
+                                       Visibility="Collapsed"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextDisabledBrush}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="placeholderText" Property="Foreground" Value="#ffffff"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Текстовое поле с иконкой -->
+    <Style TargetType="{x:Type TextBox}" x:Key="TextBoxIcon">
         <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="Foreground" Value="#ffffff"/>
@@ -133,7 +207,7 @@
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
-                            
+
                             <ScrollViewer x:Name="PART_ContentHost" 
                                           Focusable="False"
                                           Grid.Column="1"/>
@@ -160,7 +234,7 @@
                                             Height="24"
                                             Grid.Column="0"/>
 
-                        </Grid> 
+                        </Grid>
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -185,8 +259,61 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--#endregion-->
 
+    <!--#region Стандартное поле пароля -->
     <Style TargetType="{x:Type PasswordBox}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="11"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="20 0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="IBeam"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type PasswordBox}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <Grid IsHitTestVisible="False"
+                              Cursor="{TemplateBinding Cursor}">
+
+                            <ScrollViewer x:Name="PART_ContentHost" 
+                                          Focusable="False"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Поле пароля с иконкой -->
+    <Style TargetType="{x:Type PasswordBox}" x:Key="PasswordBoxIcon">
         <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="Foreground" Value="#ffffff"/>
@@ -234,6 +361,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--#endregion-->
     <!--#endregion-->
 
     <!--#region Кнопки -->

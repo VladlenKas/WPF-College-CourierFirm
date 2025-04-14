@@ -29,6 +29,10 @@ namespace WPF_CourierFrim.Components
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     OnPhoneNumberChanged));
 
+        // Зависимое свойство для пути к отображаемому свойству (PlaceholderProperty)
+        public static readonly DependencyProperty PlaceholderProperty =
+            DependencyProperty.Register("Placeholder", typeof(string), typeof(BindablePhoneBox), new PropertyMetadata(string.Empty));
+
         public string PhoneNumber
         {
             get
@@ -40,6 +44,14 @@ namespace WPF_CourierFrim.Components
             }
             set => SetValue(PhoneNumberProperty, value);
         }
+
+        // Текст плейсхолдера
+        public string Placeholder
+        {
+            get { return (string)GetValue(PlaceholderProperty); }
+            set { SetValue(PlaceholderProperty, value); }
+        }
+
 
         public BindablePhoneBox()
         {

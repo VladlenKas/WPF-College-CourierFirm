@@ -66,13 +66,13 @@ namespace WPF_CourierFrim.Components
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
-            icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            //icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
         {
             textBlock.Foreground = new SolidColorBrush(Color.FromRgb(160, 165, 175));
-            icon.Foreground = new SolidColorBrush(Color.FromRgb(160, 165, 175));
+            //icon.Foreground = new SolidColorBrush(Color.FromRgb(160, 165, 175));
         }
     }
 }

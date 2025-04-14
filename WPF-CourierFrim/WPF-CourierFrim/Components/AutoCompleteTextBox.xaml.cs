@@ -39,9 +39,9 @@ namespace WPF_CourierFrim.Components
         public static readonly DependencyProperty DisplayMemberPathProperty =
             DependencyProperty.Register("DisplayMemberPath", typeof(string), typeof(AutoCompleteTextBox), new PropertyMetadata(string.Empty));
 
-        // Зависимое свойство для пути к отображаемому свойству (DisplayMemberPath)
+        // Зависимое свойство для пути к отображаемому свойству (PlaceholderProperty)
         public static readonly DependencyProperty PlaceholderProperty =
-            DependencyProperty.Register("PlaceholderText", typeof(string), typeof(AutoCompleteTextBox), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Placeholder", typeof(string), typeof(AutoCompleteTextBox), new PropertyMetadata(string.Empty));
 
         // Имя свойства, которое будет отображаться в списке.
         private string _displayMemberPath;

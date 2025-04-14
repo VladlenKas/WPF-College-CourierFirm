@@ -19,9 +19,22 @@ namespace WPF_CourierFrim.Windows.DialogWindows
     /// </summary>
     public partial class AddOrderWindow : Window
     {
+        public bool Saved { get; private set; }
+
         public AddOrderWindow()
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

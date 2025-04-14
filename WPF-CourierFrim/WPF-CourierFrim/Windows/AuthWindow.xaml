@@ -10,7 +10,7 @@
         xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         Title="Вход в CourierFirm" 
-        Height="800" Width="1200"   
+        Height="700" Width="1050"   
         MinHeight="700" MinWidth="1050"
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
