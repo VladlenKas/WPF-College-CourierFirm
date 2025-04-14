@@ -1,0 +1,136 @@
+﻿<Window x:Class="WPF_CourierFrim.Windows.DialogWindows.AddOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_CourierFrim.Windows.DialogWindows"
+        mc:Ignorable="d"
+        
+        xmlns:behaviors="clr-namespace:WPF_CourierFrim.Classes"
+        xmlns:components="clr-namespace:WPF_CourierFrim.Components"
+        
+        SizeToContent="Height"
+        MinHeight="650"
+        MinWidth="450" 
+        Title="Добавление организации" 
+        Style="{StaticResource WindowOrdinary}"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Name="grid"
+          Margin="35">
+
+        <DockPanel LastChildFill="False"
+                   MaxWidth="924">
+
+            <!-- Заголовок -->
+            <TextBlock Style="{StaticResource TextH2}"
+                       DockPanel.Dock="Top"
+                       Margin="0 0 0 16">
+                <Run Text="Создание заказа"/>
+            </TextBlock>
+
+            <!-- Подзаголовок -->
+            <TextBlock Style="{StaticResource TextH6}"
+                       Margin="0 0 0 24"
+                       TextWrapping="Wrap"
+                       Text="Ни одно поле не должно потовряться с данными существующих организаций"
+                       Opacity="0.5"
+                       DockPanel.Dock="Top"/>
+
+            <!-- Описание заказа в двух колонках -->
+            <Grid DockPanel.Dock="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="24"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <!-- 1 колонка -->
+                <DockPanel Grid.Column="0"
+                           LastChildFill="False">
+
+                    <components:AutoCompleteTextBox x:Name="organisationCB"
+                                                    Placeholder="Организация"/>
+
+                    <TextBox Tag="Название"
+                             Name="nameTB"
+                             Margin="0 0 0 12"
+                             DockPanel.Dock="Top"
+                             MaxLength="30"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+
+                    <components:BindablePhoneBox Tag="Номер телефона "
+                                                 x:Name="phoneTB"
+                                                 Margin="0 0 0 12"
+                                                 DockPanel.Dock="Top"
+                                                 VerticalContentAlignment="Top"/>
+
+                    <TextBox Tag="Электронная почта "
+                             Name="emailTB"
+                             Margin="0 0 0 12"
+                             DockPanel.Dock="Top"
+                             VerticalContentAlignment="Top"
+                             MaxLength="90"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Email"/>
+
+                    <TextBox Tag="Адрес"
+                             Name="addressTB"
+                             Margin="0 0 0 24"
+                             DockPanel.Dock="Top"
+                             Height="120"
+                             MaxLength="120"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Description"/>
+                    
+                </DockPanel>
+
+                <!-- 2 колонка -->
+                <DockPanel Grid.Column="2"
+                           LastChildFill="False">
+
+                    <TextBox Tag="Название"
+                             Margin="0 0 0 12"
+                             DockPanel.Dock="Top"
+                             MaxLength="30"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+
+                    <components:BindablePhoneBox Tag="Номер телефона "
+                                                 Margin="0 0 0 12"
+                                                 DockPanel.Dock="Top"
+                                                 VerticalContentAlignment="Top"/>
+
+                    <TextBox Tag="Электронная почта "
+                             Margin="0 0 0 12"
+                             DockPanel.Dock="Top"
+                             VerticalContentAlignment="Top"
+                             MaxLength="90"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Email"/>
+
+                    <TextBox Tag="Адрес"
+                             Margin="0 0 0 24"
+                             DockPanel.Dock="Top"
+                             Height="120"
+                             MaxLength="120"
+                             behaviors:TextBoxValidationBehavior.ValidationType="Description"/>
+
+                </DockPanel>
+
+            </Grid>
+
+            <!--<Button Style="{StaticResource ButtonStandard}"
+                    Width="Auto"
+                    DockPanel.Dock="Bottom"
+                    Content="Выйти"
+                    Click="Exit_Click"/>
+
+            <Button Style="{StaticResource ButtonPriority}"
+                    DockPanel.Dock="Bottom"
+                    Content="Создать"
+                    Margin="0 0 0 12"
+                    Click="Add_Click"/>-->
+
+        </DockPanel>
+
+    </Grid>
+
+</Window>

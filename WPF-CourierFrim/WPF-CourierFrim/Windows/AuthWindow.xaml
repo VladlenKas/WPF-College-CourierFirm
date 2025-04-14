@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:WPF_CourierFrim"
         mc:Ignorable="d"
         
-        xmlns:components="clr-namespace:WPF_CourierFirm.Components"
+        xmlns:helpers="clr-namespace:WPF_CourierFrim.Classes.Helpers"
+        xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         Title="Вход в CourierFirm" 
         Height="800" Width="1200"   
@@ -38,23 +39,24 @@
 
             <TextBlock Style="{StaticResource TextH6}"
                        TextWrapping="Wrap"
-                       Text="Нет аккаунта? Обратитесь для регситрации в администрацию компании"
+                       Text="Нет аккаунта? Обратитесь для регистрации в администрацию курьерской фирмы"
                        Opacity="0.5"
                        Margin="0 0 0 24" 
                        DockPanel.Dock="Top"/>
 
-
             <TextBox Margin="0 0 0 12"
                      Tag="Логин"
                      Name="loginTB"
-                     DockPanel.Dock="Top"/>
+                     DockPanel.Dock="Top"
+                     helpers:TextBoxHelper.IconKind="Login"/>
 
             <Grid DockPanel.Dock="Top"
                   Margin="0 0 0 24">
 
                 <TextBox Tag="Пароль"
                          Name="PassTB"
-                         Visibility="Hidden"/>
+                         Visibility="Hidden"
+                         helpers:TextBoxHelper.IconKind="PasswordOutline"/>
                 
                 <components:BindablePasswordBox Password="{Binding Password}"
                                                 x:Name="PassPB"

@@ -37,7 +37,7 @@
                            TextWrapping="Wrap">
                     <Run Text="Телефон:"
                          Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding Phone}"
+                    <Run Text="{Binding Phone, StringFormat={}+{0}}"
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 

@@ -129,6 +129,12 @@ namespace WPF_CourierFrim.Classes
                         MessageHelper.MessageDuplicateAddress();
                         return false;
                     }
+                    else if (organisation.Name == name && organisation.Phone == phone && organisation.Email == email
+                        && organisation.Address == address)
+                    {
+                        MessageHelper.MessageNotChanges();
+                        return false;
+                    }
                 }
                 // Добавление
                 else

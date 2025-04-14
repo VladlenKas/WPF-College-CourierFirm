@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_CourierFirm.Components
+namespace WPF_CourierFrim.Components
 {
     /// <summary>
     /// Логика взаимодействия для BindablePasswordBox.xaml
@@ -66,11 +66,13 @@ namespace WPF_CourierFirm.Components
         private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
         {
             textBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+            icon.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
         }
 
         private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
         {
             textBlock.Foreground = new SolidColorBrush(Color.FromRgb(160, 165, 175));
+            icon.Foreground = new SolidColorBrush(Color.FromRgb(160, 165, 175));
         }
     }
 }

@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-
+                
                 <!-- Цвета -->
                 <ResourceDictionary Source="Styles/Colors.xaml"/>
 

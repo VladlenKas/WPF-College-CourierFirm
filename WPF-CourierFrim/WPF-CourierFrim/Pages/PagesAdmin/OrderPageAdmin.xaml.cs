@@ -17,6 +17,8 @@ using WPF_CourierFrim.UserControls;
 using Microsoft.EntityFrameworkCore;
 using WPF_CourierFrim.UserControls.CardsAdmin;
 using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin;
+using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFrim.Windows.DialogWindows;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
 {
@@ -62,6 +64,15 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            AddOrderWindow window = new();
+            ComponentsHelper.ShowDialogWindowDark(window);
+
+            bool saved = window.Saved;
+            if (saved) UpdateIC();
         }
     }
 }

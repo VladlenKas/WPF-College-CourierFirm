@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Windows.DialogWindows;
 using WPF_CourierFrim.Windows.WindowsDialog;
 
 namespace WPF_CourierFrim.UserControls.CardsAdmin
@@ -60,14 +61,14 @@ namespace WPF_CourierFrim.UserControls.CardsAdmin
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            /*EditRateWindow window = new(_organisation);
+            EditOrgWindow window = new(_organisation);
             ComponentsHelper.ShowDialogWindowDark(window);
 
             bool saved = window.Saved;
             if (!saved) return;
 
             _dbContext = new();
-            RateRequested?.Invoke(this, new RateEventArgs { Rate = this.Rate }); // Уведомляем род. страницу об удалении*/
+            OrgRequested?.Invoke(this, new OrgEventArgs { Organisation = this.Organisation }); // Уведомляем род. страницу об удалении
         }
 
         // События

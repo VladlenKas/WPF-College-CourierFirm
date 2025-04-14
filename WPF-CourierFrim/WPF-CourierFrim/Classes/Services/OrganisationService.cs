@@ -42,7 +42,7 @@ namespace WPF_CourierFrim.Classes.Services
         }
 
         // Редактирование
-        public static void EditOgranisation(Organisation organisation, string name, string address, string phone, string email)
+        public static void EditOgranisation(Organisation organisation, string name, string email, string phone, string address)
         {
             using (var dbContext = new CourierServiceContext())
             {

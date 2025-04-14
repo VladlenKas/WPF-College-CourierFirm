@@ -14,40 +14,48 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Classes;
+using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Windows.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrgWindow.xaml
+    /// Логика взаимодействия для EditOrgWindow.xaml
     /// </summary>
-    public partial class AddOrgWindow : Window
+    public partial class EditOrgWindow : Window
     {
         // Поля и свойства
         public bool Saved { get; private set; }
+        private Organisation _organisation;
 
         // Конструктор
-        public AddOrgWindow()
+        public EditOrgWindow(Organisation organisation)
         {
             InitializeComponent();
+            _organisation = organisation;
+
+            nameTB.Text = organisation.Name;
+            emailTB.Text = organisation.Email;
+            phoneTB.PhoneNumber = organisation.Phone;
+            addressTB.Text = organisation.Address;
         }
 
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
-        private void Add_Click(object sender, RoutedEventArgs e)
+        private void Edit_Click(object sender, RoutedEventArgs e)
         {
             string name = nameTB.Text;
             string email = emailTB.Text;
             string phone = phoneTB.PhoneNumber;
             string address = addressTB.Text;
 
-            bool notError = Limitators.OrgLimitator(null, name, email, phone, address);
+            bool notError = Limitators.OrgLimitator(_organisation, name, email, phone, address);
             if (!notError) return;
 
             bool accept = MessageHelper.ConfirmSave();
             if (!accept) return;
 
-            OrganisationService.AddOgranisation(name, email, phone, address);
+            OrganisationService.EditOgranisation(_organisation, name, email, phone, address);
             Saved = true;
             Close();
         }

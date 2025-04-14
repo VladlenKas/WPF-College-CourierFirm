@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes;
 
-namespace WPF_CourierFirm .Components
+namespace WPF_CourierFrim.Components
 {
     /// <summary>
     /// Логика взаимодействия для BindableDateBox.xaml

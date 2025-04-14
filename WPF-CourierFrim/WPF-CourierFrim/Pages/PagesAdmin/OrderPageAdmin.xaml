@@ -24,6 +24,7 @@
             <Button Style="{StaticResource ButtonIconPriority}"
                     DockPanel.Dock="Right"
                     Tag="Add"
+                    Click="Add_Click"
                     Content="Создать новый"/>
 
             <ComboBox Style="{StaticResource FilterCB}"

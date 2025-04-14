@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WPF_CourierFrim.Windows"
         mc:Ignorable="d"
 
-        xmlns:components="clr-namespace:WPF_CourierFirm.Components"
+        xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         Title="Регистрация" 
         Background="#272D38"
@@ -82,8 +82,8 @@
                          Name="patronymicnameTB"
                          Tag="Отчество"/>
 
-                <components:BindableDateBox Grid.Column="2"
-                                            Grid.Row="2"/>
+                <components:BindablePasswordBox Grid.Column="2"
+                                                Grid.Row="2"/>
 
                 <TextBox Grid.Column="0"
                          Grid.Row="4"

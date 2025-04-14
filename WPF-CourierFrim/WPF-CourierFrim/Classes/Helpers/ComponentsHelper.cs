@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_CourierFirm.Components;
+using WPF_CourierFrim.Components;
 using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Classes.Helpers
