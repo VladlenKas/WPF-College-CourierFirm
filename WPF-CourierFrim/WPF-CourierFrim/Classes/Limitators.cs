@@ -74,7 +74,6 @@ namespace WPF_CourierFrim.Classes
         public static bool OrgLimitator(Organisation? organisation, string name, 
             string email, string phone, string address)
         {
-
             using var dbContext = new CourierServiceContext();
 
             // Проверка на пустые поля
@@ -159,6 +158,70 @@ namespace WPF_CourierFrim.Classes
                         MessageHelper.MessageDuplicateAddress();
                         return false;
                     }
+                }
+            }
+
+            // Если ошибок нет, то возвращаем true
+            return true;
+        }
+        
+        // Заказы 
+        public static bool OrderLimitator(Order? order, Organisation? organisation, Rate? rate, 
+            string receivingAddress, string deliveryAddress, ContentType? contentType, string phoneClient, 
+            string fullnameClient, string content, decimal weight)
+        {
+            using var dbContext = new CourierServiceContext();
+
+            // Проверка на пустые поля
+            if (new[] { receivingAddress, deliveryAddress, fullnameClient, phoneClient, content }.Any(string.IsNullOrWhiteSpace))
+            {
+                MessageHelper.MessageNullFields();
+                return false;
+            }
+            else if (organisation == null || rate == null || contentType == null)
+            {
+                MessageHelper.MessageNullFields();
+                return false;
+            }
+            else if (fullnameClient.Length < 2)
+            {
+                MessageHelper.MessageShortName();
+                return false;
+            }
+            else if (phoneClient.Length != 11)
+            {
+                MessageHelper.MessageShortPhone();
+                return false;
+            }
+            else if (receivingAddress.Length < 4)
+            {
+                MessageHelper.MessageShortAddress();
+                return false;
+            }
+            else if (deliveryAddress.Length < 4)
+            {
+                MessageHelper.MessageShortAddress();
+                return false;
+            }
+            else if (content.Length < 4)
+            {
+                MessageHelper.MessageShortContentOrder();
+                return false;
+            }
+            else if (weight == 0)
+            {
+                MessageHelper.MessageNullWeight();
+                return false;
+            }
+            // Проверка на внесение изменений
+            else if (order != null)
+            {
+                if (order.Organisation.Name == organisation.Name && order.Rate.Name == rate.Name && order.ReceivingAddress == receivingAddress
+                    && order.DeliveryAddress == deliveryAddress && order.FullnameClient == fullnameClient && order.PhoneClient == phoneClient
+                    && order.Content.Description == content && order.Content.Weight == weight && order.Content.ContentType.Name == contentType.Name)
+                {
+                    MessageHelper.MessageNotChanges();
+                    return false;
                 }
             }
 

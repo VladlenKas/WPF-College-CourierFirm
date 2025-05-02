@@ -5,7 +5,9 @@ using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Windows.DialogWindows;
 using WPF_CourierFrim.Windows.WindowsInfo;
+using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrganisationAdmin;
 
 namespace WPF_CourierFrim.UserControls.CardsAdmin
 {
@@ -39,7 +41,14 @@ namespace WPF_CourierFrim.UserControls.CardsAdmin
         // Обработчики событий
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
+            EditOrderWindow window = new(_order);
+            ComponentsHelper.ShowDialogWindowDark(window);
 
+            bool saved = window.Saved;
+            if (!saved) return;
+
+            _dbContext = new();
+            DeleteOrderRequested?.Invoke(this, new OrderEventArgs { Order = this.Order }); // Уведомляем род. страницу об удалении
         }
 
         private void Info_Click(object sender, RoutedEventArgs e)

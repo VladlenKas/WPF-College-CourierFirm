@@ -1237,7 +1237,7 @@
                                                   Margin="{TemplateBinding Padding}"
                                                   HorizontalAlignment="Stretch"
                                                   VerticalAlignment="Center"
-                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  Content="{Binding SelectedItem.Name, RelativeSource={RelativeSource TemplatedParent}}"
                                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                   ContentStringFormat="{TemplateBinding SelectedValue}"/>
 

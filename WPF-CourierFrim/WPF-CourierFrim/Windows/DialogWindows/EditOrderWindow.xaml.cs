@@ -11,31 +11,43 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
+using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Windows.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrderWindow.xaml
+    /// Логика взаимодействия для EditOrderWindow.xaml
     /// </summary>
-    public partial class AddOrderWindow : Window
+    public partial class EditOrderWindow : Window
     {
         // Поля и свойства
         public bool Saved { get; private set; }
         private CourierServiceContext dbContext;
+        private Order _order;
 
         // Конструктор
-        public AddOrderWindow()
+        public EditOrderWindow(Order order)
         {
             InitializeComponent();
             dbContext = new();
+            _order = order;
 
             organisationCB.ItemsSource = dbContext.Organisations.ToList();
             rateCB.ItemsSource = dbContext.Rates.ToList();
             typeContentCB.ItemsSource = dbContext.ContentTypes.ToList();
+
+            organisationCB.SelectedItem = dbContext.Organisations.Single(r => r.OrganisationId == _order.Organisation.OrganisationId);
+            rateCB.SelectedItem = dbContext.Rates.Single(r => r.RateId == _order.RateId);
+            typeContentCB.SelectedItem = dbContext.ContentTypes.Single(r => r.ContentTypeId == _order.Content.ContentTypeId);
+            receivingAddressTB.Text = _order.ReceivingAddress;
+            deliveryAddressTB.Text = _order.DeliveryAddress;
+            fullnameClientTB.Text = _order.FullnameClient;
+            phoneClientTB.PhoneNumber = _order.PhoneClient;
+            contentTB.Text = _order.Content.Description;
+            weightTB.Text = _order.Content.Weight.ToString();
         }
 
         // Обработчики событий
@@ -53,14 +65,14 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             string content = contentTB.Text;
             decimal weight = TypeHelper.DecemalParse(weightTB.Text);
 
-            bool notError = Limitators.OrderLimitator(null, organisation, rate, receivingAddress, deliveryAddress,
+            bool notError = Limitators.OrderLimitator(_order, organisation, rate, receivingAddress, deliveryAddress,
                 contentType, phoneClient, fullnameClient, content, weight);
             if (!notError) return;
 
-            bool accept = MessageHelper.ConfirmSave();
+            bool accept = MessageHelper.ConfirmEdit();
             if (!accept) return;
 
-            OrderService.CreateOrder(organisation, rate, receivingAddress, deliveryAddress,
+            OrderService.EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
                 contentType, phoneClient, fullnameClient, content, weight);
             Saved = true;
             Close();

@@ -8,6 +8,19 @@ namespace WPF_CourierFrim.Classes.Helpers
 {
     public static class TypeHelper
     {
+        // Преобразовывает текст в строку либо возвращает NaN
+        public static decimal DecemalParse(string str)
+        {
+            try
+            {
+                decimal number = Decimal.Parse(str);
+                return number;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
 
         // Преобразовывает текст в строку либо возвращает 0
         public static int IntParse(string str)

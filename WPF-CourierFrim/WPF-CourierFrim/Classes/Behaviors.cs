@@ -60,6 +60,9 @@ namespace WPF_CourierFrim.Classes
                 case ValidationType.Password:
                     Validations.ValidateInputPassword(e);
                     break;
+                case ValidationType.Weight:
+                    Validations.ValidateInputWeight(e);
+                    break;
             }
         }
 
@@ -85,6 +88,9 @@ namespace WPF_CourierFrim.Classes
                 case ValidationType.Password:
                     Validations.ValidatePastePassword(e);
                     break;
+                case ValidationType.Weight:
+                    Validations.ValidatePasteWeight(e);
+                    break;
             }
         }
     }
@@ -96,6 +102,7 @@ namespace WPF_CourierFrim.Classes
         Numbers,
         Email,
         Password,
-        Description
+        Description,
+        Weight
     }
 }

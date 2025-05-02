@@ -29,6 +29,15 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxImage.Warning);
         }
 
+        // Предупреждение о пустом или нулевом весе
+        public static void MessageNullWeight()
+        {
+            MessageBox.Show($"Вес должен быть больше 0 кг. и соответствовать формату в подсказке!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         // Предупреждение о пустой или нулевой цене
         public static void MessageIncorrectEmail()
         {
@@ -59,7 +68,16 @@ namespace WPF_CourierFrim.Classes.Helpers
         // Предупреждение о коротком номере
         public static void MessageShortAddress()
         {
-            MessageBox.Show($"Адрес должен содержать минимум 5 символов!",
+            MessageBox.Show($"Адрес(-а) должен(-ы) содержать минимум 5 символов!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком номере
+        public static void MessageShortContentOrder()
+        {
+            MessageBox.Show($"Содержимое заказа должно содержать минимум 10 символов!",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);

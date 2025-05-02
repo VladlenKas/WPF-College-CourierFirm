@@ -54,6 +54,14 @@ namespace WPF_CourierFrim.Classes
             ValidateInput(e, Password());
         }
 
+        /// <summary>
+        /// Проверяет, что вводимый текст соответствует формату типа веса.
+        /// </summary>
+        public static void ValidateInputWeight(TextCompositionEventArgs e)
+        {
+            ValidateInput(e, Weight());
+        }
+
         #endregion
 
         #region Валидация на вставку текста
@@ -88,6 +96,14 @@ namespace WPF_CourierFrim.Classes
         public static void ValidatePasteEmail(DataObjectPastingEventArgs e)
         {
             ValidatePaste(e, Email());
+        }
+
+        /// <summary>
+        /// Проверяет вставляемый текст на соответствие формату электронной почты.
+        /// </summary>
+        public static void ValidatePasteWeight(DataObjectPastingEventArgs e)
+        {
+            ValidatePaste(e, Weight());
         }
 
         /// <summary>
@@ -151,6 +167,10 @@ namespace WPF_CourierFrim.Classes
         // Эл. почта
         [GeneratedRegex(@"[a-zA-Z0-9\@\.]")]
         private static partial Regex Email();
+
+        // Цифры для веса содержмиого заказа
+        [GeneratedRegex(@"[0-9\,]")]
+        private static partial Regex Weight();
 
         // Пароль
         [GeneratedRegex(@"[a-zA-Z!@#$&*0-9]")]
