@@ -34,6 +34,7 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             InitializeComponent();
             dbContext = new();
             _order = order;
+            DataContext = _order;
 
             organisationCB.ItemsSource = dbContext.Organisations.ToList();
             rateCB.ItemsSource = dbContext.Rates.ToList();

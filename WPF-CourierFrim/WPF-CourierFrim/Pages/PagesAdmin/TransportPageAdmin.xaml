@@ -5,10 +5,70 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="TransportPageAdmin">
+      
+      xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+
+        <!-- Область параметров -->
+        <DockPanel DockPanel.Dock="Top"
+                   Margin="0 0 0 35"
+                   LastChildFill="False">
+
+            <TextBox Width="360"
+                     MinWidth="150"
+                     Tag="Поиск"
+                     DockPanel.Dock="Left"
+                     TextChanged="TextBox_TextChanged"/>
+
+            <ComboBox Style="{StaticResource FilterCB}"
+                      Margin="10 0"
+                      Tag="Фильтр"/>
+
+            <ComboBox Style="{StaticResource SorterCB}"
+                      Tag="Сортировка"/>
+
+
+        </DockPanel>
+
+        <!-- Область вывода информации -->
+        <Grid>
+
+            <!-- Индикатор загрузки 
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed"
+                        Name="loadingIndicator">
+
+                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
+                       Width="200" Height="200"
+                       Margin="0 0 0 10"/>
+                
+                <TextBlock Text="Загрузка"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TextH6}"/>
+
+            </StackPanel> -->
+
+            <!-- Контент -->
+            <DataGrid Name="itemsDG">
+
+                <DataGrid.Columns>
+
+                    <DataGridTextColumn Header="Владелец" Binding="{Binding Fullname}"/>
+                    <DataGridTextColumn Header="Телефон" Binding="{Binding Phone, StringFormat={}+{0}}"/>
+                    <DataGridTextColumn Header="Номер" Binding="{Binding Transport.LicensePlate}"/>
+                    <DataGridTextColumn Header="Цвет" Binding="{Binding Transport.Color}"/>
+                    <DataGridTextColumn Header="Бренд" Binding="{Binding Transport.Brand}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Transport.Model}"/>
+                    <DataGridTextColumn Header="Год" Binding="{Binding Transport.Year}"/>
+
+                </DataGrid.Columns>
+                
+            </DataGrid>
+
+        </Grid>
+
+    </DockPanel>
+
 </Page>
