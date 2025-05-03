@@ -1595,7 +1595,8 @@
 
     <!--#endregion-->
 
-    <!--#region Скролбар -->
+    <!--#region ScrollViewer и ScrollBar-->
+    <!-- Стиль для ScrollBar в ItemsControl-->
     <Style TargetType="{x:Type ScrollViewer}" x:Key="ScrollViewerStandart">
         <Setter Property="OverridesDefaultStyle" Value="True"/>
         <Setter Property="Template">
@@ -1620,15 +1621,13 @@
                                    Grid.Column="1"
                                    Grid.Row="0"
                                    Orientation="Vertical"
-                                   Value="{TemplateBinding VerticalOffset}"
-                                   Maximum="{TemplateBinding ScrollableHeight}"
-                                   ViewportSize="{TemplateBinding ViewportHeight}"
-                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
+                                   Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   Maximum="{Binding ScrollableHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   ViewportSize="{Binding ViewportHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
+                                   Visibility="{Binding ComputedVerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}">
                             <ScrollBar.Style>
                                 <Style TargetType="{x:Type ScrollBar}">
                                     <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
-                                    <!-- Темно-синий фон -->
-                                    <Setter Property="Width" Value="8"/>
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ScrollBar}">
@@ -1647,12 +1646,9 @@
                                                                         <Setter Property="Template">
                                                                             <Setter.Value>
                                                                                 <ControlTemplate TargetType="{x:Type Thumb}">
-                                                                                    <Border CornerRadius="8"
+                                                                                    <Border CornerRadius="4"
                                                                                             Background="{TemplateBinding Background}"
                                                                                             BorderThickness="0">
-                                                                                        <Border.RenderTransform>
-                                                                                            <TranslateTransform X="0" Y="0"/>
-                                                                                        </Border.RenderTransform>
                                                                                     </Border>
                                                                                 </ControlTemplate>
                                                                             </Setter.Value>
@@ -1679,18 +1675,102 @@
                                 </Style>
                             </ScrollBar.Style>
                         </ScrollBar>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
-                        <!-- Горизонтальный скроллбар (аналогично) -->
-                        <ScrollBar x:Name="PART_HorizontalScrollBar"
-                                   Grid.Row="1"
-                                   Grid.Column="0"
-                                   Orientation="Horizontal"
-                                   Value="{TemplateBinding HorizontalOffset}"
-                                   Maximum="{TemplateBinding ScrollableWidth}"
-                                   ViewportSize="{TemplateBinding ViewportWidth}"
-                                   Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}">
-                            <!-- Повторите стиль как для вертикального -->
-                        </ScrollBar>
+    <!-- Стиль для горизонтального ScrollBar в DataGrid-->
+    <Style x:Key="ScrollBarStyleHorizontal" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid>
+                        <Border CornerRadius="8" 
+                                Background="{TemplateBinding Background}"/>
+                        <Track x:Name="PART_Track"
+                               IsDirectionReversed="False">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Style>
+                                        <Style TargetType="{x:Type Thumb}">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Margin" Value="4.5"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Thumb}">
+                                                        <Border CornerRadius="4"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderThickness="0">
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#CCCCCC"/>
+                                                </Trigger>
+                                                <Trigger Property="IsDragging" Value="True">
+                                                    <Setter Property="Background" Value="#666666"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Thumb.Style>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- Стиль для вертикального ScrollBar в DataGrid-->
+    <Style x:Key="ScrollBarStyleVertical" TargetType="{x:Type ScrollBar}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                    <Grid>
+                        <Border CornerRadius="8" 
+                                Background="{TemplateBinding Background}"/>
+                        <Track x:Name="PART_Track"
+                               IsDirectionReversed="True">
+                            <Track.Thumb>
+                                <Thumb>
+                                    <Thumb.Style>
+                                        <Style TargetType="{x:Type Thumb}">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Margin" Value="4.5"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type Thumb}">
+                                                        <Border CornerRadius="4"
+                                                                Background="{TemplateBinding Background}"
+                                                                BorderThickness="0">
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#CCCCCC"/>
+                                                </Trigger>
+                                                <Trigger Property="IsDragging" Value="True">
+                                                    <Setter Property="Background" Value="#666666"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Thumb.Style>
+                                </Thumb>
+                            </Track.Thumb>
+                        </Track>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
@@ -1725,7 +1805,8 @@
                             CornerRadius="10"
                             SnapsToDevicePixels="True">
 
-                        <ScrollViewer x:Name="DG_ScrollViewer" Focusable="false">
+                        <ScrollViewer x:Name="DG_ScrollViewer" 
+                                      Focusable="false">
                             <ScrollViewer.Template>
                                 <ControlTemplate TargetType="{x:Type ScrollViewer}">
                                     <Grid>
@@ -1740,7 +1821,7 @@
                                             <RowDefinition Height="*"/>
                                             <RowDefinition Height="Auto"/>
                                         </Grid.RowDefinitions>
-                                        
+
                                         <DataGridColumnHeadersPresenter 
                                                 x:Name="PART_ColumnHeadersPresenter" 
                                                 Grid.Column="1" 
@@ -1752,18 +1833,31 @@
                                                 VerticalAlignment="Top"
                                                 Height="1" 
                                                 Background="{StaticResource TextDisabledBrush}"
-                                                Margin="0 -1"
-                                                Padding="5 0"/>
+                                                Margin="0 -1"/>
 
-                                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="{TemplateBinding CanContentScroll}" Grid.ColumnSpan="2" Grid.Row="2"/>
-                                        <ScrollBar x:Name="PART_VerticalScrollBar" Grid.Column="2" Maximum="{TemplateBinding ScrollableHeight}" Orientation="Vertical" Grid.Row="2" Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" ViewportSize="{TemplateBinding ViewportHeight}" Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
-                                        <Grid Grid.Column="1" Grid.Row="3">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <ScrollBar x:Name="PART_HorizontalScrollBar" Grid.Column="1" Maximum="{TemplateBinding ScrollableWidth}" Orientation="Horizontal" Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" ViewportSize="{TemplateBinding ViewportWidth}" Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"/>
-                                        </Grid>
+                                        <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="True" Grid.ColumnSpan="2" Grid.Row="2"/>
+                                        
+                                        <!-- Вертикальный ScrollBar -->
+                                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                                   Grid.Column="2"
+                                                   Grid.Row="2"
+                                                   Orientation="Vertical"
+                                                   Style="{StaticResource ScrollBarStyleVertical}"
+                                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+
+                                        <!-- Горизонтальный ScrollBar -->
+                                        <ScrollBar x:Name="PART_HorizontalScrollBar"
+                                                   Grid.Row="3"
+                                                   Grid.Column="1"
+                                                   Orientation="Horizontal"
+                                                   Style="{StaticResource ScrollBarStyleHorizontal}"
+                                                   Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                                   Maximum="{Binding ScrollableWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"
+                                                   ViewportSize="{Binding ViewportWidth, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"
+                                                   Visibility="{Binding ComputedHorizontalScrollBarVisibility, RelativeSource={RelativeSource AncestorType={x:Type ScrollViewer}}}"/>
                                     </Grid>
                                 </ControlTemplate>
                             </ScrollViewer.Template>
@@ -1800,7 +1894,7 @@
                                    Foreground="{TemplateBinding Foreground}" 
                                    FontWeight="{TemplateBinding FontWeight}" 
                                    TextWrapping="Wrap" 
-                                   MaxWidth="170"/>    
+                                   MaxWidth="170"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -1875,7 +1969,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
-        <Setter Property="Margin" Value="10 0 24 0"/>
+        <Setter Property="Margin" Value="10 0 20 0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -1897,5 +1991,4 @@
         </Setter>
     </Style>
     <!--#endregion-->
-
 </ResourceDictionary>
