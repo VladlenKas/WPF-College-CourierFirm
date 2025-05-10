@@ -55,7 +55,7 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="Владелец" Binding="{Binding Fullname}"/>
+                    <DataGridTextColumn Header="Курьер" Binding="{Binding Fullname}"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Phone, StringFormat={}+{0}}"/>
                     <DataGridTextColumn Header="Номер" Binding="{Binding Transport.LicensePlate}"/>
                     <DataGridTextColumn Header="Цвет" Binding="{Binding Transport.Color}"/>

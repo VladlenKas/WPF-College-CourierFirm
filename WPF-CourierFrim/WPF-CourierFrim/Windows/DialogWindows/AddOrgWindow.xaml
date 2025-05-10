@@ -44,7 +44,7 @@
                      MaxLength="30"
                      behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
 
-            <components:BindablePhoneBox Tag="Номер телефона "
+            <components:BindablePhoneBox Placeholder="Номер телефона "
                                          x:Name="phoneTB"
                                          Margin="0 0 0 12"
                                          DockPanel.Dock="Top"

@@ -1,0 +1,124 @@
+﻿<Window x:Class="WPF_CourierFrim.Windows.DialogWindows.AddEmployeeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_CourierFrim.Windows.DialogWindows"
+        
+        xmlns:behaviors="clr-namespace:WPF_CourierFrim.Classes"
+        xmlns:components="clr-namespace:WPF_CourierFrim.Components"
+        
+        SizeToContent="Height"
+        MinHeight="650"
+        MinWidth="450" Width="450"
+        Title="Добавление сотрдуника" 
+        Style="{StaticResource WindowOrdinary}"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid Name="grid"
+          Margin="35">
+
+        <DockPanel LastChildFill="False"
+                   MaxWidth="450">
+
+            <!-- Заголовок -->
+            <TextBlock Style="{StaticResource TextH2}"
+                       DockPanel.Dock="Top"
+                       Margin="0 0 0 16">
+                <Run Text="Добавление сотрдуника"/>
+            </TextBlock>
+
+            <!-- Подзаголовок -->
+            <TextBlock Style="{StaticResource TextH6}"
+                       Margin="0 0 0 24"
+                       TextWrapping="Wrap"
+                       Text="Будьте внимательны. Поля «Телефон», «Паспорт» и  «Логин» уникальные"
+                       Opacity="0.5"
+                       DockPanel.Dock="Top"/>
+
+            <TextBox Tag="Имя"
+                     Name="firstnameTB"
+                     Margin="0 0 0 12"
+                     DockPanel.Dock="Top"
+                     MaxLength="15"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+
+            <TextBox Tag="Фамилия"
+                     Name="lastnameTB"
+                     Margin="0 0 0 12"
+                     DockPanel.Dock="Top"
+                     MaxLength="15"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+
+            <TextBox Tag="Отчество (при наличии)"
+                     Name="patronymicTB"
+                     Margin="0 0 0 24"
+                     DockPanel.Dock="Top"
+                     MaxLength="15"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+
+            <components:BindableDateBox Tag="Дата рождения"
+                                        x:Name="dateTB"
+                                        Margin="0 0 0 12"
+                                        DockPanel.Dock="Top"/>
+
+            <components:BindablePhoneBox Placeholder="Номер телефона"
+                                         x:Name="phoneTB"
+                                         Margin="0 0 0 12"
+                                         DockPanel.Dock="Top"/>
+
+            <TextBox Tag="Серия и номер паспорта"
+                     Name="passportTB"
+                     Margin="0 0 0 24"
+                     DockPanel.Dock="Top"
+                     MaxLength="10"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Numbers"/>
+
+            <TextBox Tag="Логин"
+                     Name="loginTB"
+                     Margin="0 0 0 12"
+                     DockPanel.Dock="Top"
+                     MaxLength="20"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Password"/>
+
+            <Grid DockPanel.Dock="Top"
+                  Margin="0 0 0 12">
+
+                <TextBox Tag="Пароль"
+                         Name="PassTB"
+                         Visibility="Hidden"
+                         MaxLength="20"/>
+
+                <components:BindablePasswordBox Password="{Binding Password}"
+                                                x:Name="PassPB"
+                                                Visibility="Visible"/>
+            </Grid>
+
+            <CheckBox Content="Показать пароль"
+                      Margin="0 0 0 24"
+                      Name="VisPassCB"
+                      Click="VisibilityPassword_Click"
+                      DockPanel.Dock="Top"/>
+
+            <ComboBox Tag="Должность"
+                      Name="postCB"
+                      Margin="0 0 0 24"
+                      DisplayMemberPath="Name"
+                      DockPanel.Dock="Top"/>
+
+            <Button Style="{StaticResource ButtonStandard}"
+                    DockPanel.Dock="Bottom"
+                    Content="Выйти"
+                    Click="Exit_Click"/>
+
+            <Button Style="{StaticResource ButtonPriority}"
+                    DockPanel.Dock="Bottom"
+                    Content="Добавить"
+                    Margin="0 0 0 12"
+                    Click="Add_Click"/>
+
+        </DockPanel>
+
+    </Grid>
+
+</Window>

@@ -11,7 +11,7 @@
         <Setter Property="Height" Value="12"/>
         <Setter Property="Width" Value="12"/>
     </Style>
-    
+
     <Style TargetType="icons:PackIcon" x:Key="IconSmall">
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -35,7 +35,7 @@
     <!--#endregion-->
 
     <!--#region TextBlocks -->
-    
+
     <!-- TextBlock тексты -->
     <Style TargetType="{x:Type TextBlock}" x:Key="TextH1">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
@@ -86,7 +86,7 @@
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="Foreground" Value="#ffffff"/>
     </Style>
-    
+
     <Style TargetType="{x:Type Run}" x:Key="TextCardInfo">
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="14"/>
@@ -160,6 +160,10 @@
                             <Setter Property="BorderThickness" Value="1"/>
                             <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
                             <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="True">
@@ -394,7 +398,7 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource AccentHoverBrush}"/>
                         </Trigger>
-                        
+
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Foreground" Value="{StaticResource AccentPressedBrush}"/>
                             <Setter Property="RenderTransform">
@@ -598,7 +602,7 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region Кнопка иконка -->
+    <!--#region Кнопка иконка большая (для карточек) -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonIcon">
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
@@ -623,6 +627,58 @@
                                         Width="24"
                                         Height="24"
                                         Margin="12"
+                                        Foreground="#ffffff"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledHowerBrush}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledPressedBrush}"/>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter Property="Foreground" Value="#E0E4EB"/>
+                        </Trigger>
+
+                        <!-- Триггер для неактивной кнопки -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Кнопка иконка маленькая (для таблиц) -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonIconSmall">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="6">
+
+                        <icons:PackIcon Name="icon"
+                                        Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="18"
+                                        Height="18"
+                                        Margin="6"
                                         Foreground="#ffffff"/>
                     </Border>
 
@@ -705,7 +761,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region Кнопка внутри параметра приоритетная -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonInParameterPriority">
         <Setter Property="Background" Value="#5D77A7"/>
@@ -788,7 +844,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region Навигационная кнопка -->
     <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonNavigation">
         <Setter Property="BorderThickness" Value="1"/>
@@ -884,7 +940,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region Радио кнопка -->
     <Style TargetType="{x:Type RadioButton}">
         <Setter Property="Template">
@@ -893,7 +949,7 @@
                     <StackPanel VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
                                 Orientation="Horizontal">
-                        
+
                         <Grid Margin="0 0 6 0">
 
                             <Ellipse Fill="#5D77A7"
@@ -928,7 +984,7 @@
                         </Trigger>
 
                     </ControlTemplate.Triggers>
-                    
+
                 </ControlTemplate>
 
             </Setter.Value>
@@ -1078,7 +1134,7 @@
         </Setter>
     </Style>
     <!--#endregion-->
-    
+
     <!--#region Для выбора параметров-->
     <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxSmall">
         <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -1096,7 +1152,7 @@
                                 CornerRadius="5"
                                 Height="16"
                                 Width="16">
-                            
+
                             <Grid>
                                 <Rectangle/>
 
@@ -1207,8 +1263,8 @@
     <!--#endregion-->
 
     <!--#region Комбобоксы -->
-    <!--#region Стантартный стиль комбобоксов -->
-    <Style TargetType="{x:Type ComboBox}">
+    <!--#region Стиль с отображением свойства Name -->
+    <Style TargetType="{x:Type ComboBox}" x:Key="BindingNameCB">
         <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
@@ -1238,6 +1294,122 @@
                                                   HorizontalAlignment="Stretch"
                                                   VerticalAlignment="Center"
                                                   Content="{Binding SelectedItem.Name, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                  ContentStringFormat="{TemplateBinding SelectedValue}"/>
+
+                                <TextBlock x:Name="placeholderText"
+                                           Padding="20 0"
+                                           IsHitTestVisible="False"
+                                           Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                           FontFamily="SF Pro Text"
+                                           Visibility="Collapsed"
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextDisabledBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
+
+                                <icons:PackIcon x:Name="arrowIcon"
+                                                Kind="ChevronDown"
+                                                Width="24"
+                                                Height="24"
+                                                Foreground="#FFFFFF"
+                                                HorizontalAlignment="Right"
+                                                VerticalAlignment="Center"
+                                                Margin="0 0 12 0"/>
+
+                                <ToggleButton x:Name="toggleButton"
+                                              Opacity="0"
+                                              Background="Transparent"
+                                              BorderBrush="Transparent"
+                                              Focusable="False"
+                                              IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                              ClickMode="Press"/>
+                            </Grid>
+                        </Border>
+
+                        <Popup Name="Popup"
+                               IsOpen="{TemplateBinding IsDropDownOpen}"
+                               Focusable="False"
+                               PopupAnimation="Slide"
+                               AllowsTransparency="True"
+                               Placement="Bottom">
+                            <Border x:Name="dropDownBorder"
+                                    Background="{StaticResource BackgroundDarkBrush}"
+                                    CornerRadius="10"
+                                    Margin="0 4 0 0"
+                                    BorderThickness="1"
+                                    MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                    MinWidth="{TemplateBinding ActualWidth}"
+                                    BorderBrush="{StaticResource AccentBrush}">
+                                <ScrollViewer>
+                                    <ItemsPresenter/>
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Placeholder Text -->
+                        <Trigger Property="SelectedItem" Value="{x:Null}">
+                            <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="ContentSite" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
+                        <!-- Hover State -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="arrowIcon" Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+
+                        <!-- Dropdown Opened -->
+                        <Trigger Property="IsDropDownOpen" Value="True">
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+
+                        <Trigger SourceName="toggleButton" Property="IsChecked" Value="True">
+                            <Setter TargetName="arrowIcon" Property="Kind" Value="ChevronUp"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Стандартный стиль -->
+    <Style TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="18 0"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Grid>
+                        <Border x:Name="border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True">
+
+                            <Grid>
+                                <ContentPresenter x:Name="ContentSite"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  HorizontalAlignment="Stretch"
+                                                  VerticalAlignment="Center"
+                                                  Content="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}}"
                                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                   ContentStringFormat="{TemplateBinding SelectedValue}"/>
 
@@ -1385,7 +1557,7 @@
 
                                 <StackPanel Orientation="Horizontal"
                                             VerticalAlignment="Center">
-                                    
+
                                     <icons:PackIcon x:Name="arrowIcon"
                                                     Kind="FilterOutline"
                                                     Width="24"
@@ -1394,8 +1566,8 @@
                                                     HorizontalAlignment="Center"
                                                     VerticalAlignment="Center"
                                                     Margin="0 0 8 0"/>
-                                    
-                                <TextBlock x:Name="placeholderText"
+
+                                    <TextBlock x:Name="placeholderText"
                                            IsHitTestVisible="False"
                                            Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
                                            FontFamily="SF Pro Text"
@@ -1405,7 +1577,7 @@
                                            FontWeight="SemiBold"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Center"/>
-                                    
+
                                 </StackPanel>
 
 
@@ -1621,10 +1793,10 @@
                                    Grid.Column="1"
                                    Grid.Row="0"
                                    Orientation="Vertical"
-                                   Value="{Binding VerticalOffset, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                   Maximum="{Binding ScrollableHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                   ViewportSize="{Binding ViewportHeight, RelativeSource={RelativeSource TemplatedParent}, Mode=OneWay}"
-                                   Visibility="{Binding ComputedVerticalScrollBarVisibility, RelativeSource={RelativeSource TemplatedParent}}">
+                                   Value="{TemplateBinding VerticalOffset}"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}">
                             <ScrollBar.Style>
                                 <Style TargetType="{x:Type ScrollBar}">
                                     <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
@@ -1836,7 +2008,7 @@
                                                 Margin="0 -1"/>
 
                                         <ScrollContentPresenter x:Name="PART_ScrollContentPresenter" CanContentScroll="True" Grid.ColumnSpan="2" Grid.Row="2"/>
-                                        
+
                                         <!-- Вертикальный ScrollBar -->
                                         <ScrollBar x:Name="PART_VerticalScrollBar"
                                                    Grid.Column="2"
@@ -1905,7 +2077,6 @@
     <Style TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="{x:Null}"/>
         <Setter Property="Header" Value="{x:Null}"/>
-        <Setter Property="Margin" Value="0 0"/>
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
@@ -1945,18 +2116,12 @@
                         </Grid>
                     </Border>
 
-                    <!-- Триггер для архивированных записей -->
                     <ControlTemplate.Triggers>
                         <!-- Триггер для выбранной записи -->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
                             <Setter Property="Foreground" Value="#ffffff"/>
                         </Trigger>
-
-                        <DataTrigger Binding="{Binding IsTextWrapped}" Value="True">
-                            <Setter Property="Height" Value="Auto"/>
-                            <!-- Автоматическая высота при переносе -->
-                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1969,7 +2134,7 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
-        <Setter Property="Margin" Value="10 0 20 0"/>
+        <Setter Property="Margin" Value="10 4 10 4"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type DataGridCell}">
@@ -1977,7 +2142,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}" 
                             BorderThickness="{TemplateBinding BorderThickness}" 
                             Margin="{TemplateBinding Margin}">
-                        <ContentPresenter VerticalAlignment="Center"/>
+                        <ContentPresenter VerticalAlignment="Center"
+                                          HorizontalAlignment="Left"/>
                     </Border>
 
                     <ControlTemplate.Triggers>
@@ -1991,4 +2157,5 @@
         </Setter>
     </Style>
     <!--#endregion-->
+
 </ResourceDictionary>

@@ -7,6 +7,28 @@
       mc:Ignorable="d" 
       xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
+    <Page.Resources>
+
+        <!-- Кнопки для дата грид -->
+        <DataTemplate x:Key="ActionsTemplate">
+            
+            <StackPanel Orientation="Horizontal">
+                
+                <Button Style="{StaticResource ButtonIconSmall}"
+                        Tag="EditOutline"
+                        Click="Edit_Click"
+                        Margin="0 0 10 0"/>
+                
+                <Button Style="{StaticResource ButtonIconSmall}"
+                        Click="Delete_Click"
+                        Tag="DeleteOutline"/>
+                
+            </StackPanel>
+            
+        </DataTemplate>
+
+    </Page.Resources>
+    
     <DockPanel>
 
         <!-- Область параметров -->
@@ -17,8 +39,7 @@
             <TextBox Width="360"
                      MinWidth="150"
                      Tag="Поиск"
-                     DockPanel.Dock="Left"
-                     TextChanged="TextBox_TextChanged"/>
+                     DockPanel.Dock="Left"/>
 
             <Button Style="{StaticResource ButtonIconPriority}"
                     DockPanel.Dock="Right"
@@ -60,13 +81,35 @@
 
                 <DataGrid.Columns>
 
-                    <DataGridTextColumn Header="ФИО" Binding="{Binding Fullname}"/>
+                    <DataGridTextColumn Header="ФИО" Binding="{Binding Fullname}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="MaxWidth" Value="200"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="Должность" Binding="{Binding Post.Name}"/>
                     <DataGridTextColumn Header="Дата рождения" Binding="{Binding Birthday, StringFormat=dd.MM.yyyy}"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Phone, StringFormat={}+{0}}"/>
                     <DataGridTextColumn Header="Паспорт" Binding="{Binding Passport}"/>
-                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}"/>
-                    <DataGridTextColumn Header="Пароль" Binding="{Binding Password}"/>
+                    <DataGridTextColumn Header="Логин" Binding="{Binding Login}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="MaxWidth" Value="130"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Пароль" Binding="{Binding Password}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="MaxWidth" Value="130"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn Header="Действия" CellTemplate="{StaticResource ActionsTemplate}"/>
 
                 </DataGrid.Columns>
 

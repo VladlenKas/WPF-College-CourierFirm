@@ -3,12 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPF_CourierFrim.Classes.Helpers
 {
     public static class TypeHelper
     {
-        // Преобразовывает текст в строку либо возвращает NaN
+        // Преобразовывает текст в дату либо возвращает 0
+        public static DateOnly DateOnlyParse(string str)
+        {
+            try
+            {
+                DateOnly number = DateOnly.Parse(str);
+                return number;
+            }
+            catch
+            {
+                return DateOnly.MinValue;
+            }
+        }
+
+        // Преобразовывает текст в строку либо возвращает 0
         public static decimal DecemalParse(string str)
         {
             try
@@ -37,7 +52,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         }
 
         // Посчитывает возраст
-        public static short CalculateAge(DateOnly birthDate)
+        public static int CalculateAge(DateOnly birthDate)
         {
             DateOnly today = DateOnly.FromDateTime(DateTime.Today);
             int age = today.Year - birthDate.Year;
@@ -47,7 +62,7 @@ namespace WPF_CourierFrim.Classes.Helpers
                 age--;
             }
 
-            return (short)age;
+            return age;
         }
     }
 }

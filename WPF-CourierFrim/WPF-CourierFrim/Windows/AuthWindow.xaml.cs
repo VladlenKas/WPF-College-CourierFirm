@@ -89,7 +89,7 @@ namespace WPF_CourierFrim
             MessageHelper.ConfirmExit(this);  // Подтверждение выхода
         }
 
-        private void VisibilityPassword_Click(object sender, RoutedEventArgs e)  // Иконка глаза
+        private void VisibilityPassword_Click(object sender, RoutedEventArgs e)
         {
             ComponentsHelper.ToggleVisibilityPassword(sender, PassPB, PassTB);  // Переключить видимость пароля
         }

@@ -22,13 +22,11 @@ namespace WPF_CourierFrim.Windows
     public partial class NavWindowAdmin : Window
     {
         // Поля и свойства
-        private CourierServiceContext _dbContext;
         private Employee _thisEmpoyee;
 
         // Конструктор
         public NavWindowAdmin(Employee employee)
         {
-            _dbContext = new();
             _thisEmpoyee = employee;
 
             InitializeComponent();
@@ -60,7 +58,7 @@ namespace WPF_CourierFrim.Windows
 
         private void EmployeeRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new EmployeePageAdmin());
+            CurrentPage.Navigate(new EmployeePageAdmin(_thisEmpoyee));
             titlePage.Text = "Сотрудники";
         }
 

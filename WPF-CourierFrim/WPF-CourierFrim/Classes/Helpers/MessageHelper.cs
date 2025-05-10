@@ -28,6 +28,24 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+        
+        // Предупреждение о пустой дате
+        public static void MessageNullDate()
+        {
+            MessageBox.Show($"Дата рождения должна соответствовать формату «dd.MM.yyyy»!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о молодом возрасте
+        public static void MessageInappropriateAge()
+        {
+            MessageBox.Show($"Возраст сотрудника должен быть от 18 до 80 лет!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
 
         // Предупреждение о пустом или нулевом весе
         public static void MessageNullWeight()
@@ -56,10 +74,28 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxImage.Warning);
         }
 
+        // Предупреждение о коротком номере
+        public static void MessageShortPassport()
+        {
+            MessageBox.Show($"Серия и номера паспорта должны содержать 10 цифр!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         // Предупреждение о коротком названии
         public static void MessageShortName()
         {
             MessageBox.Show($"Название должно содержать минимум 3 символа!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком ФИО
+        public static void MessageShortFio()
+        {
+            MessageBox.Show($"Фамилия имя и отчество должны содержать минимум 3 символа!",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -109,11 +145,29 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+        
+        // Предупреждение о повторяющемся паспорте
+        public static void MessageDuplicatePassport()
+        {
+            MessageBox.Show($"Такие серия и номер паспорта уже существуют! Введите другие",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
 
         // Предупреждение о повторяющемся почте
         public static void MessageDuplicateEmail()
         {
             MessageBox.Show($"Такой адрес электронной почты уже существует! Введите другой",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о повторяющемся почте
+        public static void MessageDuplicateLogin()
+        {
+            MessageBox.Show($"Такой логин уже существует! Введите другой",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
