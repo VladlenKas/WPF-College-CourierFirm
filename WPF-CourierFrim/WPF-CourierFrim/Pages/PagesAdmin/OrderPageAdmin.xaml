@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
+      d:Height="450" d:Width="950"
       
       xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
@@ -15,11 +16,20 @@
                    Margin="0 0 0 35"
                    LastChildFill="False">
 
-            <TextBox Width="360"
-                     MinWidth="150"
-                     Tag="Поиск"
-                     DockPanel.Dock="Left"
-                     TextChanged="TextBox_TextChanged"/>
+            <Grid>
+                <TextBox Width="360"
+                         MinWidth="150"
+                         Name="searchTB"
+                         Tag="Поиск"
+                         MaxLength="70"
+                         DockPanel.Dock="Left"/>
+                
+                <Button Name="searchBTN"
+                        HorizontalAlignment="Right"
+                        Tag="Search"
+                        Style="{StaticResource ButtonIconTransperent}"
+                        Click="SearchBTN_Click"/>
+            </Grid>
 
             <Button Style="{StaticResource ButtonIconPriority}"
                     DockPanel.Dock="Right"
@@ -29,11 +39,19 @@
 
             <ComboBox Style="{StaticResource FilterCB}"
                       Margin="10 0"
-                      Tag="Фильтр"/>
+                      Name="filterCB"
+                      Tag="Фильтр"
+                      SelectionChanged="FilterCB_SelectionChanged"/>
 
             <ComboBox Style="{StaticResource SorterCB}"
-                      Tag="Сортировка"/>
+                      Name="sorterCB"
+                      Tag="Сортировка"
+                      SelectionChanged="SorterCB_SelectionChanged"/>
 
+            <CheckBox Style="{StaticResource ChackBoxAscending}"
+                      Margin="5 0"
+                      Name="ascendingCHB"
+                      Click="AscendingCHB_Click"/>
 
         </DockPanel>
 

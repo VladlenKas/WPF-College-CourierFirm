@@ -39,6 +39,25 @@ namespace WPF_CourierFrim.Windows.WindowsInfo
         {
             _dbContext = new();
             _dbContext.Attach(_order);
+
+            var delivery = _dbContext.Deliveries.SingleOrDefault(r => r.OrderId == _order.OrderId);
+            if (delivery != null)
+            {
+                numberDeliveryTB.Text = delivery.DeliveryId.ToString();
+                statusDeliveryTB.Text = delivery.StatusDelivery.Name;
+            }
+            else if (_order.DatetimeCompletion != null)
+            {
+                numberDeliveryTB.Text = "Отстутствует";
+                statusDeliveryTB.Text = "Отменен";
+                datetimeCompletedTB.Text = "Дата и время завершения";
+            }
+            else
+            {
+                statusDeliveryTB.Text = "Заказ еще готовится";
+                numberDeliveryTB.Text = "Пока не назначен";
+            }
+
             DataContext = _order;
         }
 

@@ -12,7 +12,7 @@
                 CornerRadius="10">
 
             <DockPanel LastChildFill="False"
-                       Width="{Binding ElementName=ButtonsSP, Path=ActualWidth}">
+                       Width="320">
                 <!-- Заголовок -->
                 <TextBlock Style="{StaticResource TextH2}"
                            DockPanel.Dock="Top"
@@ -70,6 +70,7 @@
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
+                            Visibility="Collapsed"
                             Name="ButtonsSP">
 
                     <Button Style="{StaticResource ButtonIconPriority}"
@@ -83,11 +84,21 @@
                             Margin="0 0 10 0"
                             Click="Info_Click"/>
                     
-                    <Button Style="{StaticResource ButtonIcon}"
+                    <Button Name="deleteBTN"
+                            Style="{StaticResource ButtonIcon}"
                             Tag="CloseCircleOutline"
                             Click="Delete_Click"/>
 
                 </StackPanel>
+
+                <Button Name="infoBTN"
+                        DockPanel.Dock="Bottom"
+                        Visibility="Collapsed"
+                        Tag="InfoOutline"
+                        Width="Auto"
+                        Style="{StaticResource ButtonIconPriority}"
+                        Content="Данные о заказе"
+                        Click="Info_Click"/>
                 
             </DockPanel>
 

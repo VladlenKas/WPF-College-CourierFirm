@@ -94,7 +94,8 @@
 
                     <TextBlock Margin="0 0 0 24"
                                TextWrapping="Wrap">
-                        <Run Text="Время принятия:"
+                        <Run Name="datetimeCompletedTB"
+                             Text="Время принятия:"
                              Style="{StaticResource TextCardTitle}"/>
                         <Run Text="{Binding DatetimeCompletion, TargetNullValue='Еще не назначен курьер', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
                              Style="{StaticResource TextCardInfo}"/>
@@ -121,13 +122,31 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                     
-                    <TextBlock Margin="0 0 0 10"
+                    <TextBlock Margin="0 0 0 24"
                                TextWrapping="Wrap">
                         <Run Text="Тип:"
                              Style="{StaticResource TextCardTitle}"/>
                         <Run Text="{Binding Content.ContentType.Name}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
+                                        
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="Номер доставки:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Name="numberDeliveryTB"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+                    
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="Статус:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Name="statusDeliveryTB"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+                    
+
 
                 </StackPanel>
                 

@@ -26,6 +26,15 @@ namespace WPF_CourierFrim.UserControls.CardsAdmin
         {
             InitializeComponent();
 
+            if (order.DatetimeCompletion != null)
+            {
+                infoBTN.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonsSP.Visibility = Visibility.Visible;
+            }
+
             _order = order;
             LoadInfo();
         }

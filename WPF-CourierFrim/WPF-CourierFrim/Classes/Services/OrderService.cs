@@ -76,26 +76,25 @@ namespace WPF_CourierFrim.Classes.Services
         {
             using (var dbContext = new CourierServiceContext())
             {
-                // Создаем содержимое заказа
-                var content = new Content
-                {
-                    ContentId = order.ContentId,
-                    Description = descriptionContent,
-                    Weight = weight,
-                    ContentTypeId = contentType.ContentTypeId
-                };
+                // Получаем текущий заказ из базы с отслеживанием
+                var existingOrder = dbContext.Orders
+                    .Include(o => o.Content) 
+                    .Single(o => o.OrderId == order.OrderId);
 
-                dbContext.Contents.Attach(content);
-                dbContext.Entry(content).State = EntityState.Modified;
+                // Обновляем содержимое
+                existingOrder.Content.Description = descriptionContent;
+                existingOrder.Content.Weight = weight;
+                existingOrder.Content.ContentTypeId = contentType.ContentTypeId;
 
-                // Создаем сам заказ
-                order.OrganisationId = organisation.OrganisationId;
-                order.RateId = rate.RateId;
-                order.ReceivingAddress = receivingAddress;
-                order.DeliveryAddress = deliveryAddress;
-                order.PhoneClient = phoneClient;
-                order.FullnameClient = fullnameClient;
+                // Обновляем сам заказ
+                existingOrder.OrganisationId = organisation.OrganisationId;
+                existingOrder.RateId = rate.RateId;
+                existingOrder.ReceivingAddress = receivingAddress;
+                existingOrder.DeliveryAddress = deliveryAddress;
+                existingOrder.PhoneClient = phoneClient;
+                existingOrder.FullnameClient = fullnameClient;
 
+                // Сохраняем изменения
                 dbContext.SaveChanges();
             }
         }

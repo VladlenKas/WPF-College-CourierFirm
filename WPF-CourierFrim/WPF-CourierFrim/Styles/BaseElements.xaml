@@ -602,6 +602,60 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region Кнопка иконка большая прозрачная (для карточек) -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonIconTransperent">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Cursor="Hand"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <icons:PackIcon Name="icon"
+                                        Cursor="Hand"
+                                        Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="24"
+                                        Height="24"
+                                        Margin="12"
+                                        Foreground="{StaticResource TextDisabledBrush}"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Foreground" Value="#ffffff"/>
+                            <Setter TargetName="icon" Property="Opacity" Value="0.5"/>
+                            <Setter Property="Foreground" Value="#E0E4EB"/>
+                        </Trigger>
+
+                        <!-- Триггер для неактивной кнопки -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
     <!--#region Кнопка иконка большая (для карточек) -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonIcon">
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
@@ -1133,6 +1187,55 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--#endregion-->
+
+    <!--#region Для сортировки (убывание / возрастание) -->
+    <!--#region Стандартный -->
+    <Style TargetType="{x:Type CheckBox}" x:Key="ChackBoxAscending">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Border x:Name="border"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="10">
+                        <Grid>
+                            <icons:PackIcon Name="waterMark"
+                                            Kind="ChevronDoubleUp"
+                                            Foreground="{StaticResource TextDisabledBrush}"
+                                            Width="24"
+                                            Height="24"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- Hover State -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="waterMark" Property="Foreground" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter Property="BorderThickness" Value="1"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="waterMark" Property="Kind" Value="ChevronDoubleDown"/>
+                        </Trigger>        
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
     <!--#endregion-->
 
     <!--#region Для выбора параметров-->

@@ -38,7 +38,7 @@ public partial class CourierServiceContext : DbContext
 
     public virtual DbSet<Transport> Transports { get; set; }
 
-    #region Только существующие записи
+    #region Обновленные или существующие записи
     public IQueryable<Employee> Employees => AllEmployees.Where(r => r.IsDeleted != 1)
         .Include(r => r.Post)
         .Include(r => r.Transport);
@@ -57,7 +57,7 @@ public partial class CourierServiceContext : DbContext
         .Include(r => r.EmployeeDeliveries)
             .ThenInclude(e => e.Employee)
                 .ThenInclude(t => t.Transport);
-    public IQueryable<Order> Orders => AllOrders.Where(r => r.DatetimeCompletion == null)
+    public IQueryable<Order> Orders => AllOrders
         .Include(r => r.Rate)
         .Include(r => r.Organisation)
         .Include(r => r.Content)

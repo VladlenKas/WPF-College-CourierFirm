@@ -19,6 +19,7 @@ using WPF_CourierFrim.UserControls.CardsAdmin;
 using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Windows.DialogWindows;
+using WPF_CourierFrim.Classes.Services;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
 {
@@ -29,6 +30,7 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
+        private OrderDataService _orderDataService;
 
         // Конструктор
         public OrderPageAdmin()
@@ -36,7 +38,11 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             InitializeComponent();
             _dbContext = new();
 
-            // Загрузка комбобоксов и тд
+            filterCB.ItemsSource = new[] { "Все заказы", "Активные заказы", "Завершенные заказы" };
+            filterCB.SelectedIndex = 1;
+            sorterCB.ItemsSource = new[] { "По номеру заказа", "По организациям", "По тарифам (ценам)", "По ФИО клиента", "По весу заказа" };
+            sorterCB.SelectedIndex = 0;
+            ascendingCHB.IsChecked = true;
 
             UpdateIC();
         }
@@ -45,15 +51,23 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         private void UpdateIC()
         {
             _dbContext = new();
+            _orderDataService = new(filterCB, sorterCB, searchTB, ascendingCHB);
             var orders = _dbContext.Orders.ToList();
 
-            // Фильтрация и сортировка 
+            orders = _orderDataService.ApplyFilter(orders);
+            orders = _orderDataService.ApplySort(orders);
+            orders = _orderDataService.ApplySearch(orders);
 
             cardsIC.Items.Clear();
             foreach (var order in orders)
             {
                 var card = new CardOrderAdmin(order);
+
                 card.DeleteOrderRequested += DeleteOrderRequested;
+                if (order.DatetimeCompletion != null)
+                {
+                    card.Opacity = 0.5;
+                }
                 cardsIC.Items.Add(card);
             }
         }
@@ -61,10 +75,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         // Обработчики событий
         private void DeleteOrderRequested(object sender, OrderEventArgs e) => UpdateIC();
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -73,6 +83,27 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
             bool saved = window.Saved;
             if (saved) UpdateIC();
+        }
+
+
+        private void AscendingCHB_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void SorterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void FilterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void SearchBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
         }
     }
 }
