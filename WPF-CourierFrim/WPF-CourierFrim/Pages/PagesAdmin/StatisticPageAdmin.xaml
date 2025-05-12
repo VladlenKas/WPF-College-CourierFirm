@@ -6,9 +6,94 @@
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="StatisticPageAdmin">
+      
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf">
 
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+
+        <!-- Область параметров -->
+        <DockPanel DockPanel.Dock="Top"
+                   Margin="0 0 0 35"
+                   LastChildFill="False">
+
+            <ComboBox Name="filterCB"
+                      Style="{StaticResource FilterCB}"
+                      Tag="Фильтр" 
+                      SelectionChanged="filterCB_SelectionChanged"/>
+
+            <Button Style="{StaticResource ButtonIconPriority}"
+                    DockPanel.Dock="Right"
+                    Tag="ContentSavePlusOutline"
+                    Content="Создать отчет"/>
+
+        </DockPanel>
+
+        <!-- Область вывода информации -->
+        <Grid>
+
+            <!-- Индикатор загрузки 
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Visibility="Collapsed"
+                        Name="loadingIndicator">
+
+                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
+                       Width="200" Height="200"
+                       Margin="0 0 0 10"/>
+                
+                <TextBlock Text="Загрузка"
+                           HorizontalAlignment="Center"
+                           Style="{StaticResource TextH6}"/>
+
+            </StackPanel> -->
+
+            <!-- Контент -->
+            <ScrollViewer Name="contentScroll"
+                          Style="{StaticResource ScrollViewerStandart}">
+
+                <Border Margin="0 0 20 0"
+                        Padding="20 30 40 30"
+                        Background="{StaticResource BackgroundDarkBrush}"
+                        CornerRadius="20">
+                    
+                    <lvc:CartesianChart Series="{Binding Series}"
+                                        LegendLocation="None">
+
+                        <!-- Ось X (месяцы) -->
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis Labels="{Binding Labels}" 
+                                      Title="Месяцы">
+
+                                <!-- Форсируем отображение всех меток -->
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Stroke="{StaticResource TextDisabledBrush}" 
+                                                   StrokeThickness="1"
+                                                   Step="1">
+                                        <lvc:Separator.StrokeDashArray>
+                                            <DoubleCollection>4,2</DoubleCollection>
+                                        </lvc:Separator.StrokeDashArray>
+                                    </lvc:Separator>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+
+                        <!-- Ось Y (проценты) -->
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis Title="Доставок (кол-во)" 
+                                      MinValue="{Binding AxisY.MinValue}"
+                                      MaxValue="{Binding AxisY.MaxValue}"
+                                      LabelFormatter="{Binding AxisY.LabelFormatter}"/>
+                        </lvc:CartesianChart.AxisY>
+                        
+                    </lvc:CartesianChart>
+                    
+                </Border>
+
+            </ScrollViewer>
+
+        </Grid>
+
+    </DockPanel>
+
 </Page>
+

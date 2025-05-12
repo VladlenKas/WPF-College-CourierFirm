@@ -44,7 +44,8 @@ public partial class CourierServiceContext : DbContext
         .Include(r => r.Transport);
     public IQueryable<Organisation> Organisations => AllOrganisations.Where(r => r.IsDeleted != 1);
     public IQueryable<Rate> Rates => AllRates.Where(r => r.IsDeleted != 1);
-    public IQueryable<Delivery> Deliveries => AllDeliveries.Where(r => r.DatetimePresentation == null)
+    public IQueryable<Delivery> Deliveries => AllDeliveries
+        .Where(r => r.StatusDeliveryId == 4 || r.StatusDeliveryId == 3)
         .Include(r => r.StatusDelivery)
         .Include(r => r.Order)
             .ThenInclude(r => r.Content)

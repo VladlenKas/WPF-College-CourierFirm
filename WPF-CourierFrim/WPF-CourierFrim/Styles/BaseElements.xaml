@@ -1526,6 +1526,7 @@
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
         <Setter Property="Padding" Value="12 8"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="Height" Value="40"/>
@@ -1533,6 +1534,7 @@
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Cursor" Value="Arrow"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -1548,26 +1550,15 @@
 
                             <Grid>
                                 <ContentPresenter x:Name="ContentSite"
-                                                  Margin="{TemplateBinding Padding}"
+                                                  Margin="32 0 0 0"
                                                   HorizontalAlignment="Stretch"
                                                   VerticalAlignment="Center"
-                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  Content="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}}"
                                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                   ContentStringFormat="{TemplateBinding SelectedValue}"/>
 
-                                <StackPanel Orientation="Horizontal"
-                                            VerticalAlignment="Center">
-
-                                    <icons:PackIcon x:Name="arrowIcon"
-                                                    Kind="FilterOutline"
-                                                    Width="24"
-                                                    Height="24"
-                                                    Foreground="{StaticResource TextDisabledBrush}"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 8 0"/>
-
-                                    <TextBlock x:Name="placeholderText"
+                                <TextBlock x:Name="placeholderText"
+                                           Margin="32 0 0 0"
                                            IsHitTestVisible="False"
                                            Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
                                            FontFamily="SF Pro Text"
@@ -1575,11 +1566,16 @@
                                            FontSize="14"
                                            Foreground="{StaticResource TextDisabledBrush}"
                                            FontWeight="SemiBold"
-                                           HorizontalAlignment="Center"
+                                           HorizontalAlignment="Left"
                                            VerticalAlignment="Center"/>
 
-                                </StackPanel>
-
+                                <icons:PackIcon x:Name="arrowIcon"
+                                                Kind="FilterOutline"
+                                                Width="24"
+                                                Height="24"
+                                                Foreground="{StaticResource TextDisabledBrush}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"/>
 
                                 <ToggleButton x:Name="toggleButton"
                                               Opacity="0"
@@ -1596,7 +1592,7 @@
                                Focusable="False"
                                PopupAnimation="Slide"
                                AllowsTransparency="True"
-                               Placement="Bottom">
+                               Placement="Bottom"> 
                             <Border x:Name="dropDownBorder"
                                     Background="{StaticResource BackgroundDarkBrush}"
                                     CornerRadius="10"
@@ -1648,6 +1644,7 @@
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="{StaticResource TextDisabledBrush}"/>
         <Setter Property="Padding" Value="12 8"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="Height" Value="40"/>
@@ -1655,6 +1652,7 @@
         <Setter Property="FontFamily" Value="SF Pro Text"/>
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Cursor" Value="Arrow"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -1670,38 +1668,32 @@
 
                             <Grid>
                                 <ContentPresenter x:Name="ContentSite"
-                                                  Margin="{TemplateBinding Padding}"
+                                                  Margin="32 0 0 0"
                                                   HorizontalAlignment="Stretch"
                                                   VerticalAlignment="Center"
-                                                  Content="{TemplateBinding SelectionBoxItem}"
+                                                  Content="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}}"
                                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                   ContentStringFormat="{TemplateBinding SelectedValue}"/>
 
-                                <StackPanel Orientation="Horizontal"
-                                            VerticalAlignment="Center">
+                                <TextBlock x:Name="placeholderText"
+                                           Margin="32 0 0 0"
+                                           IsHitTestVisible="False"
+                                           Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
+                                           FontFamily="SF Pro Text"
+                                           Visibility="Collapsed"
+                                           FontSize="14"
+                                           Foreground="{StaticResource TextDisabledBrush}"
+                                           FontWeight="SemiBold"
+                                           HorizontalAlignment="Left"
+                                           VerticalAlignment="Center"/>
 
-                                    <icons:PackIcon x:Name="arrowIcon"
-                                                    Kind="Sort"
-                                                    Width="24"
-                                                    Height="24"
-                                                    Foreground="{StaticResource TextDisabledBrush}"
-                                                    HorizontalAlignment="Center"
-                                                    VerticalAlignment="Center"
-                                                    Margin="0 0 8 0"/>
-
-                                    <TextBlock x:Name="placeholderText"
-                                               IsHitTestVisible="False"
-                                               Text="{Binding Tag, RelativeSource={RelativeSource TemplatedParent}}"
-                                               FontFamily="SF Pro Text"
-                                               Visibility="Collapsed"
-                                               FontSize="14"
-                                               Foreground="{StaticResource TextDisabledBrush}"
-                                               FontWeight="SemiBold"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"/>
-
-                                </StackPanel>
-
+                                <icons:PackIcon x:Name="arrowIcon"
+                                                Kind="Sort"
+                                                Width="24"
+                                                Height="24"
+                                                Foreground="{StaticResource TextDisabledBrush}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"/>
 
                                 <ToggleButton x:Name="toggleButton"
                                               Opacity="0"

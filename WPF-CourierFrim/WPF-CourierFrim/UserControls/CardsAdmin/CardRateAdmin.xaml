@@ -30,15 +30,6 @@
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 
-                <TextBlock Margin="0 0 0 24"
-                           DockPanel.Dock="Top"
-                           TextWrapping="Wrap">
-                    <Run Text="Цена:"
-                         Style="{StaticResource TextCardTitle}"/>
-                    <Run Text="{Binding Cost, StringFormat={}{0}р.}"
-                         Style="{StaticResource TextCardCost}"/>
-                </TextBlock>
-
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
@@ -55,6 +46,15 @@
                             Tag="DeleteOutline"
                             Click="Delete_Click"/>
                 </StackPanel>
+
+                <TextBlock Margin="0 0 0 24"
+                           DockPanel.Dock="Bottom"
+                           TextWrapping="Wrap">
+                    <Run Text="Цена:"
+                         Style="{StaticResource TextCardTitle}"/>
+                    <Run Text="{Binding Cost, StringFormat={}{0}р.}"
+                         Style="{StaticResource TextCardCost}"/>
+                </TextBlock>
 
             </DockPanel>
 

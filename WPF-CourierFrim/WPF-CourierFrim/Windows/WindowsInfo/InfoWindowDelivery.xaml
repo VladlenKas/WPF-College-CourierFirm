@@ -45,6 +45,14 @@
 
                     <TextBlock Margin="0 0 0 10"
                                TextWrapping="Wrap">
+                        <Run Text="Номер заказа:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding Order.OrderId, StringFormat={}№{0}}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+                    
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
                         <Run Text="Тариф:"
                              Style="{StaticResource TextCardTitle}"/>
                         <Run Text="{Binding Order.Rate.Name}"
@@ -115,34 +123,11 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
-                    <TextBlock Margin="0 0 0 24"
+                    <TextBlock Margin="0 0 0 0"
                                TextWrapping="Wrap">
                         <Run Text="Время вручения:"
                              Style="{StaticResource TextCardTitle}"/>
                         <Run Text="{Binding DatetimePresentation, TargetNullValue='Еще не доставлен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
-                             Style="{StaticResource TextCardInfo}"/>
-                    </TextBlock>
-
-                    <TextBlock Margin="0 0 0 10"
-                               TextWrapping="Wrap">
-                        <Run Text="ФИО курьера:"
-                             Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Fullname, Mode=OneWay}"
-                             Style="{StaticResource TextCardInfo}"/>
-                    </TextBlock>
-
-                    <TextBlock Margin="0 0 0 10"
-                               TextWrapping="Wrap">
-                        <Run Text="Телефон курьера:"
-                             Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Phone, StringFormat={}+{0}, Mode=OneWay}"
-                             Style="{StaticResource TextCardInfo}"/>
-                    </TextBlock>
-
-                    <TextBlock TextWrapping="Wrap">
-                        <Run Text="Данные об авто:"
-                             Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Transport.InfoCar, Mode=OneWay}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                 </StackPanel>
@@ -182,11 +167,34 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
-                    <TextBlock Margin="0 0 0 10"
+                    <TextBlock Margin="0 0 0 24"
                                TextWrapping="Wrap">
                         <Run Text="Статус доставки:"
                              Style="{StaticResource TextCardTitle}"/>
                         <Run Text="{Binding StatusDelivery.Name}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="ФИО курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Fullname, Mode=OneWay}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="Телефон курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Phone, StringFormat={}+{0}, Mode=OneWay}"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+
+                    <TextBlock TextWrapping="Wrap">
+                        <Run Text="Данные об авто:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Transport.InfoCar, Mode=OneWay}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                 </StackPanel>

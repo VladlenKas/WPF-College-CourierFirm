@@ -30,7 +30,7 @@
                          Style="{StaticResource TextCardInfo}"/>
                 </TextBlock>
 
-                <TextBlock DockPanel.Dock="Top"
+                <TextBlock DockPanel.Dock="Bottom"
                            TextWrapping="Wrap">
                     <Run Text="Цена:"
                          Style="{StaticResource TextCardTitle}"/>
