@@ -13,8 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls;
+using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.UserControls.CardsCourier;
 using static WPF_CourierFrim.UserControls.CardsCourier.CardOrderCourier;
 
@@ -27,17 +29,17 @@ namespace WPF_CourierFrim.Pages.PagesCourier
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _thisEmpoyee;
+        private OrderDataService _orderDataService;
+        private Employee _thisCourier;
 
         // Конструктор
-        public OrderPageCourier(Employee employee)
+        public OrderPageCourier(Employee courier)
         {
             InitializeComponent();
+
             _dbContext = new();
-            _thisEmpoyee = employee;
-
-            // Загрузка комбобоксов и тд
-
+            _thisCourier = courier;
+            _orderDataService = new(filterCB, sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -47,13 +49,20 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             _dbContext = new();
             var orders = _dbContext.Orders.ToList();
 
-            // Фильтрация и сортировка
+            orders = _orderDataService.ApplyCourier(orders, _thisCourier);
+            orders = _orderDataService.ApplyFilter(orders);
+            orders = _orderDataService.ApplySort(orders);
+            orders = _orderDataService.ApplySearch(orders);
 
             cardsIC.Items.Clear();
             foreach (var order in orders)
             {
-                var card = new CardOrderCourier(order, _thisEmpoyee);
-                card.AcceptOrderRequested += AcceptOrderRequested;
+                var card = new CardOrderCourier(order, _thisCourier);
+
+                if (order.DatetimeCompletion != null)
+                {
+                    card.Opacity = 0.5;
+                }
                 cardsIC.Items.Add(card);
             }
         }
@@ -61,9 +70,5 @@ namespace WPF_CourierFrim.Pages.PagesCourier
         // Обработчики событий
         private void AcceptOrderRequested(object sender, OrderEventArgs e) => UpdateIC();
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

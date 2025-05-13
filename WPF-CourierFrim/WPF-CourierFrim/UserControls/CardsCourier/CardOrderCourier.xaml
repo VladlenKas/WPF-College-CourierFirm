@@ -13,7 +13,7 @@
                 CornerRadius="10">
 
             <DockPanel LastChildFill="False"
-                       Width="{Binding ElementName=ButtonsSP, Path=ActualWidth}">
+                       Width="320">
                 <!-- Заголовок -->
                 <TextBlock Style="{StaticResource TextH2}"
                            DockPanel.Dock="Top"
@@ -71,7 +71,8 @@
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
-                            Name="ButtonsSP">
+                            Name="ButtonsSP"
+                            Visibility="Collapsed">
 
                     <Button Style="{StaticResource ButtonIconPriority}"
                             Content="Принять"
@@ -84,6 +85,15 @@
                             Tag="InfoOutline"
                             Click="Info_Click"/>
                 </StackPanel>
+
+                <Button Name="infoBTN"
+                        DockPanel.Dock="Bottom"
+                        Visibility="Collapsed"
+                        Tag="InfoOutline"
+                        Width="Auto"
+                        Style="{StaticResource ButtonIconPriority}"
+                        Content="Данные о заказе"
+                        Click="Info_Click"/>            
 
             </DockPanel>
 

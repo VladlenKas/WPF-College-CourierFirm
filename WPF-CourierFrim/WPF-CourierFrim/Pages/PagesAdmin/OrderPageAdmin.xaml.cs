@@ -36,14 +36,9 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         public OrderPageAdmin()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            filterCB.ItemsSource = new[] { "Все заказы", "Активные заказы", "Завершенные заказы" };
-            filterCB.SelectedIndex = 1;
-            sorterCB.ItemsSource = new[] { "По номеру заказа", "По организациям", "По тарифам (ценам)", "По ФИО клиента", "По весу заказа" };
-            sorterCB.SelectedIndex = 0;
-            ascendingCHB.IsChecked = true;
-
+            _orderDataService = new(filterCB, sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -51,7 +46,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         private void UpdateIC()
         {
             _dbContext = new();
-            _orderDataService = new(filterCB, sorterCB, searchTB, ascendingCHB);
             var orders = _dbContext.Orders.ToList();
 
             orders = _orderDataService.ApplyFilter(orders);
@@ -75,7 +69,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         // Обработчики событий
         private void DeleteOrderRequested(object sender, OrderEventArgs e) => UpdateIC();
 
-
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             AddOrderWindow window = new();
@@ -83,27 +76,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
             bool saved = window.Saved;
             if (saved) UpdateIC();
-        }
-
-
-        private void AscendingCHB_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender != null) UpdateIC();
-        }
-
-        private void SorterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender != null) UpdateIC();
-        }
-
-        private void FilterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender != null) UpdateIC();
-        }
-
-        private void SearchBTN_Click(object sender, RoutedEventArgs e)
-        {
-            if (sender != null) UpdateIC();
         }
     }
 }

@@ -602,7 +602,62 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region Кнопка иконка большая прозрачная (для карточек) -->
+    <!--#region Кнопка иконка средняя прозрачная (для карточек) -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonIconMedium">
+        <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            Cursor="Arrow"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
+
+                        <icons:PackIcon Name="icon"
+                                        Cursor="Arrow"
+                                        Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="18"
+                                        Height="18"
+                                        Foreground="{StaticResource TextDisabledBrush}"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Foreground" Value="#ffffff"/>
+                            <Setter TargetName="border" Property="Background" Value="#435977"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Foreground" Value="#ffffff"/>
+                            <Setter TargetName="icon" Property="Opacity" Value="0.5"/>
+                            <Setter Property="Foreground" Value="#E0E4EB"/>
+                            <Setter TargetName="border" Property="Background" Value="#2A3647"/>
+                        </Trigger>
+
+                        <!-- Триггер для неактивной кнопки -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                            <Setter Property="Cursor" Value="Arrow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Кнопка иконка средняя прозрачная (для карточек) -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonIconTransperent">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>
@@ -1197,7 +1252,8 @@
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="ToolTip" Value="Сортировка по убыванию"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -1228,6 +1284,7 @@
 
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="waterMark" Property="Kind" Value="ChevronDoubleDown"/>
+                            <Setter Property="ToolTip" Value="Сортировка по возрастанию"/>
                         </Trigger>        
 
                     </ControlTemplate.Triggers>

@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using LiveCharts.Wpf;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,24 +42,33 @@ namespace WPF_CourierFrim.Windows.WindowsInfo
             _dbContext = new();
             _dbContext.Attach(_order);
 
-            var delivery = _dbContext.Deliveries.SingleOrDefault(r => r.OrderId == _order.OrderId);
+            var delivery = _dbContext.Deliveries.SingleOrDefault(d => d.OrderId == _order.OrderId);
             if (delivery != null)
             {
                 numberDeliveryTB.Text = delivery.DeliveryId.ToString();
                 statusDeliveryTB.Text = delivery.StatusDelivery.Name;
+
+                var employeeDelivery = delivery.EmployeeDeliveries.Single();
+                courierFullnameTB.Text = employeeDelivery.Employee.Fullname;
+                courierPhoneTB.Text = $"+{employeeDelivery.Employee.Phone}";
             }
             else if (_order.DatetimeCompletion != null)
             {
                 numberDeliveryTB.Text = "Отстутствует";
                 statusDeliveryTB.Text = "Отменен";
                 datetimeCompletedTB.Text = "Дата и время завершения";
+                courierFullnameTB.Text = "Отстутствует";
+                courierPhoneTB.Text = "Отстутствует";
             }
             else
             {
                 statusDeliveryTB.Text = "Заказ еще готовится";
-                numberDeliveryTB.Text = "Пока не назначен";
+                numberDeliveryTB.Text = "Еще не принят курьером";
+                courierFullnameTB.Text = "Еще не назначен курьер";
+                courierPhoneTB.Text = "Еще не назначен курьер";
             }
 
+            // Обновление привязок
             DataContext = _order;
         }
 

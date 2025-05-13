@@ -64,7 +64,8 @@
 
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="DeleteOutline"
-                            Click="Delete_Click"/>
+                            Click="Delete_Click"
+                            ToolTip="Удалить"/>
                 </StackPanel>
 
             </DockPanel>

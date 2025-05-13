@@ -1,20 +1,45 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Classes.Services
 {
     // Заказы (поиск, сортировка, фильтрация)
-    public class OrderDataService(ComboBox filterCB, ComboBox sorterCB, TextBox searchTB, CheckBox ascendingCHB)
+    public class OrderDataService
     {
-        private ComboBox _filterCB = filterCB;
-        private ComboBox _sorterCB = sorterCB;
-        private TextBox _searchTB = searchTB;
-        private CheckBox _ascendingCHB = ascendingCHB;
+        private ComboBox _filterCB;
+        private ComboBox _sorterCB;
+        private TextBox _searchTB;
+        private CheckBox _ascendingCHB;
+        private Button _reserFiltersBTN;
+        private Button _searchBTN;
+        private Action UpdateIC;
+
+        public OrderDataService(ComboBox filterCB, ComboBox sorterCB, TextBox searchTB, CheckBox ascendingCHB,
+            Button searchBTN, Button reserFiltersBTN, Action Action)
+        {
+            _filterCB = filterCB;
+            _sorterCB = sorterCB;
+            _searchTB = searchTB;
+            _ascendingCHB = ascendingCHB;
+            _searchBTN = searchBTN;
+            _reserFiltersBTN = reserFiltersBTN;
+            UpdateIC = Action;
+
+            filterCB.ItemsSource = new[] { "Все заказы", "Активные заказы", "Завершенные заказы" };
+            filterCB.SelectedIndex = 1;
+            sorterCB.ItemsSource = new[] { "По номеру заказа", "По организациям", "По тарифам (ценам)", "По ФИО клиента", "По весу заказа" };
+            sorterCB.SelectedIndex = 0;
+            ascendingCHB.IsChecked = false;
+
+            OnTriggers();
+        }
 
         // Поиск
         public List<Order> ApplySearch(List<Order> orders)
@@ -39,7 +64,7 @@ namespace WPF_CourierFrim.Classes.Services
             int sortIndex = _sorterCB.SelectedIndex;
             bool ascending = (bool)_ascendingCHB.IsChecked;
 
-            if (!ascending)
+            if (ascending)
             {
                 switch (sortIndex)
                 {
@@ -91,6 +116,76 @@ namespace WPF_CourierFrim.Classes.Services
                 default:
                     return orders.ToList(); // Все
             }
+        }
+
+        // Фильтра по курьеру
+        public List<Order> ApplyCourier(List<Order> orders, Employee courier)
+        {
+            // Возвращает только те заказы, которые еще не имеют назначенного курьера
+            // ИЛИ имеют доставку с конкретным курьером
+            return orders
+                .Where(order =>
+                    order.DatetimeCompletion == null ||
+                    order.Deliveries
+                        .SelectMany(d => d.EmployeeDeliveries)
+                        .Any(ed => ed.EmployeeId == courier.EmployeeId)
+                )
+                .ToList();
+        }
+
+        // Свойства
+        private void AscendingCHB_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void SorterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void FilterCB_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void SearchBTN_Click(object sender, RoutedEventArgs e)
+        {
+            if (sender != null) UpdateIC();
+        }
+
+        private void ResetFiltersBTN_Click(object sender, RoutedEventArgs e)
+        {
+            OffTriggers();
+
+            _filterCB.SelectedIndex = 1;
+            _sorterCB.SelectedIndex = 0;
+            _ascendingCHB.IsChecked = false;
+            _searchTB.Clear();
+
+            UpdateIC();
+            OnTriggers();
+        }
+
+
+        // Включает тригеры
+        private void OnTriggers()
+        {
+            _filterCB.SelectionChanged += FilterCB_SelectionChanged;
+            _sorterCB.SelectionChanged += SorterCB_SelectionChanged;
+            _ascendingCHB.Click += AscendingCHB_Click;
+            _searchBTN.Click += SearchBTN_Click;
+            _reserFiltersBTN.Click += ResetFiltersBTN_Click;
+        }
+
+        // Выключает тригеры
+        private void OffTriggers()
+        {
+            _filterCB.SelectionChanged -= FilterCB_SelectionChanged;
+            _sorterCB.SelectionChanged -= SorterCB_SelectionChanged;
+            _ascendingCHB.Click -= AscendingCHB_Click;
+            _searchBTN.Click -= SearchBTN_Click;
+            _reserFiltersBTN.Click -= ResetFiltersBTN_Click;
         }
     }
 }

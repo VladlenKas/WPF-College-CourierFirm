@@ -146,8 +146,22 @@
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                     
-
-
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="ФИО курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Name="courierFullnameTB"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+                    
+                    <TextBlock Margin="0 0 0 10"
+                               TextWrapping="Wrap">
+                        <Run Text="Телефон курьера:"
+                             Style="{StaticResource TextCardTitle}"/>
+                        <Run Name="courierPhoneTB"
+                             Style="{StaticResource TextCardInfo}"/>
+                    </TextBlock>
+                    
                 </StackPanel>
                 
             </Grid>

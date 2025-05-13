@@ -17,11 +17,13 @@
                 <Button Style="{StaticResource ButtonIconSmall}"
                         Tag="EditOutline"
                         Click="Edit_Click"
-                        Margin="0 0 10 0"/>
+                        Margin="0 0 10 0"
+                        ToolTip="Редактировать данные"/>
                 
                 <Button Style="{StaticResource ButtonIconSmall}"
                         Click="Delete_Click"
-                        Tag="DeleteOutline"/>
+                        Tag="DeleteOutline"
+                        ToolTip="Удалить"/>
                 
             </StackPanel>
             

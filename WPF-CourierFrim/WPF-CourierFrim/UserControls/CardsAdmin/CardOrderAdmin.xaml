@@ -82,12 +82,14 @@
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="InfoOutline"
                             Margin="0 0 10 0"
-                            Click="Info_Click"/>
+                            Click="Info_Click"
+                            ToolTip="Информация по заказу"/>
                     
                     <Button Name="deleteBTN"
                             Style="{StaticResource ButtonIcon}"
                             Tag="CloseCircleOutline"
-                            Click="Delete_Click"/>
+                            Click="Delete_Click"
+                            ToolTip="Отменить заказ"/>
 
                 </StackPanel>
 

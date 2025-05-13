@@ -45,7 +45,6 @@ public partial class CourierServiceContext : DbContext
     public IQueryable<Organisation> Organisations => AllOrganisations.Where(r => r.IsDeleted != 1);
     public IQueryable<Rate> Rates => AllRates.Where(r => r.IsDeleted != 1);
     public IQueryable<Delivery> Deliveries => AllDeliveries
-        .Where(r => r.StatusDeliveryId == 4 || r.StatusDeliveryId == 3)
         .Include(r => r.StatusDelivery)
         .Include(r => r.Order)
             .ThenInclude(r => r.Content)
@@ -61,7 +60,9 @@ public partial class CourierServiceContext : DbContext
         .Include(r => r.Rate)
         .Include(r => r.Organisation)
         .Include(r => r.Content)
-            .ThenInclude(r => r.ContentType);
+            .ThenInclude(r => r.ContentType)
+        .Include(o => o.Deliveries)
+            .ThenInclude(d => d.EmployeeDeliveries);
 
     #endregion
 

@@ -37,6 +37,15 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
         {
             InitializeComponent();
 
+            if (order.DatetimeCompletion != null)
+            {
+                infoBTN.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonsSP.Visibility = Visibility.Visible;
+            }
+
             _order = order;
             _employee = employee;
             LoadInfo();
@@ -64,8 +73,6 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
 
             _dbContext = new();
             OrderService.AcceptOrderCourier(_order, _employee);
-
-            AcceptOrderRequested?.Invoke(this, new OrderEventArgs { Order = this.Order }); // Уведомляем род. страницу об удалении
         }
 
         // События
