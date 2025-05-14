@@ -48,17 +48,20 @@ namespace WPF_CourierFrim.Windows.WindowsInfo
                 numberDeliveryTB.Text = delivery.DeliveryId.ToString();
                 statusDeliveryTB.Text = delivery.StatusDelivery.Name;
 
-                var employeeDelivery = delivery.EmployeeDeliveries.Single();
-                courierFullnameTB.Text = employeeDelivery.Employee.Fullname;
-                courierPhoneTB.Text = $"+{employeeDelivery.Employee.Phone}";
-            }
-            else if (_order.DatetimeCompletion != null)
-            {
-                numberDeliveryTB.Text = "Отстутствует";
-                statusDeliveryTB.Text = "Отменен";
-                datetimeCompletedTB.Text = "Дата и время завершения";
-                courierFullnameTB.Text = "Отстутствует";
-                courierPhoneTB.Text = "Отстутствует";
+
+                if (delivery.EmployeeDeliveries.Count != 0)
+                {
+                    var employeeDelivery = delivery.EmployeeDeliveries.First(ed => ed.DeliveryId == delivery.DeliveryId);
+                    courierFullnameTB.Text = employeeDelivery.Employee.Fullname;
+                    courierPhoneTB.Text = $"+{employeeDelivery.Employee.Phone}";
+                }
+                else
+                {
+                    datetimeCompletedTB.Text = "Время отмены";
+                    courierFullnameTB.Text = "Отстутствует";
+                    courierPhoneTB.Text = "Отстутствует";
+                }
+
             }
             else
             {

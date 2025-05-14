@@ -47,26 +47,23 @@ namespace WPF_CourierFrim.Classes.Helpers
         /// <param name="passHid"></param>
         /// <param name="passVis"></param>
         public static void ToggleVisibilityButtonsDelivery
-            (Delivery delivery, Button getOrderBTN, Button handingOrderBTN, Button completeDeliveryBTN,
+            (Delivery delivery, Button getOrderBTN, Button handingOrderBTN,
             Button? cancellationDeliveryBTN)
         {
             if (delivery.StatusDelivery.Name == "В пути (за заказом)")
             {
                 getOrderBTN.Visibility = Visibility.Visible;
                 handingOrderBTN.Visibility = Visibility.Hidden;
-                completeDeliveryBTN.Visibility = Visibility.Hidden;
             }
             else if (delivery.StatusDelivery.Name == "В пути (к клиенту)")
             {
                 getOrderBTN.Visibility = Visibility.Hidden;
                 handingOrderBTN.Visibility = Visibility.Visible;
-                completeDeliveryBTN.Visibility = Visibility.Hidden;
             }
             else
             {
                 getOrderBTN.Visibility = Visibility.Hidden;
                 handingOrderBTN.Visibility = Visibility.Hidden;
-                completeDeliveryBTN.Visibility = Visibility.Visible;
 
                 if (cancellationDeliveryBTN != null)
                     cancellationDeliveryBTN.IsEnabled = false;

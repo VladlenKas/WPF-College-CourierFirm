@@ -36,6 +36,15 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
         {
             InitializeComponent();
 
+            if (delivery.StatusDeliveryId == 3 || delivery.StatusDeliveryId == 4)
+            {
+                infoBTN.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ButtonsSP.Visibility = Visibility.Visible;
+            }
+
             _delivery = delivery;
             LoadInfo();
         }
@@ -46,8 +55,8 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
             _dbContext = new();
             _dbContext.Attach(_delivery);
 
-            ComponentsHelper.ToggleVisibilityButtonsDelivery(_delivery, getOrderBTN, handingOrderBTN,
-                completeDeliveryBTN, cancellationDeliveryBTN); // смена видимости кнопок
+            ComponentsHelper.ToggleVisibilityButtonsDelivery(_delivery, getOrderBTN, 
+                handingOrderBTN, cancellationDeliveryBTN); // смена видимости кнопок
 
             DataContext = _delivery;
         }

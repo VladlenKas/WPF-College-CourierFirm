@@ -98,7 +98,7 @@ namespace WPF_CourierFrim.Classes.Services
             return FillMissingMonths(deliveries, year);
         }
         
-        // Возвращает список выполненных заказов по месяцам для графика (для курьера)
+        // Возвращает список выполненных заказов по месяцам для графика (для статистики курьера)
         public static List<DeliveryStatistic> GetMonthlyCompletedDeliveries(int year, Employee courier)
         {
             var dbContext = new CourierServiceContext();

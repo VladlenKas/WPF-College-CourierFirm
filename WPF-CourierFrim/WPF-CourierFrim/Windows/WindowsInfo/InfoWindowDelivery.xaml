@@ -117,17 +117,19 @@
 
                     <TextBlock Margin="0 0 0 10"
                                TextWrapping="Wrap">
-                        <Run Text="Время получения:"
+                        <Run Name="datetimeRequestedTB"
+                             Text="Время получения:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding DatetimeReceiving, TargetNullValue='Еще не получен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                        <Run Text="{Binding DatetimeReceiving, TargetNullValue='Не получен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
                     <TextBlock Margin="0 0 0 0"
                                TextWrapping="Wrap">
                         <Run Text="Время вручения:"
+                             Name="titleDeliveryCompletedTB"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding DatetimePresentation, TargetNullValue='Еще не доставлен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
+                        <Run Text="{Binding DatetimePresentation, TargetNullValue='Не вручен', StringFormat={}{0:MM.dd.yyyy HH:mm:ss}}"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                 </StackPanel>

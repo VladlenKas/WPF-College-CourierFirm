@@ -13,7 +13,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
+using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.UserControls.CardsCourier;
 using static WPF_CourierFrim.UserControls.CardsCourier.CardDeliveryCourier;
 
@@ -26,17 +28,17 @@ namespace WPF_CourierFrim.Pages.PagesCourier
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _thisEmpoyee;
+        private DeliveryDataService _deliveryDataService;
+        private Employee _thisCourier;
 
         // Конструктор
-        public DeliveryPageCourier(Employee employee)
+        public DeliveryPageCourier(Employee courier)
         {
             InitializeComponent();
+
             _dbContext = new();
-            _thisEmpoyee = employee;
-
-            // Загрузка комбобоксов и тд
-
+            _thisCourier = courier;
+            _deliveryDataService = new(filterCB, sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -46,26 +48,32 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             _dbContext = new();
             var deliveries = _dbContext.Deliveries
                 .Where(r => r.EmployeeDeliveries
-                    .Any(f => f.EmployeeId == _thisEmpoyee.EmployeeId))
+                    .Any(f => f.EmployeeId == _thisCourier.EmployeeId))
                 .ToList();
 
-            // Фильтрация и сортировка
+            deliveries = _deliveryDataService.ApplyCourier(deliveries, _thisCourier);
+            deliveries = _deliveryDataService.ApplyFilter(deliveries);
+            deliveries = _deliveryDataService.ApplySort(deliveries);
+            deliveries = _deliveryDataService.ApplySearch(deliveries);
 
             cardsIC.Items.Clear();
             foreach (var delivery in deliveries)
             {
                 var card = new CardDeliveryCourier(delivery);
+
                 card.ChangeStatusRequested += ChangeStatusRequested;
+                if (delivery.StatusDeliveryId == 1 ||
+                    delivery.StatusDeliveryId == 2 ||
+                    delivery.StatusDeliveryId == 5)
+                {
+                    card.Opacity = 0.5;
+                }
+
                 cardsIC.Items.Add(card);
             }
         }
 
         // Обработчики событий
         private void ChangeStatusRequested(object sender, DeliveryEventArgs e) => UpdateIC();
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

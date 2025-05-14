@@ -42,17 +42,24 @@ namespace WPF_CourierFrim.Windows.WindowsInfo
 
             if (_delivery.EmployeeDeliveries.Count != 0)
             {
-                courierFullnameTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Fullname;
-                courierPhoneTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Phone;
-                courierCarInfoTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Transport.InfoCar;
+                courierFullnameTB.Text = _delivery.EmployeeDeliveries
+                    .Single(ed => ed.DeliveryId == _delivery.DeliveryId).Employee.Fullname;
+                courierPhoneTB.Text = _delivery.EmployeeDeliveries
+                    .Single(ed => ed.DeliveryId == _delivery.DeliveryId).Employee.Phone;
+                courierCarInfoTB.Text = _delivery.EmployeeDeliveries
+                    .Single(ed => ed.DeliveryId == _delivery.DeliveryId).Employee.Transport.InfoCar;
             }
-            else
+            else if (_delivery.Order.DatetimeCompletion != null)
             {
                 courierFullnameTB.Text = "Отсутствует";
                 courierPhoneTB.Text = "Отсутствует";
                 courierCarInfoTB.Text = "Отсутствует";
             }
 
+            if (_delivery.StatusDeliveryId == 1 || _delivery.StatusDeliveryId == 2)
+            {
+                titleDeliveryCompletedTB.Text = "Время отмены:";
+            }
             DataContext = _delivery;
         }
 

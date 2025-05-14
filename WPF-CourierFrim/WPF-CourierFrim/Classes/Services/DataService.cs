@@ -34,7 +34,8 @@ namespace WPF_CourierFrim.Classes.Services
 
             filterCB.ItemsSource = new[] { "Все заказы", "Активные заказы", "Завершенные заказы" };
             filterCB.SelectedIndex = 1;
-            sorterCB.ItemsSource = new[] { "По номеру заказа", "По организациям", "По тарифам (ценам)", "По ФИО клиента", "По весу заказа" };
+            sorterCB.ItemsSource = new[] { "По номеру заказа", "По организациям", "По тарифам (ценам)", 
+                "По ФИО клиента", "По весу заказа" };
             sorterCB.SelectedIndex = 0;
             ascendingCHB.IsChecked = false;
 
@@ -214,8 +215,8 @@ namespace WPF_CourierFrim.Classes.Services
 
             filterCB.ItemsSource = new[] { "Все доставки", "Активные доставки", "Завершенные доставки" };
             filterCB.SelectedIndex = 1;
-            sorterCB.ItemsSource = new[] { "По номеру доставки", "По организациям", "По тарифам (ценам)", "По ФИО клиента", "По весу заказа",
-                "По ФИО курьера" };
+            sorterCB.ItemsSource = new[] { "По номеру доставки", "По организациям", "По тарифам (ценам)", 
+                "По ФИО клиента", "По весу заказа", "По ФИО курьера" };
             sorterCB.SelectedIndex = 0;
             ascendingCHB.IsChecked = false;
 
@@ -269,8 +270,8 @@ namespace WPF_CourierFrim.Classes.Services
                     case 5:
                         return deliveries.OrderBy(e => e.Order.Content.Weight).ToList();
                     case 6:
-                        return deliveries.OrderBy(e => e.EmployeeDeliveries.Single(ed => ed.DeliveryId == e.DeliveryId)
-                        .Employee.Fullname).ToList();
+                        return deliveries.OrderBy(e => e.EmployeeDeliveries
+                        .Single(ed => ed.DeliveryId == e.DeliveryId).Employee.Fullname).ToList();
                     default:
                         return deliveries.OrderBy(e => e.DeliveryId).ToList();
                 }
@@ -290,8 +291,8 @@ namespace WPF_CourierFrim.Classes.Services
                     case 5:
                         return deliveries.OrderByDescending(e => e.Order.Content.Weight).ToList();
                     case 6:
-                        return deliveries.OrderByDescending(e => e.EmployeeDeliveries.Single(ed => ed.DeliveryId == e.DeliveryId)
-                        .Employee.Fullname).ToList();
+                        return deliveries.OrderByDescending(e => e.EmployeeDeliveries
+                        .Single(ed => ed.DeliveryId == e.DeliveryId).Employee.Fullname).ToList();
                     default:
                         return deliveries.OrderByDescending(e => e.DeliveryId).ToList();
                 }
@@ -322,13 +323,10 @@ namespace WPF_CourierFrim.Classes.Services
         // Фильтр по курьеру
         public List<Delivery> ApplyCourier(List<Delivery> deliveries, Employee courier)
         {
-            // Возвращает только те заказы, которые еще не имеют назначенного курьера
-            // ИЛИ имеют доставку с конкретным курьером
+            // Возвращает доставки только с конкретным курьером
             return deliveries
-                .Where(delivery =>
-                    delivery.DatetimePresentation == null ||
-                    delivery.EmployeeDeliveries
-                        .Any(ed => ed.EmployeeId == courier.EmployeeId)
+                .Where(d => d.EmployeeDeliveries?
+                    .Any(ed => ed.EmployeeId == courier.EmployeeId) == true
                 )
                 .ToList();
         }

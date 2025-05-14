@@ -80,6 +80,7 @@
                 <!-- Кнопки -->
                 <StackPanel Orientation="Horizontal"
                             DockPanel.Dock="Bottom"
+                            Visibility="Collapsed"
                             Name="ButtonsSP">
                     
                     <!-- Смена статуса --> 
@@ -98,14 +99,6 @@
                                 Name="handingOrderBTN"
                                 Click="HandingOrder_Click"
                                 Visibility="Collapsed"/>
-
-                        <Button Style="{StaticResource ButtonIconPriority}"
-                                Content="Заказ выполнен"
-                                Tag="check"
-                                Name="completeDeliveryBTN"
-                                Visibility="Collapsed"
-                                IsEnabled="False"/>
-
                     </Grid>
 
                     <Button Style="{StaticResource ButtonIcon}"
@@ -119,6 +112,14 @@
                             Click="CancellationDelivery_Click"/>
                 </StackPanel>
 
+                <Button Name="infoBTN"
+                        DockPanel.Dock="Bottom"
+                        Visibility="Collapsed"
+                        Tag="InfoOutline"
+                        Width="Auto"
+                        Style="{StaticResource ButtonIconPriority}"
+                        Content="Данные о заказе"
+                        Click="Info_Click"/>
             </DockPanel>
 
             <Border.Effect>
