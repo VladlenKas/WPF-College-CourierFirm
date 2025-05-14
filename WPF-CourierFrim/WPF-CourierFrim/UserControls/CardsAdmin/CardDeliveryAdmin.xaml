@@ -79,6 +79,7 @@
 
                 <!-- Смена статуса -->
                 <Button Style="{StaticResource ButtonIconPriority}"
+                        DockPanel.Dock="Bottom"
                         Name="ButtonsSP"
                         Width="320"
                         Content="Информация"

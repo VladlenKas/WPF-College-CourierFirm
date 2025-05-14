@@ -53,9 +53,11 @@ public partial class CourierServiceContext : DbContext
             .ThenInclude(r => r.Organisation)
         .Include(r => r.Order)
             .ThenInclude(r => r.Rate)
-        .Include(r => r.EmployeeDeliveries)
-            .ThenInclude(e => e.Employee)
-                .ThenInclude(t => t.Transport);
+        .Include(r => r.Order)
+            .ThenInclude(o => o.Deliveries)
+                .ThenInclude(d => d.EmployeeDeliveries)
+                    .ThenInclude(e => e.Employee)
+                        .ThenInclude(t => t.Transport);
     public IQueryable<Order> Orders => AllOrders
         .Include(r => r.Rate)
         .Include(r => r.Organisation)

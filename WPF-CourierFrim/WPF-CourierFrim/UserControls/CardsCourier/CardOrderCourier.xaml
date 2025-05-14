@@ -83,7 +83,8 @@
 
                     <Button Style="{StaticResource ButtonIcon}"
                             Tag="InfoOutline"
-                            Click="Info_Click"/>
+                            Click="Info_Click"
+                            ToolTip="Информация по заказу"/>
                 </StackPanel>
 
                 <Button Name="infoBTN"

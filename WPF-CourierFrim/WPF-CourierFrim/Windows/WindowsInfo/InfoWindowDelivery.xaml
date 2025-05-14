@@ -179,7 +179,7 @@
                                TextWrapping="Wrap">
                         <Run Text="ФИО курьера:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Fullname, Mode=OneWay}"
+                        <Run Name="courierFullnameTB"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
@@ -187,14 +187,14 @@
                                TextWrapping="Wrap">
                         <Run Text="Телефон курьера:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Phone, StringFormat={}+{0}, Mode=OneWay}"
+                        <Run Name="courierPhoneTB"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
 
                     <TextBlock TextWrapping="Wrap">
                         <Run Text="Данные об авто:"
                              Style="{StaticResource TextCardTitle}"/>
-                        <Run Text="{Binding EmployeeDeliveries[0].Employee.Transport.InfoCar, Mode=OneWay}"
+                        <Run Name="courierCarInfoTB"
                              Style="{StaticResource TextCardInfo}"/>
                     </TextBlock>
                 </StackPanel>

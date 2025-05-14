@@ -1253,7 +1253,7 @@
         <Setter Property="Width" Value="40"/>
         <Setter Property="Height" Value="40"/>
         <Setter Property="Cursor" Value="Arrow"/>
-        <Setter Property="ToolTip" Value="Сортировка по убыванию"/>
+        <Setter Property="ToolTip" Value="Сортировка по возрастанию"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
@@ -1284,7 +1284,7 @@
 
                         <Trigger Property="IsChecked" Value="False">
                             <Setter TargetName="waterMark" Property="Kind" Value="ChevronDoubleDown"/>
-                            <Setter Property="ToolTip" Value="Сортировка по возрастанию"/>
+                            <Setter Property="ToolTip" Value="Сортировка по убыванию"/>
                         </Trigger>        
 
                     </ControlTemplate.Triggers>

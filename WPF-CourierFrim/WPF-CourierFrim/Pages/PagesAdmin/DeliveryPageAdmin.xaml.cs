@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.UserControls.CardsCourier;
@@ -26,16 +27,15 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _thisEmpoyee;
+        private DeliveryDataService _deliveryDataService;
 
         // Конструктор
         public DeliveryPageAdmin()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            // Загрузка комбобоксов и тд
-
+            _deliveryDataService = new(filterCB, sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -45,23 +45,28 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             _dbContext = new();
             var deliveries = _dbContext.Deliveries.ToList();
 
-            // Фильтрация и сортировка
+            deliveries = _deliveryDataService.ApplyFilter(deliveries);
+            deliveries = _deliveryDataService.ApplySort(deliveries);
+            deliveries = _deliveryDataService.ApplySearch(deliveries);
 
             cardsIC.Items.Clear();
             foreach (var delivery in deliveries)
             {
                 var card = new CardDeliveryAdmin(delivery);
+
                 card.ChangeStatusRequested += ChangeStatusRequested;
+                if (delivery.StatusDeliveryId == 1 ||
+                    delivery.StatusDeliveryId == 2 ||
+                    delivery.StatusDeliveryId == 5)
+                {
+                    card.Opacity = 0.5;
+                }
+
                 cardsIC.Items.Add(card);
             }
         }
 
         // Обработчики событий
         private void ChangeStatusRequested(object sender, DeliveryEventArgs e) => UpdateIC();
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

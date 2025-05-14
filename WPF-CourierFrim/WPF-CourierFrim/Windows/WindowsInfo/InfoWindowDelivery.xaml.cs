@@ -39,6 +39,20 @@ namespace WPF_CourierFrim.Windows.WindowsInfo
         {
             _dbContext = new();
             _dbContext.Attach(_delivery);
+
+            if (_delivery.EmployeeDeliveries.Count != 0)
+            {
+                courierFullnameTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Fullname;
+                courierPhoneTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Phone;
+                courierCarInfoTB.Text = _delivery.EmployeeDeliveries.Single().Employee.Transport.InfoCar;
+            }
+            else
+            {
+                courierFullnameTB.Text = "Отсутствует";
+                courierPhoneTB.Text = "Отсутствует";
+                courierCarInfoTB.Text = "Отсутствует";
+            }
+
             DataContext = _delivery;
         }
 
