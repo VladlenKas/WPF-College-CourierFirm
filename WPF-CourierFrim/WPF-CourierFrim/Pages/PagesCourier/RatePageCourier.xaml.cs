@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsCourier;
 
@@ -24,15 +25,15 @@ namespace WPF_CourierFrim.Pages.PagesCourier
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
+        private RateDataService _rateDataService;
 
         // Конструктор
         public RatePageCourier()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            // Загрузка комбобоксов и тд
-
+            _rateDataService = new(sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -42,7 +43,8 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             _dbContext = new();
             var rates = _dbContext.Rates.ToList();
 
-            // Фильтрация и сортировка 
+            rates = _rateDataService.ApplySort(rates);
+            rates = _rateDataService.ApplySearch(rates);
 
             cardsIC.Items.Clear();
             foreach (var rate in rates)
@@ -50,12 +52,6 @@ namespace WPF_CourierFrim.Pages.PagesCourier
                 var card = new CardRateCourier(rate);
                 cardsIC.Items.Add(card);
             }
-        }
-
-        // Обработчики событий
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }

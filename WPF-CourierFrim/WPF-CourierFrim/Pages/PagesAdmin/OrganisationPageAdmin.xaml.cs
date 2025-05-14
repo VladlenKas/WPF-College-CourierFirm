@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.Windows.DialogWindows;
@@ -27,15 +28,15 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
+        private OrganisationDataService _organisationDataService;
 
         // Конструктор
         public OrganisationPageAdmin()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            // Загрузка комбобоксов и тд
-
+            _organisationDataService = new(sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
         }
 
@@ -45,7 +46,8 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             _dbContext = new();
             var organisations = _dbContext.Organisations.ToList();
 
-            // Фильтрация и сортировка 
+            organisations = _organisationDataService.ApplySort(organisations);
+            organisations = _organisationDataService.ApplySearch(organisations);
 
             cardsIC.Items.Clear();
             foreach (var org in organisations)
@@ -58,11 +60,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
         // Обработчики событий
         private void OrgRequested(object sender, OrgEventArgs e) => UpdateIC();
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void AddOrg_Click(object sender, RoutedEventArgs e)
         {

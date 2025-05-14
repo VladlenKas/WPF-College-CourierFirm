@@ -38,11 +38,11 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
 
             if (delivery.StatusDeliveryId == 3 || delivery.StatusDeliveryId == 4)
             {
-                infoBTN.Visibility = Visibility.Visible;
+                ButtonsSP.Visibility = Visibility.Visible;
             }
             else
             {
-                ButtonsSP.Visibility = Visibility.Visible;
+                infoBTN.Visibility = Visibility.Visible;
             }
 
             _delivery = delivery;

@@ -5,6 +5,9 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
+      d:Width="1100" d:Height="450"
+      
+      xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters"
       xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
     <Page.Resources>
@@ -29,6 +32,9 @@
             
         </DataTemplate>
 
+        <!-- Конвертер для проверки наличия автомобиля -->
+        <converters:AvailabilityTransportConverter x:Key="AvailabilityTransport"/>
+
     </Page.Resources>
     
     <DockPanel>
@@ -38,24 +44,46 @@
                    Margin="0 0 0 35"
                    LastChildFill="False">
 
-            <TextBox Width="360"
-                     MinWidth="150"
-                     Tag="Поиск"
-                     DockPanel.Dock="Left"/>
+            <Grid>
+                <TextBox Width="360"
+                         MinWidth="150"
+                         Name="searchTB"
+                         Tag="Поиск"
+                         MaxLength="70"
+                         DockPanel.Dock="Left"
+                         ToolTip="Нажмите на значок поиска для обновления данных"/>
+
+                <Button Name="searchBTN"
+                        HorizontalAlignment="Right"
+                        Tag="Search"
+                        Style="{StaticResource ButtonIconTransperent}"/>
+            </Grid>
+            
+            <ComboBox Style="{StaticResource FilterCB}"
+                      Margin="10 0 0 0"
+                      Name="filterCB"
+                      Tag="Фильтр"/>
+            
+            <ComboBox Style="{StaticResource SorterCB}"
+                      Margin="10 0 0 0"
+                      Name="sorterCB"
+                      Tag="Сортировка"/>
+
+            <CheckBox Style="{StaticResource ChackBoxAscending}"
+                      Margin="5 0 10 0"
+                      Name="ascendingCHB"/>
+
+            <Button Name="resetFiltersBTN"
+                    Style="{StaticResource ButtonIconMedium}"
+                    Content="Очистить все"
+                    Tag="restore"
+                    ToolTip="Сброс фильтров"/>
 
             <Button Style="{StaticResource ButtonIconPriority}"
                     DockPanel.Dock="Right"
                     Tag="Add"
                     Click="AddEmp_Click"
                     Content="Добавить"/>
-
-            <ComboBox Style="{StaticResource FilterCB}"
-                      Margin="10 0"
-                      Tag="Фильтр"/>
-
-            <ComboBox Style="{StaticResource SorterCB}"
-                      Tag="Сортировка"/>
-
 
         </DockPanel>
 
@@ -111,8 +139,8 @@
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
+                    <DataGridTextColumn Header="Автомобиль" Binding="{Binding Converter={StaticResource AvailabilityTransport}}"/>
                     <DataGridTemplateColumn Header="Действия" CellTemplate="{StaticResource ActionsTemplate}"/>
-
                 </DataGrid.Columns>
 
             </DataGrid>

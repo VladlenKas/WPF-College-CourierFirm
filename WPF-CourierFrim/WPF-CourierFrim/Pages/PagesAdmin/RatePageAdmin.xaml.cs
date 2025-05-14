@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.Windows.DialogWindows;
@@ -27,16 +28,17 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
+        private RateDataService _rateDataService;
 
         // Конструктор
         public RatePageAdmin()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            // Загрузка комбобоксов и тд
-
+            _rateDataService = new(sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateIC);
             UpdateIC();
+
         }
 
         // Методы
@@ -45,7 +47,8 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             _dbContext = new();
             var rates = _dbContext.Rates.ToList();
 
-            // Фильтрация и сортировка 
+            rates = _rateDataService.ApplySort(rates);
+            rates = _rateDataService.ApplySearch(rates);
 
             cardsIC.Items.Clear();
             foreach (var rate in rates)
@@ -58,11 +61,6 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
         // Обработчики событий
         private void RateRequested(object sender, RateEventArgs e) => UpdateIC();
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
 
         private void AddRate_Click(object sender, RoutedEventArgs e)
         {

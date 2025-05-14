@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesCourier"
       mc:Ignorable="d" 
+      d:Width="900" d:Height="450"
       
       xmlns:wpf="http://wpfanimatedgif.codeplex.com">
 
@@ -15,20 +16,35 @@
                    Margin="0 0 0 35"
                    LastChildFill="False">
 
-            <TextBox Width="360"
-                     MinWidth="150"
-                     Tag="Поиск"
-                     DockPanel.Dock="Left"
-                     TextChanged="TextBox_TextChanged"/>
+            <Grid>
+                <TextBox Width="360"
+                         MinWidth="150"
+                         Name="searchTB"
+                         Tag="Поиск"
+                         MaxLength="70"
+                         DockPanel.Dock="Left"
+                         ToolTip="Нажмите на значок поиска для обновления данных"/>
 
-            <ComboBox Style="{StaticResource FilterCB}"
-                      Margin="10 0"
-                      Tag="Фильтр"/>
+                <Button Name="searchBTN"
+                        HorizontalAlignment="Right"
+                        Tag="Search"
+                        Style="{StaticResource ButtonIconTransperent}"/>
+            </Grid>
 
             <ComboBox Style="{StaticResource SorterCB}"
+                      Margin="10 0 0 0"
+                      Name="sorterCB"
                       Tag="Сортировка"/>
 
+            <CheckBox Style="{StaticResource ChackBoxAscending}"
+                      Margin="5 0 10 0"
+                      Name="ascendingCHB"/>
 
+            <Button Name="resetFiltersBTN"
+                    Style="{StaticResource ButtonIconMedium}"
+                    Content="Очистить все"
+                    Tag="restore"
+                    ToolTip="Сброс фильтров"/>
         </DockPanel>
 
         <!-- Область вывода информации -->

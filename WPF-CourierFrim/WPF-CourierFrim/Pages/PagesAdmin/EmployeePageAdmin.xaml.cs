@@ -16,6 +16,7 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.Windows.DialogWindows;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
 {
@@ -26,17 +27,18 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _admin;
-        private Employee _selectedEmployee => (Employee)itemsDG.SelectedItem;
+        private readonly Employee _admin;
+        private EmployeeDataService _employeeDataService;
+        private Employee SelectedEmployee => (Employee)itemsDG.SelectedItem;
 
         // Конструктор
         public EmployeePageAdmin(Employee admin)
         {
             InitializeComponent();
+
             _dbContext = new();
             _admin = admin;
-
-            // Загрузка комбобоксов и тд
+            _employeeDataService = new(filterCB, sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateDG);
 
             UpdateDG();
         }
@@ -47,7 +49,9 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             _dbContext = new();
             var employees = _dbContext.Employees.ToList();
 
-            // Фильтрация и сортировка 
+            employees = _employeeDataService.ApplyFilter(employees);
+            employees = _employeeDataService.ApplySort(employees);
+            employees = _employeeDataService.ApplySearch(employees);
 
             itemsDG.ItemsSource = employees;
         }
@@ -64,7 +68,7 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
         private void Edit_Click(object sender, RoutedEventArgs e)
         {
-            EditEmployeeWindow window = new(_selectedEmployee, _admin);
+            EditEmployeeWindow window = new(SelectedEmployee, _admin);
             ComponentsHelper.ShowDialogWindowDark(window);
 
             bool saved = window.Saved;
@@ -77,7 +81,7 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             if (!delete) return;
 
             _dbContext = new();
-            EmployeeService.DeleteEmployee(_selectedEmployee);
+            EmployeeService.DeleteEmployee(SelectedEmployee);
         }
     }
 }

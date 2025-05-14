@@ -32,7 +32,7 @@
             <TextBlock Style="{StaticResource TextH6}"
                        Margin="0 0 0 24"
                        TextWrapping="Wrap"
-                       Text="Будьте внимательны. Поля «Телефон», «Паспорт» и  «Логин» уникальные"
+                       Text="Будьте внимательны. Поля «Телефон», «Паспорт» и «Логин» уникальные"
                        Opacity="0.5"
                        DockPanel.Dock="Top"/>
 

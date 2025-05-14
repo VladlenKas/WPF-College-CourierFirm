@@ -17,6 +17,8 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
 using WPF_CourierFrim.Windows.DialogWindows;
+using WPF_CourierFrim.Classes.Services;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
 {
@@ -27,15 +29,14 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-
+        private TransportDataService _transportDataService;
         // Конструктор
         public TransportPageAdmin()
         {
             InitializeComponent();
+
             _dbContext = new();
-
-            // Загрузка комбобоксов и тд
-
+            _transportDataService = new(sorterCB, searchTB, ascendingCHB, searchBTN, resetFiltersBTN, UpdateDG);
             UpdateDG();
         }
 
@@ -43,24 +44,12 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         private void UpdateDG()
         {
             _dbContext = new();
-            var employees = _dbContext.Employees.ToList();
+            var transports = _dbContext.Transports.ToList();
 
-            // Фильтрация и сортировка 
+            transports = _transportDataService.ApplySort(transports);
+            transports = _transportDataService.ApplySearch(transports);
 
-            foreach (var employee in employees)
-            {
-                if (employee.Transport != null)
-                {
-                    itemsDG.Items.Add(employee);
-                }
-            }
+            itemsDG.ItemsSource = transports;
         }
-
-        // Обработчики событий
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
     }
 }

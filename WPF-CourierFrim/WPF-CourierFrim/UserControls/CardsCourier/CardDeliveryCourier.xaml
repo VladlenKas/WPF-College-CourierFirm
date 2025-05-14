@@ -13,7 +13,7 @@
                 CornerRadius="10">
 
             <DockPanel LastChildFill="False"
-                       Width="{Binding ElementName=ButtonsSP, Path=ActualWidth}">
+                       Width="320">
                 <!-- Заголовок -->
                 <TextBlock Style="{StaticResource TextH2}"
                            DockPanel.Dock="Top"
@@ -118,7 +118,7 @@
                         Tag="InfoOutline"
                         Width="Auto"
                         Style="{StaticResource ButtonIconPriority}"
-                        Content="Данные о заказе"
+                        Content="Данные о доставке"
                         Click="Info_Click"/>
             </DockPanel>
 

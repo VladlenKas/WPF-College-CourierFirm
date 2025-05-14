@@ -36,7 +36,7 @@ public partial class CourierServiceContext : DbContext
 
     public virtual DbSet<StatusDelivery> StatusDeliveries { get; set; }
 
-    public virtual DbSet<Transport> Transports { get; set; }
+    public virtual DbSet<Transport> AllTransports { get; set; }
 
     #region Обновленные или существующие записи
     public IQueryable<Employee> Employees => AllEmployees.Where(r => r.IsDeleted != 1)
@@ -65,6 +65,8 @@ public partial class CourierServiceContext : DbContext
             .ThenInclude(r => r.ContentType)
         .Include(o => o.Deliveries)
             .ThenInclude(d => d.EmployeeDeliveries);
+
+    public IQueryable<Transport> Transports => AllTransports.Include(r => r.Employees);
 
     #endregion
 
