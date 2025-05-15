@@ -15,6 +15,7 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
+using System.Xml.Linq;
 
 namespace WPF_CourierFrim.Windows.DialogWindows
 {
@@ -32,6 +33,20 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             InitializeComponent();
         }
 
+        // Методы
+        private void AddRate(string name, int cost, string description)
+        {
+            bool notError = Limitators.RateLimitator(null, name, cost, description);
+            if (!notError) return;
+
+            bool accept = MessageHelper.ConfirmSave();
+            if (!accept) return;
+
+            RateService.AddRate(name, cost, description);
+            Saved = true;
+            Close();
+        }
+
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
@@ -39,17 +54,9 @@ namespace WPF_CourierFrim.Windows.DialogWindows
         {
             string name = nameTB.Text;
             int cost = TypeHelper.IntParse(costTB.Text);
-            string desciption = descriptionTB.Text;
+            string description = descriptionTB.Text;
 
-            bool notError = Limitators.RateLimitator(null, name, cost, desciption);
-            if (!notError) return;
-
-            bool accept = MessageHelper.ConfirmSave();
-            if (!accept) return;
-
-            RateService.AddRate(name, cost, desciption);
-            Saved = true;
-            Close();
+            AddRate(name, cost, description);
         }
     }
 }

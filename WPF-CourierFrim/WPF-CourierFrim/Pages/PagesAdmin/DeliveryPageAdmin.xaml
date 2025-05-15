@@ -5,11 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WPF_CourierFrim.Pages.PagesAdmin"
       mc:Ignorable="d" 
-      d:Width="900" d:Height="450">
+      d:Width="900" d:Height="450"
+      xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters">
 
+    
     <DockPanel>
-
-
         <!-- Область параметров -->
         <DockPanel DockPanel.Dock="Top"
                    Margin="0 0 0 35"
@@ -54,42 +54,25 @@
         <!-- Область вывода информации -->
         <Grid>
 
-            <!-- Индикатор загрузки 
-            <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Visibility="Collapsed"
-                        Name="loadingIndicator">
-
-                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
-                       Width="200" Height="200"
-                       Margin="0 0 0 10"/>
-                
-                <TextBlock Text="Загрузка"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TextH6}"/>
-
-            </StackPanel> -->
-
             <!-- Контент -->
-            <ScrollViewer Name="contentScroll"
+            <Grid>
+                <ScrollViewer Name="contentScroll"
                           Style="{StaticResource ScrollViewerStandart}">
+                    <ItemsControl Name="cardsIC">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"
+                                           HorizontalAlignment="Left"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
 
-                <ItemsControl Name="cardsIC">
-
-                    <ItemsControl.ItemsPanel>
-
-                        <ItemsPanelTemplate>
-
-                            <WrapPanel Orientation="Horizontal"
-                                       HorizontalAlignment="Left"/>
-
-                        </ItemsPanelTemplate>
-
-                    </ItemsControl.ItemsPanel>
-
-                </ItemsControl>
-
-            </ScrollViewer>
+                <TextBlock Text="Данные о доставках отсутствуют"
+                           Style="{StaticResource TextH2}"
+                           Visibility="{Binding Items.Count, ElementName=cardsIC, 
+                           Converter={x:Static converters:IntToVisibilityConverter.Instance } }"/>
+            </Grid>
 
         </Grid>
 

@@ -43,6 +43,7 @@
                              Checked="OrderRButton_Checked"/>
 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Name="deliveryRB"
                              Content="Доставки"
                              Tag="truckDeliveryOutline"
                              GroupName="navItems"

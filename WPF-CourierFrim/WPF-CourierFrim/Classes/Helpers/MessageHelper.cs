@@ -21,6 +21,16 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+        
+        // Сообщение об успшеном добавлении ТС
+        public static void MessageAddedTransport()
+        {
+            MessageBox.Show($"Транспортное средство успешно зарегистрировано! " +
+                $"Теперь вам доступны заказы. Успешных доставок :).",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
+        }
 
         // Предупреждение о пустых полях
         public static void MessageNullFields()
@@ -111,6 +121,53 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
         }
+        
+        // Предупреждение о коротком названии модели ТС
+        public static void MessageShortModel()
+        {
+            MessageBox.Show($"Модель транспортного средства должна содержать минимум 3 символа!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о коротком названии марки ТС
+        public static void MessageShortBrand()
+        {
+            MessageBox.Show($"Марка транспортного средства должна содержать минимум 3 символа!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о коротком названии марки ТС
+        public static void MessageInvalidYear()
+        {
+            MessageBox.Show($"Год выпуска транспортного средства должен быть в промежутке " +
+                $"от 1980 года до текущего включительно!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о коротком номере ТС
+        public static void MessageInvalidLicensePlate()
+        {
+            MessageBox.Show($"Лицензионный номер транспортного средства должен содержать 6 символов и " +
+                $"соответствовать формату в примере подсказки!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о коротком названии марки цвета
+        public static void MessageShortColor()
+        {
+            MessageBox.Show($"Цвет транспортного средства должен содержать минимум 3 символа!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
 
         // Предупреждение о коротком номере
         public static void MessageShortAddress()
@@ -188,6 +245,15 @@ namespace WPF_CourierFrim.Classes.Helpers
         public static void MessageDuplicateDescription()
         {
             MessageBox.Show($"Такое описание уже существует! Введите другое",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о повторяющемся описании
+        public static void MessageDuplicateLicensePlate()
+        {
+            MessageBox.Show($"Такой лицензионный номер ТС уже существует! Введите другой",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);

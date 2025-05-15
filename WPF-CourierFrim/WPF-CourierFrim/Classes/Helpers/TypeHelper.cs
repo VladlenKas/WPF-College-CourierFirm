@@ -51,6 +51,20 @@ namespace WPF_CourierFrim.Classes.Helpers
             }
         }
 
+        // Преобразовывает текст в short либо возвращает 0
+        public static short ShortParse(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+            {
+                return 0;
+            }
+            else
+            {
+                int year = Convert.ToInt32(str);
+                return (short)year;
+            }
+        }
+
         // Посчитывает возраст
         public static int CalculateAge(DateOnly birthDate)
         {

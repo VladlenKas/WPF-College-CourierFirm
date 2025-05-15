@@ -7,8 +7,7 @@
       mc:Ignorable="d" 
       d:Width="1100" d:Height="450"
       
-      xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters"
-      xmlns:wpf="http://wpfanimatedgif.codeplex.com">
+      xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters">
 
     <Page.Resources>
 
@@ -89,28 +88,9 @@
 
         <!-- Область вывода информации -->
         <Grid>
-
-            <!-- Индикатор загрузки 
-            <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Visibility="Collapsed"
-                        Name="loadingIndicator">
-
-                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
-                       Width="200" Height="200"
-                       Margin="0 0 0 10"/>
-                
-                <TextBlock Text="Загрузка"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TextH6}"/>
-
-            </StackPanel> -->
-
             <!-- Контент -->
             <DataGrid Name="itemsDG">
-
                 <DataGrid.Columns>
-
                     <DataGridTextColumn Header="ФИО" Binding="{Binding Fullname}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
@@ -142,8 +122,13 @@
                     <DataGridTextColumn Header="Автомобиль" Binding="{Binding Converter={StaticResource AvailabilityTransport}}"/>
                     <DataGridTemplateColumn Header="Действия" CellTemplate="{StaticResource ActionsTemplate}"/>
                 </DataGrid.Columns>
-
             </DataGrid>
+
+            <TextBlock Text="Данные о сотрудниках отсутствуют"
+                       Style="{StaticResource TextH6}"
+                       Margin="20 80 0 0"
+                       Visibility="{Binding Items.Count, ElementName=itemsDG, 
+                       Converter={x:Static converters:IntToVisibilityConverter.Instance } }"/>
 
         </Grid>
 

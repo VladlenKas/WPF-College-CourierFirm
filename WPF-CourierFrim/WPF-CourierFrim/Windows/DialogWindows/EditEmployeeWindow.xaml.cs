@@ -55,6 +55,24 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             }
         }
 
+        // Методы
+        private void EditEmployee(Employee? employee, string firstname, string lastname,
+            string patronymic, DateOnly birthday, string phone, string passport, string login,
+            string password, Post? post)
+        {
+            bool notError = Limitators.EmployeeLimitator(_employee, firstname, lastname, patronymic, birthday,
+                phone, passport, login, password, post);
+            if (!notError) return;
+
+            bool accept = MessageHelper.ConfirmEdit();
+            if (!accept) return;
+
+            EmployeeService.EditEmployee(_employee, firstname, lastname, patronymic, birthday,
+                phone, passport, login, password, post.PostId);
+            Saved = true;
+            Close();
+        }
+
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
@@ -70,17 +88,8 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             string password = ComponentsHelper.GetPassword(PassPB, PassTB);
             Post? post = (Post)postCB.SelectedItem;
 
-            bool notError = Limitators.EmployeeLimitator(_employee, firstname, lastname, patronymic, birthday,
+            EditEmployee(_employee, firstname, lastname, patronymic, birthday,
                 phone, passport, login, password, post);
-            if (!notError) return;
-
-            bool accept = MessageHelper.ConfirmEdit();
-            if (!accept) return;
-
-            EmployeeService.EditEmployee(_employee, firstname, lastname, patronymic, birthday,
-                phone, passport, login, password, post.PostId);
-            Saved = true;
-            Close();
         }
 
         private void VisibilityPassword_Click(object sender, RoutedEventArgs e)

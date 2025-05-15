@@ -12,7 +12,7 @@
         SizeToContent="Height"
         MinHeight="650"
         MinWidth="450" Width="450"
-        Title="Добавление организации" 
+        Title="Редактирование данных о транспортном средстве" 
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
 
@@ -38,7 +38,7 @@
                        Opacity="0.5"
                        DockPanel.Dock="Top"/>
 
-            <TextBox Tag="Лицензионная табличка (пример: А123БВ)"
+            <TextBox Tag="Лицензионный номер (пример: А123БВ)"
                      Name="licensePlateTB"
                      Margin="0 0 0 12"
                      DockPanel.Dock="Top"
@@ -57,21 +57,21 @@
                      Margin="0 0 0 12"
                      DockPanel.Dock="Top"
                      MaxLength="20"
-                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+                     behaviors:TextBoxValidationBehavior.ValidationType="CyrillicAndNumbers"/>
 
             <TextBox Name="yearTB"
                      Tag="Год выпуска"
                      Margin="0 0 0 12"
                      DockPanel.Dock="Top"
-                     MaxLength="20"
-                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
+                     MaxLength="4"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Numbers"/>
 
             <TextBox x:Name="colorTB"
                      Tag="Цвет"
-                     Margin="0 0 0 12"
+                     Margin="0 0 0 40"
                      DockPanel.Dock="Top"
-                     MaxLength="4"
-                     behaviors:TextBoxValidationBehavior.ValidationType="Numbers"/>
+                     MaxLength="20"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
 
 
             <Button Style="{StaticResource ButtonStandard}"

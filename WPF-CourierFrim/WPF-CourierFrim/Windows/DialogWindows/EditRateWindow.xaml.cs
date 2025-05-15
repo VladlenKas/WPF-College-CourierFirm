@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
@@ -38,6 +39,20 @@ namespace WPF_CourierFrim.Windows.WindowsDialog
             descriptionTB.Text = rate.Description;
         }
 
+        // Методы
+        private void EditRate(Rate? rate, string name, int cost, string description)
+        {
+            bool notError = Limitators.RateLimitator(_rate, name, cost, description);
+            if (!notError) return;
+
+            bool accept = MessageHelper.ConfirmEdit();
+            if (!accept) return;
+
+            RateService.EditRate(_rate, name, cost, description);
+            Saved = true;
+            Close();
+        }
+
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
@@ -45,17 +60,9 @@ namespace WPF_CourierFrim.Windows.WindowsDialog
         {
             string name = nameTB.Text;
             int cost = Convert.ToInt32(costTB.Text);
-            string desciption = descriptionTB.Text;
+            string description = descriptionTB.Text;
 
-            bool notError = Limitators.RateLimitator(_rate, name, cost, desciption);
-            if (!notError) return;
-
-            bool accept = MessageHelper.ConfirmEdit();
-            if (!accept) return;
-
-            RateService.EditRate(_rate, name, cost, desciption);
-            Saved = true;
-            Close();
+            EditRate(_rate, name, cost, description);
         }
     }
 }

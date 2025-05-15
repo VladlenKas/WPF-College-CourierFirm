@@ -213,5 +213,16 @@ namespace WPF_CourierFrim.Classes
             }
             return true;
         }
+
+        // Ограничение на валидность лицензионного номера
+        public static bool ValidateCorrectLicensePlate(string licensePlate)
+        {
+            var regex = new Regex(@"^[А-Я]{1}[0-9]{3}[А-Я]{2}$");
+            if (!regex.IsMatch(licensePlate))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

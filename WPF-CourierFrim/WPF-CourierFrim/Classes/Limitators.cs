@@ -322,5 +322,74 @@ namespace WPF_CourierFrim.Classes
             // Если ошибок нет, то возвращаем true
             return true;
         }
+        
+        // Траснпортные средства 
+        public static bool TransportLimitator(Transport? transport, string licensePlate, string brand,
+            string model, string color, short year)
+        {
+            using var dbContext = new CourierServiceContext();
+
+            // Проверка на пустые поля
+            if (new[] { licensePlate, brand, model, color }.Any(string.IsNullOrWhiteSpace))
+            {
+                MessageHelper.MessageNullFields();
+                return false;
+            }
+            else if (!Validations.ValidateCorrectLicensePlate(licensePlate) ||
+                    licensePlate.Length != 6)
+            {
+                MessageHelper.MessageInvalidLicensePlate();
+                return false;
+            }
+            else if (brand.Length < 3)
+            {
+                MessageHelper.MessageShortBrand();
+                return false;
+            }
+            else if (model.Length < 3)
+            {
+                MessageHelper.MessageShortModel();
+                return false;
+            }
+            else if (color.Length < 3)
+            {
+                MessageHelper.MessageShortColor();
+                return false;
+            }
+            else if (year < 1980 || year > DateTime.Now.Year)
+            {
+                MessageHelper.MessageInvalidYear();
+                return false;
+            }
+            // Проверка на дубликаты и внесение изменений
+            else if (transport != null)
+            {
+                if (dbContext.Transports.Any(r => r.LicensePlate == licensePlate && r.TransportId != transport.TransportId))
+                {
+                    MessageHelper.MessageDuplicateLicensePlate();
+                    return false;
+                }
+
+                else if (transport.LicensePlate == licensePlate && transport.Brand == brand && transport.Model == model
+                    && transport.Color == color && transport.Year == year)
+                {
+                    MessageHelper.MessageNotChanges();
+                    return false;
+                }
+            }
+            // Добавление
+            else
+            {
+                if (dbContext.Transports.Any(r => r.LicensePlate == licensePlate))
+                {
+                    MessageHelper.MessageDuplicateLicensePlate();
+                    return false;
+                }
+            }
+
+            // Если ошибок нет, то возвращаем true
+            return true;
+        }
+
     }
 }

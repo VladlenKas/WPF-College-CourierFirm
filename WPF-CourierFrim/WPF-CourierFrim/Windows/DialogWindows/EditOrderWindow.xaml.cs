@@ -15,6 +15,9 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Reflection.Metadata;
+using System.Windows.Media.Media3D;
 
 namespace WPF_CourierFrim.Windows.DialogWindows
 {
@@ -51,6 +54,23 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             weightTB.Text = _order.Content.Weight.ToString();
         }
 
+        // Методы
+        private void EditOrder(Order? order, Organisation? organisation, Rate? rate,
+            string receivingAddress, string deliveryAddress, ContentType? contentType, string phoneClient,
+            string fullnameClient, string content, decimal weight)
+        {
+            bool notError = Limitators.OrderLimitator(_order, organisation, rate, receivingAddress, deliveryAddress,
+                contentType, phoneClient, fullnameClient, content, weight);
+            if (!notError) return;
+
+            bool accept = MessageHelper.ConfirmEdit();
+            if (!accept) return;
+            OrderService.EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
+                contentType, phoneClient, fullnameClient, content, weight);
+            Saved = true;
+            Close();
+        }
+
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
@@ -66,17 +86,8 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             string content = contentTB.Text;
             decimal weight = TypeHelper.DecemalParse(weightTB.Text);
 
-            bool notError = Limitators.OrderLimitator(_order, organisation, rate, receivingAddress, deliveryAddress,
+            EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
                 contentType, phoneClient, fullnameClient, content, weight);
-            if (!notError) return;
-
-            bool accept = MessageHelper.ConfirmEdit();
-            if (!accept) return;
-
-            OrderService.EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
-                contentType, phoneClient, fullnameClient, content, weight);
-            Saved = true;
-            Close();
         }
     }
 }

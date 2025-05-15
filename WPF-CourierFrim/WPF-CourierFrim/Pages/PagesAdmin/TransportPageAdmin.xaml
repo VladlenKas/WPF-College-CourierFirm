@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:Width="900" d:Height="450"
       
-      xmlns:wpf="http://wpfanimatedgif.codeplex.com">
+      xmlns:converters="clr-namespace:WPF_CourierFrim.Classes.Converters">
 
     <DockPanel>
 
@@ -50,39 +50,24 @@
 
         <!-- Область вывода информации -->
         <Grid>
-
-            <!-- Индикатор загрузки 
-            <StackPanel VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Visibility="Collapsed"
-                        Name="loadingIndicator">
-
-                <Image wpf:ImageBehavior.AnimatedSource="/Images/LoadingGif.gif"
-                       Width="200" Height="200"
-                       Margin="0 0 0 10"/>
-                
-                <TextBlock Text="Загрузка"
-                           HorizontalAlignment="Center"
-                           Style="{StaticResource TextH6}"/>
-
-            </StackPanel> -->
-
             <!-- Контент -->
             <DataGrid Name="itemsDG">
-
                 <DataGrid.Columns>
-
                     <DataGridTextColumn Header="Курьер" Binding="{Binding Employees[0].Fullname}"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Employees[0].Phone, StringFormat={}+{0}}"/>
                     <DataGridTextColumn Header="Номер ТС" Binding="{Binding LicensePlate}"/>
                     <DataGridTextColumn Header="Цвет" Binding="{Binding Color}"/>
-                    <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}"/>
-                    <DataGridTextColumn Header="Марка" Binding="{Binding Model}"/>
-                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year}"/>
-
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Brand}"/>
+                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                    <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year, StringFormat={}{0} год}"/>
                 </DataGrid.Columns>
-                
             </DataGrid>
+
+            <TextBlock Text="Данные о транспортных средствах отсутствуют"
+                       Style="{StaticResource TextH6}"
+                       Margin="20 80 0 0"
+                       Visibility="{Binding Items.Count, ElementName=itemsDG, 
+                       Converter={x:Static converters:IntToVisibilityConverter.Instance } }"/>
 
         </Grid>
 

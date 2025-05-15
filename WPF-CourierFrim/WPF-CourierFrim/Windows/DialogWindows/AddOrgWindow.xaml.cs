@@ -14,6 +14,8 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Classes;
+using System.Net;
+using System.Xml.Linq;
 
 namespace WPF_CourierFrim.Windows.DialogWindows
 {
@@ -31,6 +33,20 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             InitializeComponent();
         }
 
+        // Методы
+        private void AddOrganisation(string name, string email, string phone, string address)
+        {
+            bool notError = Limitators.OrgLimitator(null, name, email, phone, address);
+            if (!notError) return;
+
+            bool accept = MessageHelper.ConfirmSave();
+            if (!accept) return;
+
+            OrganisationService.AddOgranisation(name, email, phone, address);
+            Saved = true;
+            Close();
+        }
+
         // Обработчики событий
         private void Exit_Click(object sender, RoutedEventArgs e) => MessageHelper.ConfirmExit(this);
 
@@ -41,15 +57,7 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             string phone = phoneTB.PhoneNumber;
             string address = addressTB.Text;
 
-            bool notError = Limitators.OrgLimitator(null, name, email, phone, address);
-            if (!notError) return;
-
-            bool accept = MessageHelper.ConfirmSave();
-            if (!accept) return;
-
-            OrganisationService.AddOgranisation(name, email, phone, address);
-            Saved = true;
-            Close();
+            AddOrganisation(name, email, phone, address);
         }
     }
 }
