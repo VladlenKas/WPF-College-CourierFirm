@@ -11,8 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.Pages.PagesCourier;
+using WPF_CourierFrim.Windows.DialogWindows;
 
 namespace WPF_CourierFrim.Windows
 {
@@ -23,32 +25,49 @@ namespace WPF_CourierFrim.Windows
     {
         // Поля и свойства
         private CourierServiceContext _dbContext;
-        private Employee _thisEmpoyee;
+        private Employee _thisCourier;
 
         // Конструктор
-        public NavWindowCourier(Employee employee)
+        public NavWindowCourier(Employee courier)
         {
             _dbContext = new();
-            _thisEmpoyee = employee;
+            _thisCourier = courier;
 
             InitializeComponent();
-            Title = $"Меню Курьера. Сотрудник: {employee.Fullname}";
-            FIcourier.Text = employee.FIname;
+            Title = $"Меню Курьера. Сотрудник: {courier.Fullname}";
+            FIcourier.Text = courier.FIname;
 
-            OrderRB.IsChecked = true;
+            if (courier.Transport != null)
+            {
+                orderRB.IsChecked = true; 
+            }
+            else
+            {
+                statRB.IsChecked = true;
+                orderRB.IsEnabled = false;
+                MessageHelper.MessageAbsenceTransport();
+            }
+
             App.MenuWindow = this;
         }
 
         // Обработчики событий
         private void OrderRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new OrderPageCourier(_thisEmpoyee));
-            titlePage.Text = "Заказы";
+            if (_thisCourier.Transport != null)
+            {
+                CurrentPage.Navigate(new OrderPageCourier(_thisCourier));
+                titlePage.Text = "Заказы"; 
+            }
+            else
+            {
+                MessageHelper.MessageAbsenceTransport();
+            }
         }
 
         private void DeliveryRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new DeliveryPageCourier(_thisEmpoyee));
+            CurrentPage.Navigate(new DeliveryPageCourier(_thisCourier));
             titlePage.Text = "Доставки";
         }
 
@@ -60,19 +79,23 @@ namespace WPF_CourierFrim.Windows
 
         private void StatisticRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new StatisticPageCourier(_thisEmpoyee));
+            CurrentPage.Navigate(new StatisticPageCourier(_thisCourier));
             titlePage.Text = "Статистика";
+        }
+
+        private void InfoTransportButtonButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddTransportWindow window = new(_thisCourier);
+            ComponentsHelper.ShowDialogWindowDark(window);
+
+            _dbContext.Attach(_thisCourier);
         }
 
         private void ExitRButton_Checked(object sender, RoutedEventArgs e)
         {
-            Close();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
             AuthWindow window = new();
             window.Show();
+            Close();
         }
     }
 }

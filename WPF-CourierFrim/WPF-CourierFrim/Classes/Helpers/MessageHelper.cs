@@ -11,6 +11,17 @@ namespace WPF_CourierFrim.Classes.Helpers
     {
         #region Сообщения для уведомления
 
+        // Предупреждение о необходимости зарегистрировать авто
+        public static void MessageAbsenceTransport()
+        {
+            MessageBox.Show($"Для того, чтобы начать принимать заказы, вам необходимо " +
+                $"зарегистрировать свое транспортное средство. Заполните данные, нажав на кнопку в панели меню " +
+                $"«Данные о ТС». После этого вы сможете выполнять заказы.",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         // Предупреждение о пустых полях
         public static void MessageNullFields()
         {

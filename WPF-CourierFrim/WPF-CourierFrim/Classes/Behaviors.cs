@@ -63,6 +63,9 @@ namespace WPF_CourierFrim.Classes
                 case ValidationType.Weight:
                     Validations.ValidateInputWeight(e);
                     break;
+                case ValidationType.CyrillicAndNumbers:
+                    Validations.ValidateInputCyrillicAndNumbers(e);
+                    break;
             }
         }
 
@@ -91,6 +94,9 @@ namespace WPF_CourierFrim.Classes
                 case ValidationType.Weight:
                     Validations.ValidatePasteWeight(e);
                     break;
+                case ValidationType.CyrillicAndNumbers:
+                    Validations.ValidatePasteCyrillicAndNumbers(e);
+                    break;
             }
         }
     }
@@ -103,6 +109,7 @@ namespace WPF_CourierFrim.Classes
         Email,
         Password,
         Description,
-        Weight
+        Weight,
+        CyrillicAndNumbers
     }
 }

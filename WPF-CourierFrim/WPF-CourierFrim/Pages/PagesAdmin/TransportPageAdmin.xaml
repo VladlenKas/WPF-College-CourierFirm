@@ -74,10 +74,10 @@
 
                     <DataGridTextColumn Header="Курьер" Binding="{Binding Employees[0].Fullname}"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Employees[0].Phone, StringFormat={}+{0}}"/>
-                    <DataGridTextColumn Header="Номер ТС" Binding="{Binding Transport.LicensePlate}"/>
+                    <DataGridTextColumn Header="Номер ТС" Binding="{Binding LicensePlate}"/>
                     <DataGridTextColumn Header="Цвет" Binding="{Binding Color}"/>
                     <DataGridTextColumn Header="Бренд" Binding="{Binding Brand}"/>
-                    <DataGridTextColumn Header="Модель" Binding="{Binding Model}"/>
+                    <DataGridTextColumn Header="Марка" Binding="{Binding Model}"/>
                     <DataGridTextColumn Header="Год выпуска" Binding="{Binding Year}"/>
 
                 </DataGrid.Columns>

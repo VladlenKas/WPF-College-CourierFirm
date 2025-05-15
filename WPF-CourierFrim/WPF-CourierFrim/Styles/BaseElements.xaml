@@ -954,7 +954,7 @@
     </Style>
     <!--#endregion-->
 
-    <!--#region Навигационная кнопка -->
+    <!--#region Навигационная кнопка (RadioButton) -->
     <Style TargetType="{x:Type RadioButton}" x:Key="RadioButtonNavigation">
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Padding" Value="16"/>
@@ -1043,6 +1043,84 @@
                             </MultiTrigger.Setters>
                         </MultiTrigger>
 
+                        <!-- Отключённая кнопка -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
+    <!--#region Навигационная кнопка (Button) -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonNavigation">
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Padding" Value="16"/>
+        <Setter Property="Width" Value="195"/>
+        <Setter Property="Height" Value="56"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Arrow"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{StaticResource BackgroundDarkBrush}"
+                        BorderBrush="{StaticResource BackgroundDarkBrush}"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="True"
+                        CornerRadius="10">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <icons:PackIcon Name="icon"
+                                        Kind="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Width="24"
+                                        Height="24"
+                                        Margin="0 0 8 0"
+                                        Foreground="#ffffff"/>
+                            <TextBlock Name="content"
+                                   Text="{TemplateBinding Content}"
+                                   VerticalAlignment="Center"
+                                   Foreground="#ffffff"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <!-- Не активна + не нажата (базовое состояние) -->
+                        <Trigger Property="IsEnabled" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+                        </Trigger>
+
+                        <!-- Не активна + наведена -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+                        </MultiTrigger>
+
+                        <!-- Не активна + нажата -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsPressed" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="#42526F"/>
+                        </MultiTrigger>
+
+                        <!-- Отключённая кнопка -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -1100,6 +1178,8 @@
         </Setter>
     </Style>
     <!--#endregion-->
+    
+    
     <!--#endregion-->
 
     <!--#region Чек боксы -->

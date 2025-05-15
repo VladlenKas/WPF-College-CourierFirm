@@ -62,6 +62,14 @@ namespace WPF_CourierFrim.Classes
             ValidateInput(e, Weight());
         }
 
+        /// <summary>
+        /// Проверяет, что вводимый текст соответствует формату типа веса.
+        /// </summary>
+        public static void ValidateInputCyrillicAndNumbers(TextCompositionEventArgs e)
+        {
+            ValidateInput(e, CyrillicAndNumbers());
+        }
+
         #endregion
 
         #region Валидация на вставку текста
@@ -105,18 +113,21 @@ namespace WPF_CourierFrim.Classes
         {
             ValidatePaste(e, Weight());
         }
+        
+        /// <summary>
+        /// Проверяет вставляемый текст на соответствие формату электронной почты.
+        /// </summary>
+        public static void ValidatePasteCyrillicAndNumbers(DataObjectPastingEventArgs e)
+        {
+            ValidatePaste(e, CyrillicAndNumbers());
+        }
 
         /// <summary>
         /// Проверяет вставляемый текст на соответствие формату пароля.
         /// </summary>
         public static void ValidatePastePassword(DataObjectPastingEventArgs e)
         {
-            string pastedText = GetTextFromPaste(e);
-            var regex = Password();
-            if (!regex.IsMatch(pastedText))
-            {
-                e.CancelCommand();
-            }
+            ValidatePaste(e, Password());
         }
 
         #endregion
@@ -153,12 +164,16 @@ namespace WPF_CourierFrim.Classes
         }
 
         // Кирилика
-        [GeneratedRegex(@"[а-яА-Я\-]")]
+        [GeneratedRegex(@"[а-яА-Я]")]
         private static partial Regex Cyrillic();
 
         // Цифры
         [GeneratedRegex(@"[0-9]")]
         private static partial Regex Numbers();
+
+        // Буквы и цифры
+        [GeneratedRegex(@"[а-яА-Я0-9]")]
+        private static partial Regex CyrillicAndNumbers();
 
         // Описание
         [GeneratedRegex(@"[а-яА-Я0-9-().,;""':/]")]

@@ -531,7 +531,7 @@ namespace WPF_CourierFrim.Classes.Services
             _reserFiltersBTN = reserFiltersBTN;
             UpdateDG = Action;
 
-            sorterCB.ItemsSource = new[] { "По ФИО курьера", "По номеру (авто)", "По цвету", "По бренду",
+            sorterCB.ItemsSource = new[] { "По ФИО курьера", "По номеру (авто)", "По цвету", "По марке",
                 "По модели", "По году выпуска" };
             sorterCB.SelectedIndex = 0;
             ascendingCHB.IsChecked = false;

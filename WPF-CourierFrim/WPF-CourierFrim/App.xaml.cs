@@ -11,10 +11,6 @@ namespace WPF_CourierFrim
     {
         // Окно текущего меню
         public static Window MenuWindow { get; set; }
-
-        // Открытая страница
-        public static Window CurrentNavWindow { get; set; }
-
     }
 
 }

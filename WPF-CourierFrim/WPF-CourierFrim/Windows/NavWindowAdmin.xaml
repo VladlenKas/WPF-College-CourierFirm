@@ -11,8 +11,7 @@
         Height="900" Width="1610"   
         MinHeight="700" MinWidth="1200"
         Style="{StaticResource WindowOrdinary}"
-        WindowStartupLocation="CenterScreen"
-        Closing="Window_Closing">
+        WindowStartupLocation="CenterScreen">
     
     <DockPanel>
         

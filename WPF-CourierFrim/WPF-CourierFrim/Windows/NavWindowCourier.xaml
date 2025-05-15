@@ -11,8 +11,7 @@
         Height="900" Width="1500"   
         MinHeight="700" MinWidth="1200"
         Style="{StaticResource WindowOrdinary}"
-        WindowStartupLocation="CenterScreen"
-        Closing="Window_Closing">
+        WindowStartupLocation="CenterScreen">
 
     <DockPanel>
 
@@ -36,7 +35,7 @@
                 </StackPanel>
 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
-                             Name="OrderRB"
+                             Name="orderRB"
                              Content="Заказы"
                              Tag="listBoxOutline"
                              GroupName="navItems"
@@ -58,6 +57,7 @@
                              Checked="RateRButton_Checked"/>
                 
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
+                             Name="statRB"
                              Content="Статистика"
                              Tag="chartLine"
                              GroupName="navItems"
@@ -67,6 +67,12 @@
                 <Separator Background="#ffffff"
                            Margin="0 0 0 10"/>
 
+                <Button Style="{StaticResource ButtonNavigation}"
+                        Content="Данные о ТС"
+                        Tag="infoOutline"
+                        Margin="0 0 0 10"
+                        Click="InfoTransportButtonButton_Click"/>
+                
                 <RadioButton Style="{StaticResource RadioButtonNavigation}"
                              Content="Выйти"
                              Tag="logout"
