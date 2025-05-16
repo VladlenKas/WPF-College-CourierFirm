@@ -64,19 +64,5 @@ namespace WPF_CourierFrim.Classes.Helpers
                 return (short)year;
             }
         }
-
-        // Посчитывает возраст
-        public static int CalculateAge(DateOnly birthDate)
-        {
-            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
-            int age = today.Year - birthDate.Year;
-
-            if (today.Month < birthDate.Month || (today.Month == birthDate.Month && today.Day < birthDate.Day))
-            {
-                age--;
-            }
-
-            return age;
-        }
     }
 }

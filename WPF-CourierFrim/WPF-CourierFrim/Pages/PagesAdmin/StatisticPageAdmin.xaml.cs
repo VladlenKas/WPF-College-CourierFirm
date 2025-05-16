@@ -15,7 +15,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
+using WPF_CourierFrim.Model;
+using WPF_CourierFrim.Windows.DialogWindows;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin
 {
@@ -29,10 +32,15 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         public string[] Labels { get; set; }
         public Axis AxisY { get; set; }
 
+        // Поля
+        private Employee _admin;
+
         // Конструктор
-        public StatisticPageAdmin()  
+        public StatisticPageAdmin(Employee admin)  
         {
             InitializeComponent();
+
+            _admin = admin;
             DeliveriesDiagramLoad(DateTime.Now.Year); // настоящий год
             DataContext = this;
 
@@ -101,6 +109,13 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        // Обработчики событий
+        private void CreateReport_Click(object sender, RoutedEventArgs e)
+        {
+            GeneratedReportWindow window = new(_admin);
+            ComponentsHelper.ShowDialogWindowDark(window);
         }
     }
 }

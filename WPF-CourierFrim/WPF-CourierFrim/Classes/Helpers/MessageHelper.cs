@@ -59,6 +59,53 @@ namespace WPF_CourierFrim.Classes.Helpers
                 MessageBoxImage.Warning);
         }
 
+        // Предупреждение о пустых полях с датой (для отчета)
+        public static void MessageNullDatesFields()
+        {
+            MessageBox.Show($"Заполните поля с датой в соответствие с форматом " +
+                $"«dd.MM.yyyy»!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о пустом пути (для отчета)
+        public static void MessageNullFilepath()
+        {
+            MessageBox.Show($"Выберите путь для сохранения документа! Для этого нажмите на кнопку " +
+                $"«Путь к документу»",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
+        // Предупреждение о слишком старой дате (для отчета)
+        public static void MessageIncorrectYear()
+        {
+            MessageBox.Show($"Отчет можно составить только за текущий или предыдущий год!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о слишком большом периоде между датами (для отчета)
+        public static void LongDatePeriod()
+        {
+            MessageBox.Show($"Период между датами должен быть не более 3-ех месяцев!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+        
+        // Предупреждение о слишком большом периоде между датами (для отчета)
+        public static void WrongStartingDatePoint()
+        {
+            MessageBox.Show($"Дата начала отчета не может быть больше даты завершения!",
+                "Предупреждение",
+                MessageBoxButton.OK,
+                MessageBoxImage.Warning);
+        }
+
         // Предупреждение о молодом возрасте
         public static void MessageInappropriateAge()
         {
@@ -392,11 +439,11 @@ namespace WPF_CourierFrim.Classes.Helpers
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
-                return true; // удаляем
+                return true; 
             }
             else
             {
-                return false; // не удаляем
+                return false; 
             }
         }
 
@@ -415,11 +462,34 @@ namespace WPF_CourierFrim.Classes.Helpers
                     MessageBoxButton.OK,
                     MessageBoxImage.Information);
 
-                return true; // удаляем
+                return true; 
             }
             else
             {
-                return false; // не удаляем
+                return false; 
+            }
+        }
+
+        // Подтверждение сохранения
+        public static bool ConfirmSaveDocument()
+        {
+            var resultChanged = MessageBox.Show("Вы уверены, что заполнили все поля верно?",
+                "Вопрос",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (resultChanged == MessageBoxResult.Yes)
+            {
+                MessageBox.Show("Сохранение документа прошло успешно",
+                    "Успех",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                return true; 
+            }
+            else
+            {
+                return false; 
             }
         }
         #endregion

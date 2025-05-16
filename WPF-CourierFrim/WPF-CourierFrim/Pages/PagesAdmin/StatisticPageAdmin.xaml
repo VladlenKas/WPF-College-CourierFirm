@@ -24,7 +24,8 @@
             <Button Style="{StaticResource ButtonIconPriority}"
                     DockPanel.Dock="Right"
                     Tag="ContentSavePlusOutline"
-                    Content="Создать отчет"/>
+                    Content="Создать отчет"
+                    Click="CreateReport_Click"/>
 
         </DockPanel>
 

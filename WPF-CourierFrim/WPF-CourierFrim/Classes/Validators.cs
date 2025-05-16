@@ -194,7 +194,13 @@ namespace WPF_CourierFrim.Classes
         // Ограничение по возрасту 
         public static bool ValidateCorrectAge(DateOnly date)
         {
-            int age = TypeHelper.CalculateAge(date);
+            DateOnly today = DateOnly.FromDateTime(DateTime.Today);
+            int age = today.Year - date.Year;
+
+            if (today.Month < date.Month || (today.Month == date.Month && today.Day < date.Day))
+            {
+                age--;
+            }
 
             if (age < 18 || age > 80)
             {

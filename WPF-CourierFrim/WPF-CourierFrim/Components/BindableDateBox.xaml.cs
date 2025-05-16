@@ -23,16 +23,29 @@ namespace WPF_CourierFrim.Components
     {
         private bool _isUpdatingText;
 
+        // Зависимое свойство для пути к отображаемому свойству (DateTextProperty)
         public static readonly DependencyProperty DateTextProperty =
             DependencyProperty.Register("DateText", typeof(string), typeof(BindableDateBox),
                 new FrameworkPropertyMetadata(string.Empty,
                     FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     OnDateTextChanged));
 
+        // Зависимое свойство для пути к отображаемому свойству (PlaceholderProperty)
+        public static readonly DependencyProperty PlaceholderDateProperty =
+            DependencyProperty.Register("PlaceholderDate", typeof(string), typeof(AutoCompleteTextBox), new PropertyMetadata(string.Empty));
+
+        // Текст даты
         public string DateText
         {
             get => (string)GetValue(DateTextProperty);
             set => SetValue(DateTextProperty, value);
+        }
+
+        // Текст плейсхолдера
+        public string PlaceholderDate
+        {
+            get { return (string)GetValue(PlaceholderDateProperty); }
+            set { SetValue(PlaceholderDateProperty, value); }
         }
 
         public BindableDateBox()

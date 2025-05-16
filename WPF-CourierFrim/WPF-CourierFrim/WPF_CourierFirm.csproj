@@ -12,12 +12,14 @@
   <ItemGroup>
     <None Remove="Images\AuthImage.png" />
     <None Remove="Images\IconCourierFirm.ico" />
+    <None Remove="Images\IconCourierFirmBlack.png" />
     <None Remove="Images\LoadingGif.gif" />
     <None Remove="Images\LogoCourierFirm.png" />
     <None Remove="Images\RegImage.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes.MahApps" Version="5.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.14" />
@@ -33,8 +35,13 @@
   <ItemGroup>
     <Resource Include="Images\AuthImage.png" />
     <Resource Include="Images\IconCourierFirm.ico" />
+    <Content Include="Images\IconCourierFirmBlack.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\LoadingGif.gif" />
-    <Resource Include="Images\LogoCourierFirm.png" />
+    <Resource Include="Images\LogoCourierFirm.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Images\RegImage.png" />
   </ItemGroup>
 

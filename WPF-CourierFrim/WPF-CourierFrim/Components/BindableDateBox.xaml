@@ -13,6 +13,7 @@
              PreviewTextInput="DateBox_PreviewTextInput"
              DataObject.Pasting="DateBox_Pasting"
              MaxLength="10"
-             Tag="Дата рождения"/>
+             Tag="{Binding PlaceholderDate, 
+                RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}"/>
 
 </UserControl>

@@ -602,6 +602,93 @@
     </Style>
     <!--#endregion-->
 
+    <!--#region Кнопка со стилем стандартного текстового поля -->
+    <Style TargetType="{x:Type Button}" x:Key="ButtonAsTextBox">
+        <Setter Property="Background" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource BackgroundDarkBrush}"/>
+        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="48"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="FontFamily" Value="SF Pro Text"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Padding" Value="18 14.5"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border x:Name="border"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        SnapsToDevicePixels="True"
+                        CornerRadius="10">
+                        <Grid>
+                            <!-- Основное содержимое -->
+                            <ContentPresenter x:Name="contentPresenter"
+                                              VerticalAlignment="Center"
+                                              HorizontalAlignment="Left"
+                                              Margin="{TemplateBinding Padding}"/>
+
+                            <!-- Плейсхолдер -->
+                            <TextBlock x:Name="placeholderText"
+                                       Padding="18 14.5"
+                                       IsHitTestVisible="False"
+                                       Text="{TemplateBinding Tag}"
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       Visibility="Collapsed"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Foreground="{StaticResource TextDisabledBrush}"
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Показываем плейсхолдер, когда контент пуст -->
+                        <Trigger Property="Content" Value="{x:Null}">
+                            <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="Content" Value="">
+                            <Setter TargetName="placeholderText" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <!-- При фокусе -->
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                            <Setter TargetName="placeholderText" Property="Foreground" Value="#ffffff"/>
+                        </Trigger>
+
+                        <!-- При наведении -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource AccentBrush}"/>
+                        </Trigger>
+
+                        <!-- При нажатии -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="RenderTransform">
+                                <Setter.Value>
+                                    <TranslateTransform Y="1"/>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundLightBrush}"/>
+                        </Trigger>
+
+                        <!-- Неактивное состояние -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+
     <!--#region Кнопка иконка средняя прозрачная (для карточек) -->
     <Style TargetType="{x:Type Button}" x:Key="ButtonIconMedium">
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
@@ -1213,7 +1300,7 @@
                                    Style="{StaticResource TextNormal}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Text="Показать пароль"/>
+                                   Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"/>
                     </StackPanel>
 
                     <ControlTemplate.Triggers>

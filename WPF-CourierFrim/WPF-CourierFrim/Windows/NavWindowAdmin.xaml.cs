@@ -22,16 +22,16 @@ namespace WPF_CourierFrim.Windows
     public partial class NavWindowAdmin : Window
     {
         // Поля и свойства
-        private Employee _thisEmpoyee;
+        private Employee _admin;
 
         // Конструктор
-        public NavWindowAdmin(Employee employee)
+        public NavWindowAdmin(Employee admin)
         {
-            _thisEmpoyee = employee;
+            _admin = admin;
 
             InitializeComponent();
-            Title = $"Меню Администратора. Сотрудник: {employee.Fullname}";
-            FIcourier.Text = employee.FIname;
+            Title = $"Меню Администратора. Сотрудник: {admin.Fullname}";
+            FIcourier.Text = admin.FIname;
 
             orderRB.IsChecked = true;
             App.MenuWindow = this;
@@ -58,7 +58,7 @@ namespace WPF_CourierFrim.Windows
 
         private void EmployeeRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new EmployeePageAdmin(_thisEmpoyee));
+            CurrentPage.Navigate(new EmployeePageAdmin(_admin));
             titlePage.Text = "Сотрудники";
         }
 
@@ -76,7 +76,7 @@ namespace WPF_CourierFrim.Windows
 
         private void StatisticRButton_Checked(object sender, RoutedEventArgs e)
         {
-            CurrentPage.Navigate(new StatisticPageAdmin());
+            CurrentPage.Navigate(new StatisticPageAdmin(_admin));
             titlePage.Text = "Статистика";
         }
 

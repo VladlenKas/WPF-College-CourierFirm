@@ -391,5 +391,51 @@ namespace WPF_CourierFrim.Classes
             return true;
         }
 
+        // Отчет 
+        public static bool ReporttLimitator(DateOnly dateReportStart, DateOnly dateReportEnd)
+        {
+            using var dbContext = new CourierServiceContext();
+
+            // Проверка на пустые поля
+            if (dateReportStart == DateOnly.MinValue || dateReportEnd == DateOnly.MinValue)
+            {
+                MessageHelper.MessageNullDatesFields();
+                return false;
+            }
+
+            // Получаем текущую дату и год
+            var currentDate = DateOnly.FromDateTime(DateTime.Now);
+            int currentYear = currentDate.Year;
+            int previousYear = currentYear - 1;
+
+            // Проверяем год (должен быть текущий или предыдущий)
+            bool isStartYearValid = dateReportStart.Year == currentYear || dateReportStart.Year == previousYear;
+            bool isEndYearValid = dateReportEnd.Year == currentYear || dateReportEnd.Year == previousYear;
+
+            // Если выбрана иная дата
+            if (!isStartYearValid || !isEndYearValid)
+            {
+                MessageHelper.MessageIncorrectYear();
+                return false;
+            }
+
+            // Проверяем, что разница между датами не более 3 месяцев
+            var maxEndDate = dateReportStart.AddMonths(3);
+            if (dateReportEnd > maxEndDate)
+            {
+                MessageHelper.LongDatePeriod();
+                return false;
+            }
+
+            // Дополнительная проверка: endDate не может быть раньше startDate
+            if (dateReportEnd < dateReportStart)
+            {
+                MessageHelper.WrongStartingDatePoint();
+                return false;
+            }
+
+            // Если ошибок нет, то возвращаем true
+            return true;
+        }
     }
 }
