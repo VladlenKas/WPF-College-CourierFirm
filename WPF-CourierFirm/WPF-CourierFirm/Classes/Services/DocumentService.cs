@@ -16,9 +16,6 @@ namespace WPF_CourierFrim.Classes.Services
     {
         public static void GenerateReport(string outputPath, DateOnly startDate, DateOnly endDate, List<ReportData> deliveries, string adminName, string logoPath)
         {
-            // В пунктах: 1 мм ≈ 2.835 пункта
-            const float imageHeight = 30f; // Высота логотипа 30pt (~10 мм)
-
             // Создаем документ с указанными отступами
             Document document = new Document(PageSize.A4, 85f, 42f, 57f, 57f);
 
@@ -56,7 +53,6 @@ namespace WPF_CourierFrim.Classes.Services
                 if (!string.IsNullOrEmpty(logoPath) && File.Exists(logoPath))
                 {
                     Image logo = Image.GetInstance(logoPath);
-                    logo.ScaleToFit(imageHeight * 1000f, imageHeight);
 
                     PdfPCell logoCell = new PdfPCell(logo, true);
                     logoCell.Border = Rectangle.NO_BORDER;
@@ -83,18 +79,18 @@ namespace WPF_CourierFrim.Classes.Services
                 periodParagraph.Leading = periodFont.Size * 1.5f;  // отступ снизу 10 пунктов
                 document.Add(periodParagraph);
 
-                // 3. Раздел "Доставки"
-                Paragraph deliveriesHeader = new Paragraph("Доставки:", normalFont)
-                {
-                    SpacingBefore = 10f, // отступ сверху 10 пунктов
-                    SpacingAfter = 5f    // отступ снизу 5 пунктов
-                };
-                deliveriesHeader.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
-                document.Add(deliveriesHeader);
-
-                // 4. Таблица доставок
+                // 3. Таблица доставок
                 if (deliveries.Count != 0) // Если доставки есть, создаем таблицу
                 {
+                    // Раздел "Доставки"
+                    Paragraph deliveriesHeader = new Paragraph("Доставки:", normalFont)
+                    {
+                        SpacingBefore = 10f, // отступ сверху 10 пунктов
+                        SpacingAfter = 5f    // отступ снизу 5 пунктов
+                    };
+                    deliveriesHeader.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                    document.Add(deliveriesHeader);
+
                     PdfPTable deliveryTable = new PdfPTable(7);
                     deliveryTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
                     deliveryTable.LockedWidth = true;
@@ -143,7 +139,7 @@ namespace WPF_CourierFrim.Classes.Services
                     document.Add(noDeliveries);
                 }
 
-                // 5. Итоговая строка
+                // 4. Итоговая строка
                 Paragraph summary = new Paragraph(
                     $"Итого: {deliveries.Count} доставок(-ки)",
                     periodFont)
@@ -155,7 +151,7 @@ namespace WPF_CourierFrim.Classes.Services
                 summary.Leading = periodFont.Size * 1.5f;  // отступ снизу 10 пунктов
                 document.Add(summary);
 
-                // 6. Дата составления
+                // 5. Дата составления
                 Paragraph reportDate = new Paragraph(
                     $"Дата составления отчета: {DateTime.Now:dd.MM.yyyy}",
                     normalFont)
@@ -165,7 +161,7 @@ namespace WPF_CourierFrim.Classes.Services
                 reportDate.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
                 document.Add(reportDate);
 
-                // 7. ФИО администратора
+                // 6. ФИО администратора
                 Paragraph adminParagraph = new Paragraph(
                     $"ФИО администратора: {adminName}",
                     normalFont);
