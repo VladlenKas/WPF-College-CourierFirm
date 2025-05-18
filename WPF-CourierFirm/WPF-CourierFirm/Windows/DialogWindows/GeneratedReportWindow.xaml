@@ -10,7 +10,7 @@
         xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         SizeToContent="Height"
-        MinHeight="650"
+        MinHeight="700"
         MinWidth="450" Width="450"
         Title="Составление отчета по доставкам" 
         Style="{StaticResource WindowOrdinary}"

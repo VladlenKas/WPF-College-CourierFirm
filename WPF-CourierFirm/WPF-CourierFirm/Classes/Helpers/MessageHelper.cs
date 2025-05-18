@@ -322,7 +322,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         // Предупреждение о том, что такой отчет уже существует
         public static bool MessageDuplicateFilpath()
         {
-            var result = MessageBox.Show($"Отчет за текущий период уже существует! Вы уверены, что хотите" +
+            var result = MessageBox.Show($"Отчет с таким названием уже существует! Вы уверены, что хотите " +
                 $"перезаписать его?",
                 "Подтверждение",
                 MessageBoxButton.YesNo,
