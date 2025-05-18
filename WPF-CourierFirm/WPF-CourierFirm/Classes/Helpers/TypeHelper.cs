@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WPF_CourierFrim.Model;
 
 namespace WPF_CourierFrim.Classes.Helpers
 {
@@ -63,6 +64,16 @@ namespace WPF_CourierFrim.Classes.Helpers
                 int year = Convert.ToInt32(str);
                 return (short)year;
             }
+        }
+
+        public static string PaymentMethodToString(sbyte? method)
+        {
+            return method switch
+            {
+                0 => "Наличный расчет",
+                1 => "Оплата картой",
+                _ => "Заказ отменен"
+            };
         }
     }
 }

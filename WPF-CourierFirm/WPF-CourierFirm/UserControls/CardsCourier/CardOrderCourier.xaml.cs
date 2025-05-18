@@ -73,6 +73,8 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
 
             _dbContext = new();
             OrderService.AcceptOrderCourier(_order, _employee);
+
+            AcceptOrderRequested?.Invoke(this, new OrderEventArgs { Order = this.Order });
         }
 
         // События

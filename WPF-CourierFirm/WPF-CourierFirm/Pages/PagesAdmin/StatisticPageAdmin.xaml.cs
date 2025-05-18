@@ -114,7 +114,7 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
         // Обработчики событий
         private void CreateReport_Click(object sender, RoutedEventArgs e)
         {
-            GeneratedReportWindow window = new(_admin);
+            GenerateReportWindow window = new(_admin);
             ComponentsHelper.ShowDialogWindowDark(window);
         }
     }

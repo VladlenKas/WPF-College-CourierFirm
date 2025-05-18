@@ -7,9 +7,8 @@
         mc:Ignorable="d"
 
         Title="Выбор способа оплаты доставки" 
-        MinHeight="{Binding ElementName=grid, Path=ActualHeight}" 
-        MinWidth="{Binding ElementName=grid, Path=ActualWidth}" 
-        Height="500" Width="400"
+        Height="650" Width="400"
+        MinHeight="650" MinWidth="400"
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
     
@@ -22,22 +21,42 @@
             <!-- Заголовок -->
             <TextBlock Style="{StaticResource TextH2}"
                        DockPanel.Dock="Top"
-                       Margin="0 0 0 16">
+                       Margin="0 0 0 16"
+                       TextWrapping="Wrap">
                 <Run Text="Оплата доставки"/>
                 <Run Text="{Binding DeliveryId, StringFormat={}№{0}}"/>
+                <Run Text=" и формирование чека"/>
             </TextBlock>
 
             <!-- Подзаголовок -->
             <TextBlock Style="{StaticResource TextH6}"
                        Margin="0 0 0 24"
                        TextWrapping="Wrap"
-                       Text="Для завершения доставки выберите способ оплаты ниже"
+                       Text="Для завершения выберите способ оплаты ниже и путь к документу"
                        Opacity="0.5"
                        DockPanel.Dock="Top"/>
 
             <ComboBox Tag="Выберите способ оплаты"
+                      Margin="0 0 0 24"
                       SelectedIndex="-1"
                       Name="paymentCB"
+                      DockPanel.Dock="Top"/>
+
+            <TextBlock Text="Путь к документу: "
+                       TextWrapping="Wrap"
+                       Name="filepathTB"
+                       Style="{StaticResource TextNormal}"
+                       Margin="0 0 0 12"
+                       DockPanel.Dock="Top"/>           
+
+            <Button Style="{StaticResource ButtonStandard}"
+                    Content="Выбрать путь к документу"
+                    Margin="0 0 0 12"
+                    DockPanel.Dock="Top"
+                    Click="FilepathTB_Click"/>
+            
+            <CheckBox Name="openedDocumentCB"
+                      Content="Открыть документ после сохранения"
                       DockPanel.Dock="Top"/>
 
             <Button Style="{StaticResource ButtonStandard}"

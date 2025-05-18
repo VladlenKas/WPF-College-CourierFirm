@@ -73,7 +73,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         public static void MessageNullFilepath()
         {
             MessageBox.Show($"Выберите путь для сохранения документа! Для этого нажмите на кнопку " +
-                $"«Путь к документу»",
+                $"«Выбрать путь к документу»",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);

@@ -58,6 +58,7 @@ namespace WPF_CourierFrim.Pages.PagesCourier
             foreach (var order in orders)
             {
                 var card = new CardOrderCourier(order, _thisCourier);
+                card.AcceptOrderRequested += AcceptOrderRequested;
 
                 if (order.DatetimeCompletion != null)
                 {

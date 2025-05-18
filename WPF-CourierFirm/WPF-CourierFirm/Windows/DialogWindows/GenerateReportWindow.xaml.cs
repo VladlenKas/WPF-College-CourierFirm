@@ -25,13 +25,13 @@ namespace WPF_CourierFrim.Windows.DialogWindows
     /// <summary>
     /// Логика взаимодействия для GeneratedReportWindow.xaml
     /// </summary>
-    public partial class GeneratedReportWindow : Window
+    public partial class GenerateReportWindow : Window
     {
         // Поля и свойства
         private Employee _admin;
         private string _filepath;
 
-        public GeneratedReportWindow(Employee admin)
+        public GenerateReportWindow(Employee admin)
         {
             InitializeComponent();
             _admin = admin;
@@ -97,10 +97,8 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             bool accept = MessageHelper.ConfirmSaveDocument();
             if (!accept) return;
 
-            // Формируем документ и сохраняем
-            string imageFilepath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "LogoCourierFirmBlack.png");
             List<ReportData> deliveries = GetReportData(dateReportStart, dateReportEnd);
-            DocumentService.GenerateReport(_filepath, dateReportStart, dateReportEnd, deliveries, _admin.Fullname, imageFilepath);
+            DocumentService.GenerateReport(_filepath, dateReportStart, dateReportEnd, deliveries, _admin.Fullname);
 
             // Открываем файл (или нет)
             bool openedDocument = (bool)openedDocumentCB.IsChecked;
@@ -137,7 +135,7 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             if (saveFileDialog.ShowDialog() == true)
             {
                 _filepath = $"{saveFileDialog.FileName}.pdf"; // Путь для открытия файла
-                filepathTB.Text += _filepath;
+                filepathTB.Text = $"Путь к документу: {_filepath}";
             }
         }
 

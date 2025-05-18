@@ -88,8 +88,6 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
             if (!saved) return;
 
             _dbContext = new();
-            DeliveryService.HandingOrder(_delivery);
-
             ChangeStatusRequested?.Invoke(this, new DeliveryEventArgs { Delivery = this.Delivery }); // Уведомляем род. страницу об удалении
         }
 
