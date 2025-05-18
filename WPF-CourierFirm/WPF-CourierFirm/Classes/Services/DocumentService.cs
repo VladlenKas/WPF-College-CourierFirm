@@ -39,36 +39,12 @@ namespace WPF_CourierFrim.Classes.Services
                 Font tableCellFont = new Font(baseFont, 12f, Font.NORMAL);
 
                 // 1. Заголовок и логотип
-                PdfPTable headerTable = new PdfPTable(2);
-                headerTable.TotalWidth = document.PageSize.Width - document.LeftMargin - document.RightMargin;
-                headerTable.LockedWidth = true;
-
-                // Ячейка с заголовком
-                PdfPCell headerCell = new PdfPCell(new Phrase("Отчет", headerFont));
-                headerCell.Border = Rectangle.NO_BORDER;
-                headerCell.HorizontalAlignment = Element.ALIGN_LEFT;
-                headerCell.PaddingBottom = 10f; // отступ снизу для заголовка - 10 пунктов
-                headerTable.AddCell(headerCell);
-
-                if (!string.IsNullOrEmpty(logoPath) && File.Exists(logoPath))
-                {
-                    Image logo = Image.GetInstance(logoPath);
-
-                    PdfPCell logoCell = new PdfPCell(logo, true);
-                    logoCell.Border = Rectangle.NO_BORDER;
-                    logoCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-                    logoCell.PaddingBottom = 10f; // отступ снизу для логотипа
-                    headerTable.AddCell(logoCell);
-                }
-                else
-                {
-                    PdfPCell emptyCell = new PdfPCell(new Phrase(" "));
-                    emptyCell.Border = Rectangle.NO_BORDER;
-                    emptyCell.PaddingBottom = 10f; // отступ снизу
-                    headerTable.AddCell(emptyCell);
-                }
-
-                document.Add(headerTable);
+                Paragraph titleParagraph = new Paragraph(
+                    "Отчет",
+                    headerFont);
+                titleParagraph.SpacingAfter = 10f;  // отступ снизу 10 пунктов
+                titleParagraph.Leading = periodFont.Size * 1.5f;
+                document.Add(titleParagraph);
 
                 // 2. Период отчета
                 Paragraph periodParagraph = new Paragraph(
@@ -76,7 +52,7 @@ namespace WPF_CourierFrim.Classes.Services
                     periodFont);
                 periodParagraph.SpacingBefore = 10f; // отступ сверху 10 пунктов
                 periodParagraph.SpacingAfter = 10f;  // отступ снизу 10 пунктов
-                periodParagraph.Leading = periodFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                periodParagraph.Leading = periodFont.Size * 1.5f; 
                 document.Add(periodParagraph);
 
                 // 3. Таблица доставок
@@ -88,7 +64,7 @@ namespace WPF_CourierFrim.Classes.Services
                         SpacingBefore = 10f, // отступ сверху 10 пунктов
                         SpacingAfter = 5f    // отступ снизу 5 пунктов
                     };
-                    deliveriesHeader.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                    deliveriesHeader.Leading = normalFont.Size * 1.5f;  
                     document.Add(deliveriesHeader);
 
                     PdfPTable deliveryTable = new PdfPTable(7);
@@ -135,7 +111,7 @@ namespace WPF_CourierFrim.Classes.Services
                     {
                         SpacingAfter = 5f // отступ снизу 5 пунктов
                     };
-                    noDeliveries.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                    noDeliveries.Leading = normalFont.Size * 1.5f;  
                     document.Add(noDeliveries);
                 }
 
@@ -148,7 +124,7 @@ namespace WPF_CourierFrim.Classes.Services
                     SpacingBefore = 15f, // отступ сверху 15 пунктов для отделения от таблицы
                     SpacingAfter = 15f   // отступ снизу 15 пунктов
                 };
-                summary.Leading = periodFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                summary.Leading = periodFont.Size * 1.5f;  
                 document.Add(summary);
 
                 // 5. Дата составления
@@ -158,7 +134,7 @@ namespace WPF_CourierFrim.Classes.Services
                 {
                     SpacingAfter = 5f // отступ снизу 5 пунктов
                 };
-                reportDate.Leading = normalFont.Size * 1.5f;  // отступ снизу 10 пунктов
+                reportDate.Leading = normalFont.Size * 1.5f; 
                 document.Add(reportDate);
 
                 // 6. ФИО администратора

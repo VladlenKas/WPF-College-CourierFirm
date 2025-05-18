@@ -82,7 +82,8 @@ namespace WPF_CourierFrim.Classes.Helpers
         // Предупреждение о слишком старой дате (для отчета)
         public static void MessageIncorrectYear()
         {
-            MessageBox.Show($"Отчет можно составить только за текущий или предыдущий год!",
+            MessageBox.Show($"Отчет можно составить ТОЛЬКО за текущий или предыдущий год, а также" +
+                $"дата начала или завершения отчета должна быть НЕ позднее текущей даты!",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -91,7 +92,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         // Предупреждение о слишком большом периоде между датами (для отчета)
         public static void LongDatePeriod()
         {
-            MessageBox.Show($"Период между датами должен быть не более 3-ех месяцев!",
+            MessageBox.Show($"Период между датами должен быть не более 3-ех месяцев",
                 "Предупреждение",
                 MessageBoxButton.OK,
                 MessageBoxImage.Warning);
@@ -317,6 +318,25 @@ namespace WPF_CourierFrim.Classes.Helpers
         #endregion
 
         #region Сообщения подтверждения
+
+        // Предупреждение о том, что такой отчет уже существует
+        public static bool MessageDuplicateFilpath()
+        {
+            var result = MessageBox.Show($"Отчет за текущий период уже существует! Вы уверены, что хотите" +
+                $"перезаписать его?",
+                "Подтверждение",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         // Вызывает сообщение с подтверждением о выходе/закрытии окна
         public static void ConfirmExit(Window window)

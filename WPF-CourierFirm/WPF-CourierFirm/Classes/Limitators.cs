@@ -403,17 +403,35 @@ namespace WPF_CourierFrim.Classes
                 return false;
             }
 
-            // Получаем текущую дату и год
+            // Получаем текущую дату
             var currentDate = DateOnly.FromDateTime(DateTime.Now);
             int currentYear = currentDate.Year;
             int previousYear = currentYear - 1;
 
-            // Проверяем год (должен быть текущий или предыдущий)
+            // Проверяем дату начала отчета
             bool isStartYearValid = dateReportStart.Year == currentYear || dateReportStart.Year == previousYear;
+            bool isStartDateValid = isStartYearValid &&
+                                   (dateReportStart < currentDate || dateReportStart == currentDate) &&
+                                   (dateReportStart.Year != currentYear ||
+                                    dateReportStart.Month <= currentDate.Month ||
+                                    dateReportStart.Day <= currentDate.Day);
+
+            // Проверяем дату окончания отчета
             bool isEndYearValid = dateReportEnd.Year == currentYear || dateReportEnd.Year == previousYear;
+            bool isEndDateValid = isEndYearValid &&
+                                 (dateReportEnd < currentDate || dateReportEnd == currentDate) &&
+                                 (dateReportEnd.Year != currentYear ||
+                                  dateReportEnd.Month <= currentDate.Month ||
+                                  dateReportEnd.Day <= currentDate.Day);
+
+            // Проверяем, что дата начала не позже даты окончания
+            bool isRangeValid = dateReportStart <= dateReportEnd;
+
+            // Общая проверка
+            bool isValid = isStartDateValid && isEndDateValid && isRangeValid;
 
             // Если выбрана иная дата
-            if (!isStartYearValid || !isEndYearValid)
+            if (!isValid)
             {
                 MessageHelper.MessageIncorrectYear();
                 return false;

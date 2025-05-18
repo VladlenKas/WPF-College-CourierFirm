@@ -94,7 +94,6 @@ namespace WPF_CourierFrim.Windows.DialogWindows
                 return;
             }
 
-            // Сообщение о подтверждении сохранения
             bool accept = MessageHelper.ConfirmSaveDocument();
             if (!accept) return;
 
@@ -137,8 +136,15 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             // Если пользователь выбрал путь для сохранения чека
             if (saveFileDialog.ShowDialog() == true)
             {
+                // Сообщение о подтверждении перезаписи файла
+                if (File.Exists($"{_filepath}.pdf"))
+                {
+                    bool overwrite = MessageHelper.MessageDuplicateFilpath();
+                    if (!overwrite) return; 
+                }
+
                 _filepath = $"{saveFileDialog.FileName}.pdf"; // Путь для открытия файла
-                filepathTB.Tag = _filepath;
+                filepathTB.Text += _filepath;
             }
         }
 

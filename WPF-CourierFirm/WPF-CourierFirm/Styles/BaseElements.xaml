@@ -480,7 +480,7 @@
     <Style TargetType="{x:Type Button}" x:Key="ButtonStandard">
         <Setter Property="Background" Value="{StaticResource BackgroundDisabledBrush}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BackgroundDisabledBrush}"/>
-        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="Foreground" Value="#50ffffff"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="Width" Value="Auto"/>
         <Setter Property="Height" Value="48"/>
@@ -509,6 +509,7 @@
                             <Setter TargetName="border" Property="Background" Value="{StaticResource BackgroundDisabledHowerBrush}"/>
                             <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
                             <Setter TargetName="border" Property="BorderThickness" Value="1"/>
+                            <Setter Property="Foreground" Value="#ffffff"/>
                         </Trigger>
 
                         <Trigger Property="IsPressed" Value="True">
@@ -620,17 +621,27 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border x:Name="border"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        SnapsToDevicePixels="True"
-                        CornerRadius="10">
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            SnapsToDevicePixels="True"
+                            CornerRadius="10">
                         <Grid>
                             <!-- Основное содержимое -->
-                            <ContentPresenter x:Name="contentPresenter"
-                                              VerticalAlignment="Center"
-                                              HorizontalAlignment="Left"
-                                              Margin="{TemplateBinding Padding}"/>
+                            <TextBlock Padding="20 14.5"
+                                       IsHitTestVisible="False"
+                                       Text="{Binding Content, RelativeSource={RelativeSource TemplatedParent}}"
+                                       FontFamily="SF Pro Text"
+                                       FontSize="14"
+                                       Foreground="{StaticResource TextDisabledBrush}"
+                                       FontWeight="SemiBold"
+                                       HorizontalAlignment="Stretch"
+                                       TextTrimming="CharacterEllipsis"
+                                       TextAlignment="Left"
+                                       FlowDirection="RightToLeft"
+                                       TextWrapping="NoWrap"
+                                       VerticalAlignment="Top"
+                                       Focusable="False"/>
 
                             <!-- Плейсхолдер -->
                             <TextBlock x:Name="placeholderText"
