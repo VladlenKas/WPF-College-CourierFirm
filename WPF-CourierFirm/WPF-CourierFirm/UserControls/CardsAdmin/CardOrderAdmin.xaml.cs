@@ -4,9 +4,10 @@ using System.Windows.Controls;
 using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
+using WPF_CourierFrim.DialogWindows;
 using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Windows.DialogWindows;
-using WPF_CourierFrim.Windows.WindowsInfo;
+using WPF_CourierFrim.WindowsDialog;
+using WPF_CourierFrim.WindowsInfo;
 using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrganisationAdmin;
 
 namespace WPF_CourierFrim.UserControls.CardsAdmin

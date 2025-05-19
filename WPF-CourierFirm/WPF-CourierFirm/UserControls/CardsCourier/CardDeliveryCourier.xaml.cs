@@ -16,8 +16,8 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Windows.WindowsDialog;
-using WPF_CourierFrim.Windows.WindowsInfo;
+using WPF_CourierFrim.WindowsDialog;
+using WPF_CourierFrim.WindowsInfo;
 
 namespace WPF_CourierFrim.UserControls.CardsCourier
 {

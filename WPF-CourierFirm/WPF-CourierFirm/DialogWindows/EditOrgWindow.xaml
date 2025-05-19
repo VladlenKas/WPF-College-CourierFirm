@@ -1,17 +1,17 @@
-﻿<Window x:Class="WPF_CourierFrim.Windows.WindowsDialog.EditRateWindow"
+﻿<Window x:Class="WPF_CourierFrim.DialogWindows.EditOrgWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_CourierFrim.Windows.WindowsDialog"
         mc:Ignorable="d"
-        
+       
         xmlns:behaviors="clr-namespace:WPF_CourierFrim.Classes"
+        xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         SizeToContent="Height"
         MinHeight="650"
         MinWidth="450" Width="450"
-        Title="Редактирование тарифа" 
+        Title="Редактирование организации" 
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
 
@@ -24,15 +24,15 @@
             <!-- Заголовок -->
             <TextBlock Style="{StaticResource TextH2}"
                        DockPanel.Dock="Top"
-                       Margin="0 0 0 16">
-                <Run Text="Редактирование тарифа"/>
-            </TextBlock>
+                       Margin="0 0 0 16"
+                       Text="Редактирование организации"
+                       TextWrapping="Wrap"/>
 
             <!-- Подзаголовок -->
             <TextBlock Style="{StaticResource TextH6}"
                        Margin="0 0 0 24"
                        TextWrapping="Wrap"
-                       Text="Поля «Название» и «Описание» не должны совпадать с существующими тарифами"
+                       Text="Ни одно поле не должно повторяться с данными существующих организаций"
                        Opacity="0.5"
                        DockPanel.Dock="Top"/>
 
@@ -40,23 +40,29 @@
                      Name="nameTB"
                      Margin="0 0 0 12"
                      DockPanel.Dock="Top"
-                     MaxLength="20"
+                     MaxLength="30"
                      behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
-            
-            <TextBox Tag="Цена (руб.)"
-                     Name="costTB"
+
+            <components:BindablePhoneBox Placeholder="Номер телефона "
+                                         x:Name="phoneTB"
+                                         Margin="0 0 0 12"
+                                         DockPanel.Dock="Top"
+                                         VerticalContentAlignment="Top"/>
+
+            <TextBox Tag="Электронная почта "
+                     Name="emailTB"
                      Margin="0 0 0 12"
                      DockPanel.Dock="Top"
-                     MaxLength="4"
-                     behaviors:TextBoxValidationBehavior.ValidationType="Numbers"/>
-            
-            <TextBox Tag="Описание"
-                     Height="120"
-                     Name="descriptionTB"
+                     VerticalContentAlignment="Top"
+                     MaxLength="90"
+                     behaviors:TextBoxValidationBehavior.ValidationType="Email"/>
+
+            <TextBox Tag="Адрес"
+                     Name="addressTB"
                      Margin="0 0 0 24"
                      DockPanel.Dock="Top"
-                     VerticalContentAlignment="Top"
-                     MaxLength="150"
+                     Height="120"
+                     MaxLength="120"
                      behaviors:TextBoxValidationBehavior.ValidationType="Description"/>
 
             <Button Style="{StaticResource ButtonStandard}"

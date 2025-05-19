@@ -17,7 +17,7 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 
-namespace WPF_CourierFrim.Windows.WindowsDialog
+namespace WPF_CourierFrim.WindowsDialog
 {
     /// <summary>
     /// Логика взаимодействия для EditRateWindow.xaml

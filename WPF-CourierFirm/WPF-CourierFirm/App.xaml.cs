@@ -10,7 +10,7 @@ namespace WPF_CourierFrim
     public partial class App : Application
     {
         // Окно текущего меню
-        public static Window MenuWindow { get; set; }
+        public static Window MenuWindow { get; set; } = null!;
     }
 
 }

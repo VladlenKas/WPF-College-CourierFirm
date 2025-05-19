@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,62 +11,48 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
+using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Reflection.Metadata;
-using System.Windows.Media.Media3D;
 
-namespace WPF_CourierFrim.Windows.DialogWindows
+namespace WPF_CourierFrim.DialogWindows
 {
     /// <summary>
-    /// Логика взаимодействия для EditOrderWindow.xaml
+    /// Логика взаимодействия для AddOrderWindow.xaml
     /// </summary>
-    public partial class EditOrderWindow : Window
+    public partial class AddOrderWindow : Window
     {
         // Поля и свойства
         public bool Saved { get; private set; }
         private CourierServiceContext dbContext;
-        private Order _order;
 
         // Конструктор
-        public EditOrderWindow(Order order)
+        public AddOrderWindow()
         {
             InitializeComponent();
             dbContext = new();
-            _order = order;
-            DataContext = _order;
 
             organisationCB.ItemsSource = dbContext.Organisations.ToList();
             rateCB.ItemsSource = dbContext.Rates.ToList();
             typeContentCB.ItemsSource = dbContext.ContentTypes.ToList();
-
-            organisationCB.SelectedItem = dbContext.Organisations.Single(r => r.OrganisationId == _order.Organisation.OrganisationId);
-            rateCB.SelectedItem = dbContext.Rates.Single(r => r.RateId == _order.RateId);
-            typeContentCB.SelectedItem = dbContext.ContentTypes.Single(r => r.ContentTypeId == _order.Content.ContentTypeId);
-            receivingAddressTB.Text = _order.ReceivingAddress;
-            deliveryAddressTB.Text = _order.DeliveryAddress;
-            fullnameClientTB.Text = _order.FullnameClient;
-            phoneClientTB.PhoneNumber = _order.PhoneClient;
-            contentTB.Text = _order.Content.Description;
-            weightTB.Text = _order.Content.Weight.ToString();
         }
 
         // Методы
-        private void EditOrder(Order? order, Organisation? organisation, Rate? rate,
+        private void AddOrder(Order? order, Organisation? organisation, Rate? rate,
             string receivingAddress, string deliveryAddress, ContentType? contentType, string phoneClient,
             string fullnameClient, string content, decimal weight)
         {
-            bool notError = Limitators.OrderLimitator(_order, organisation, rate, receivingAddress, deliveryAddress,
-                contentType, phoneClient, fullnameClient, content, weight);
+            bool notError = Limitators.OrderLimitator(null, organisation, rate, receivingAddress, deliveryAddress,
+               contentType, phoneClient, fullnameClient, content, weight);
             if (!notError) return;
 
-            bool accept = MessageHelper.ConfirmEdit();
+            bool accept = MessageHelper.ConfirmSave();
             if (!accept) return;
-            OrderService.EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
+            OrderService.CreateOrder(organisation, rate, receivingAddress, deliveryAddress,
                 contentType, phoneClient, fullnameClient, content, weight);
             Saved = true;
             Close();
@@ -86,7 +73,7 @@ namespace WPF_CourierFrim.Windows.DialogWindows
             string content = contentTB.Text;
             decimal weight = TypeHelper.DecemalParse(weightTB.Text);
 
-            EditOrder(_order, organisation, rate, receivingAddress, deliveryAddress,
+            AddOrder(null, organisation, rate, receivingAddress, deliveryAddress,
                 contentType, phoneClient, fullnameClient, content, weight);
         }
     }

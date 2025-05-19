@@ -17,7 +17,7 @@ using WPF_CourierFrim.Classes;
 using WPF_CourierFrim.Model;
 using System.Xml.Linq;
 
-namespace WPF_CourierFrim.Windows.DialogWindows
+namespace WPF_CourierFrim.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для AddRateWindow.xaml

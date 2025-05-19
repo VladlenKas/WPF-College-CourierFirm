@@ -16,7 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Model;
 
-namespace WPF_CourierFrim.Windows.WindowsInfo
+namespace WPF_CourierFrim.WindowsInfo
 {
     /// <summary>
     /// Логика взаимодействия для CardOrderInfo.xaml

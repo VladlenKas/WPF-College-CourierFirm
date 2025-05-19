@@ -18,7 +18,7 @@ using WPF_CourierFrim.Model;
 using System.Net;
 using System.Xml.Linq;
 
-namespace WPF_CourierFrim.Windows.DialogWindows
+namespace WPF_CourierFrim.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для EditOrgWindow.xaml

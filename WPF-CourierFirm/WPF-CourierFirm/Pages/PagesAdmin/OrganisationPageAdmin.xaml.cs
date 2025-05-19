@@ -14,9 +14,10 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
+using WPF_CourierFrim.DialogWindows;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.UserControls.CardsAdmin;
-using WPF_CourierFrim.Windows.DialogWindows;
+using WPF_CourierFrim.WindowsDialog;
 using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrganisationAdmin;
 
 namespace WPF_CourierFrim.Pages.PagesAdmin

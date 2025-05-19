@@ -13,9 +13,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFrim.DialogWindows;
 using WPF_CourierFrim.Model;
 using WPF_CourierFrim.Pages.PagesCourier;
-using WPF_CourierFrim.Windows.DialogWindows;
+using WPF_CourierFrim.WindowsDialog;
 
 namespace WPF_CourierFrim.Windows
 {

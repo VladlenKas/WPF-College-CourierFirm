@@ -1,18 +1,16 @@
-﻿<Window x:Class="WPF_CourierFrim.Windows.DialogWindows.AddOrderWindow"
+﻿<Window x:Class="WPF_CourierFrim.DialogWindows.EditOrderWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WPF_CourierFrim.Windows.DialogWindows"
-        mc:Ignorable="d"
-        
+       
         xmlns:behaviors="clr-namespace:WPF_CourierFrim.Classes"
         xmlns:components="clr-namespace:WPF_CourierFrim.Components"
         
         SizeToContent="Height"
         MinHeight="800" MinWidth="800" 
         Height="800" Width="800"
-        Title="Создание заказа" 
+        Title="Редактирование заказа" 
         Style="{StaticResource WindowOrdinary}"
         WindowStartupLocation="CenterScreen">
 
@@ -26,14 +24,15 @@
             <TextBlock Style="{StaticResource TextH2}"
                        DockPanel.Dock="Top"
                        Margin="0 0 0 16">
-                <Run Text="Создание заказа"/>
+                <Run Text="Редактирование заказа"/>
+                <Run Text="{Binding OrderId, StringFormat={}№{0}}"/>
             </TextBlock>
 
             <!-- Подзаголовок -->
             <TextBlock Style="{StaticResource TextH6}"
                        Margin="0 0 0 24"
                        TextWrapping="Wrap"
-                       Text="Ни одно поле не должно потовряться с данными существующих организаций"
+                       Text="Следите за тем, чтобы все введенные данные в поля были верны"
                        Opacity="0.5"
                        DockPanel.Dock="Top"/>
 
@@ -46,7 +45,7 @@
                     <ColumnDefinition Width="24"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
                 <!-- 1 колонка -->
                 <DockPanel Grid.Column="0"
                            LastChildFill="False">
@@ -86,7 +85,7 @@
                              DockPanel.Dock="Top"
                              MaxLength="35"
                              behaviors:TextBoxValidationBehavior.ValidationType="Cyrillic"/>
-                    
+
                     <components:BindablePhoneBox Placeholder="Номер телефона клиента"
                                                  x:Name="phoneClientTB"
                                                  DockPanel.Dock="Top"
@@ -111,7 +110,7 @@
                               Name="typeContentCB"
                               Margin="0 0 0 12"
                               DockPanel.Dock="Top"/>
-                    
+
                     <TextBox Tag="Вес (в кг. Пример: 0,6)"
                              Name="weightTB"
                              DockPanel.Dock="Top"
@@ -130,7 +129,7 @@
 
             <Button Style="{StaticResource ButtonPriority}"
                     DockPanel.Dock="Bottom"
-                    Content="Создать новый заказ"
+                    Content="Сохранить изменения"
                     Margin="0 0 0 12"
                     Click="Add_Click"/>
 

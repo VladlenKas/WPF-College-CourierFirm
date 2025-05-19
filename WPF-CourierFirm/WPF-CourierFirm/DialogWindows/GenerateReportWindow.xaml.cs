@@ -20,7 +20,7 @@ using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
 
-namespace WPF_CourierFrim.Windows.DialogWindows
+namespace WPF_CourierFrim.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для GeneratedReportWindow.xaml

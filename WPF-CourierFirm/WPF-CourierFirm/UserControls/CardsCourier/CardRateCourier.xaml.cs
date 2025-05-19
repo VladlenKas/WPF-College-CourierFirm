@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using WPF_CourierFrim.Classes.Helpers;
 using WPF_CourierFrim.Classes.Services;
 using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Windows.WindowsInfo;
 
 namespace WPF_CourierFrim.UserControls.CardsCourier
 {
@@ -44,7 +43,5 @@ namespace WPF_CourierFrim.UserControls.CardsCourier
             _dbContext.Attach(_rate);
             DataContext = _rate;
         }
-
-        // Обработчики событий
     }
 }

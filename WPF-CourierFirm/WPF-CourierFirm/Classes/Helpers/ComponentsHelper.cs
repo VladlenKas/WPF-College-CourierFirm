@@ -90,9 +90,7 @@ namespace WPF_CourierFrim.Classes.Helpers
         public static void ShowDialogWindowDark(Window infoWindow)
         {
             App.MenuWindow.Opacity = 0.5;
-
             infoWindow.ShowDialog();
-
             App.MenuWindow.Opacity = 1;
         }
     }
