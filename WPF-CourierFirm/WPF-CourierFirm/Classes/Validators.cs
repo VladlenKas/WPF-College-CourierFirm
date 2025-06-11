@@ -6,9 +6,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
-using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFirm.Classes.Helpers;
 
-namespace WPF_CourierFrim.Classes
+namespace WPF_CourierFirm.Classes
 {
     public static partial class Validations 
     {

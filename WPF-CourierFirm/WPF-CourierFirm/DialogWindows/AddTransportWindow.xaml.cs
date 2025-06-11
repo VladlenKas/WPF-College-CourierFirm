@@ -11,15 +11,15 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Classes;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.Classes;
+using WPF_CourierFirm.Model;
 using System.Collections.ObjectModel;
 using System.Net;
 using System.Xml.Linq;
 
-namespace WPF_CourierFrim.DialogWindows
+namespace WPF_CourierFirm.DialogWindows
 {
     /// <summary>
     /// Логика взаимодействия для AddTransportWindow.xaml

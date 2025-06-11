@@ -12,9 +12,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.WindowsInfo
+namespace WPF_CourierFirm.WindowsInfo
 {
     /// <summary>
     /// Логика взаимодействия для InfoWidowDelivery.xaml

@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.Classes.Helpers
+namespace WPF_CourierFirm.Classes.Helpers
 {
     public static class TypeHelper
     {
-        // Преобразовывает текст в дату либо возвращает 0
+        // Преобразовывает текст в дату либо возвращает мин. значение
         public static DateOnly DateOnlyParse(string str)
         {
             try

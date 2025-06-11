@@ -12,17 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.UserControls;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.UserControls;
 using Microsoft.EntityFrameworkCore;
-using WPF_CourierFrim.UserControls.CardsAdmin;
-using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrderAdmin;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.WindowsDialog;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.DialogWindows;
+using WPF_CourierFirm.UserControls.CardsAdmin;
+using static WPF_CourierFirm.UserControls.CardsAdmin.CardOrderAdmin;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.WindowsDialog;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.DialogWindows;
 
-namespace WPF_CourierFrim.Pages.PagesAdmin
+namespace WPF_CourierFirm.Pages.PagesAdmin
 {
     /// <summary>
     /// Логика взаимодействия для OrderPageAdmin.xaml

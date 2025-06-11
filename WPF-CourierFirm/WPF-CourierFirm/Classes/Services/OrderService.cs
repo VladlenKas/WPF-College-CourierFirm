@@ -6,11 +6,11 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Media3D;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     public static class OrderService
     {

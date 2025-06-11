@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.UserControls.CardsCourier
+namespace WPF_CourierFirm.UserControls.CardsCourier
 {
     /// <summary>
     /// Логика взаимодействия для CardRateCourier.xaml

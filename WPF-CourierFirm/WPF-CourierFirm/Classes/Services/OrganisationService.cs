@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     public static class OrganisationService
     {

@@ -6,11 +6,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Classes.Helpers;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.Classes.Helpers;
 using ControlzEx.Standard;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     public static class DocumentService
     {

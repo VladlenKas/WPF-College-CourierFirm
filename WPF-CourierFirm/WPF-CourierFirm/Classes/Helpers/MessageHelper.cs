@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace WPF_CourierFrim.Classes.Helpers
+namespace WPF_CourierFirm.Classes.Helpers
 {
     public static class MessageHelper
     {

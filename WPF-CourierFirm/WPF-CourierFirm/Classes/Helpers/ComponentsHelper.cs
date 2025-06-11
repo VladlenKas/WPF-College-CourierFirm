@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_CourierFrim.Components;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Components;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.Classes.Helpers
+namespace WPF_CourierFirm.Classes.Helpers
 {
     /// <summary>
     /// Класс для работы с компонентами

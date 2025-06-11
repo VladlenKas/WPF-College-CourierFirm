@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 
-namespace WPF_CourierFrim.Classes.Converters
+namespace WPF_CourierFirm.Classes.Converters
 {
     internal class PaymentMethodConverter : IValueConverter
     {

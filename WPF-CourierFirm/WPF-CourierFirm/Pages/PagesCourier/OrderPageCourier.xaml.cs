@@ -13,14 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.UserControls;
-using WPF_CourierFrim.UserControls.CardsAdmin;
-using WPF_CourierFrim.UserControls.CardsCourier;
-using static WPF_CourierFrim.UserControls.CardsCourier.CardOrderCourier;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.UserControls;
+using WPF_CourierFirm.UserControls.CardsAdmin;
+using WPF_CourierFirm.UserControls.CardsCourier;
+using static WPF_CourierFirm.UserControls.CardsCourier.CardOrderCourier;
 
-namespace WPF_CourierFrim.Pages.PagesCourier
+namespace WPF_CourierFirm.Pages.PagesCourier
 {
     /// <summary>
     /// Логика взаимодействия для OrderPageCourier.xaml

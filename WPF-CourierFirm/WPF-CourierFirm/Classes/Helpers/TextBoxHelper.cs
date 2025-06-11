@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WPF_CourierFrim.Classes.Helpers
+namespace WPF_CourierFirm.Classes.Helpers
 {
     public static class TextBoxHelper
     {

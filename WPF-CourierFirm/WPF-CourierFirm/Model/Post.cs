@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace WPF_CourierFrim.Model;
+namespace WPF_CourierFirm.Model;
 
 public partial class Post
 {

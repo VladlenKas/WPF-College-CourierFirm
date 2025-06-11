@@ -12,9 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
+using WPF_CourierFirm.Classes;
 
-namespace WPF_CourierFrim.Components
+namespace WPF_CourierFirm.Components
 {
     /// <summary>
     /// Логика взаимодействия для BindablePhoneBox.xaml

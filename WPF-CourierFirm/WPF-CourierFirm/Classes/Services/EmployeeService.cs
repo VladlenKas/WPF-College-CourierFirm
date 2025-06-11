@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     public static class EmployeeService
     {
@@ -50,6 +51,12 @@ namespace WPF_CourierFrim.Classes.Services
         {
             using (var dbContext = new CourierServiceContext())
             {
+                // Если курьер становится админом, то данные о его автомобиле удаляются
+                if (employee.PostId == 1 && postId == 2)
+                {
+                    dbContext.Remove(employee.Transport);
+                }
+
                 employee.Firstname = firstname;
                 employee.Lastname = lastname;
                 employee.Patronymic = patronymic;

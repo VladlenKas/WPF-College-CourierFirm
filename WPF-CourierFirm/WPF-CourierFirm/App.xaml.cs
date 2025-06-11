@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace WPF_CourierFrim
+namespace WPF_CourierFirm
 {
     /// <summary>
     /// Interaction logic for App.xaml

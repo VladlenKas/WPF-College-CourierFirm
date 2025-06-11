@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     // Заказы (поиск, сортировка, фильтрация, +курьер)
     public class OrderDataService

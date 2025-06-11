@@ -6,10 +6,10 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Model;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace WPF_CourierFrim.Classes.Services
+namespace WPF_CourierFirm.Classes.Services
 {
     public static class DeliveryService
     {

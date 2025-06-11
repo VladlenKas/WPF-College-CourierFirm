@@ -1,16 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
-using WPF_CourierFrim.Classes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.DialogWindows;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.WindowsDialog;
-using WPF_CourierFrim.WindowsInfo;
-using static WPF_CourierFrim.UserControls.CardsAdmin.CardOrganisationAdmin;
+using WPF_CourierFirm.Classes;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.DialogWindows;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.WindowsDialog;
+using WPF_CourierFirm.WindowsInfo;
+using static WPF_CourierFirm.UserControls.CardsAdmin.CardOrganisationAdmin;
 
-namespace WPF_CourierFrim.UserControls.CardsAdmin
+namespace WPF_CourierFirm.UserControls.CardsAdmin
 {
     /// <summary>
     /// Логика взаимодействия для CardOrderAdmin.xaml

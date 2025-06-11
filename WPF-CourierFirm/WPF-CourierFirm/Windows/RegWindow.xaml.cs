@@ -11,11 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Classes;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Model;
 
-namespace WPF_CourierFrim.Windows
+namespace WPF_CourierFirm.Windows
 {
     /// <summary>
     /// Логика взаимодействия для RegWindow.xaml

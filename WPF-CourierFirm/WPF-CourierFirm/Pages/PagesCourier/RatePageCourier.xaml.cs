@@ -12,11 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.UserControls.CardsCourier;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.UserControls.CardsCourier;
 
-namespace WPF_CourierFrim.Pages.PagesCourier
+namespace WPF_CourierFirm.Pages.PagesCourier
 {
     /// <summary>
     /// Логика взаимодействия для RatePageCourier.xaml

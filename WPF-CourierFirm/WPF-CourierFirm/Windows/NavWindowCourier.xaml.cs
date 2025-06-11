@@ -12,13 +12,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.DialogWindows;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Pages.PagesCourier;
-using WPF_CourierFrim.WindowsDialog;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.DialogWindows;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.Pages.PagesCourier;
+using WPF_CourierFirm.WindowsDialog;
 
-namespace WPF_CourierFrim.Windows
+namespace WPF_CourierFirm.Windows
 {
     /// <summary>
     /// Логика взаимодействия для NavWindowCourier.xaml

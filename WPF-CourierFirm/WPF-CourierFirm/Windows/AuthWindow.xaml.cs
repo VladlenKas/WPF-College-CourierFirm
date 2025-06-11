@@ -12,11 +12,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Model; // Модели данных
-using WPF_CourierFrim.Windows; // Окна приложения
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Model; // Модели данных
+using WPF_CourierFirm.Windows; // Окна приложения
 
-namespace WPF_CourierFrim
+namespace WPF_CourierFirm
 {
     public partial class AuthWindow : Window // Окно авторизации
     {

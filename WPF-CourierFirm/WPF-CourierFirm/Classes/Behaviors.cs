@@ -7,7 +7,7 @@ using System.Windows.Input;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace WPF_CourierFrim.Classes
+namespace WPF_CourierFirm.Classes
 {
     public static class TextBoxValidationBehavior
     {

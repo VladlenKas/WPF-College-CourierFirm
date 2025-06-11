@@ -12,13 +12,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.WindowsDialog;
-using WPF_CourierFrim.WindowsInfo;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.WindowsDialog;
+using WPF_CourierFirm.WindowsInfo;
 
-namespace WPF_CourierFrim.UserControls.CardsAdmin
+namespace WPF_CourierFirm.UserControls.CardsAdmin
 {
     /// <summary>
     /// Логика взаимодействия для CardDeliveryAdmin.xaml

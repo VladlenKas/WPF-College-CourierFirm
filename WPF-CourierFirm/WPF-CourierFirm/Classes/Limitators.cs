@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Model;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Model;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-namespace WPF_CourierFrim.Classes
+namespace WPF_CourierFirm.Classes
 {
     public static class Limitators
     {

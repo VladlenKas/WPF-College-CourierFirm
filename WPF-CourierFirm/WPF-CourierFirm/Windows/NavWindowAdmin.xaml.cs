@@ -11,10 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.Pages.PagesAdmin;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.Pages.PagesAdmin;
 
-namespace WPF_CourierFrim.Windows
+namespace WPF_CourierFirm.Windows
 {
     /// <summary>
     /// Логика взаимодействия для NavWindowAdmin.xaml

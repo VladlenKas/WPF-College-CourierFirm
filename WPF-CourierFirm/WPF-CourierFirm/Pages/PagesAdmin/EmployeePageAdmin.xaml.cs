@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using WPF_CourierFrim.Classes.Helpers;
-using WPF_CourierFrim.Classes.Services;
-using WPF_CourierFrim.DialogWindows;
-using WPF_CourierFrim.Model;
-using WPF_CourierFrim.WindowsDialog;
+using WPF_CourierFirm.Classes.Helpers;
+using WPF_CourierFirm.Classes.Services;
+using WPF_CourierFirm.DialogWindows;
+using WPF_CourierFirm.Model;
+using WPF_CourierFirm.WindowsDialog;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
-namespace WPF_CourierFrim.Pages.PagesAdmin
+namespace WPF_CourierFirm.Pages.PagesAdmin
 {
     /// <summary>
     /// Логика взаимодействия для EmployeePageAdmin.xaml
@@ -57,6 +57,16 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
             itemsDG.ItemsSource = employees;
         }
 
+        private bool IsCurrentAdmin()
+        {
+            if (_admin.EmployeeId == SelectedEmployee.EmployeeId)
+            {
+                MessageBox.Show("Администратор не может удалить самого себя!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return true;
+            }
+            return false;
+        }
+
         // Обработчики событий
         private void AddEmp_Click(object sender, RoutedEventArgs e)
         {
@@ -78,11 +88,16 @@ namespace WPF_CourierFrim.Pages.PagesAdmin
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
+            bool isCurrentAdmin = IsCurrentAdmin();
+            if (isCurrentAdmin) return;
+
             bool delete = MessageHelper.ConfirmDelete();
             if (!delete) return;
 
             _dbContext = new();
             EmployeeService.DeleteEmployee(SelectedEmployee);
+
+            UpdateDG();
         }
     }
 }

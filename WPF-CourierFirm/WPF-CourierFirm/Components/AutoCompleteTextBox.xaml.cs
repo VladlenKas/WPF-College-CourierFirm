@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WPF_CourierFrim.Components
+namespace WPF_CourierFirm.Components
 {
     /// <summary>
     /// Логика взаимодействия для AutoCompleteTextBox.xaml
